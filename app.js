@@ -81,7 +81,7 @@ app.use('/', index);
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
-const protectedRoutes = require('./routes/protected')
+const protectedRoutes = require('./routes/protected');
 app.use('/user', protectedRoutes)
       
 

@@ -2,8 +2,14 @@ const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
 
 const bookSchema = new Schema({
-    title:String,
-    description:String,
+    title:{
+      type:String,
+      require:true
+      },
+    description:{
+      type:String,
+      require:true
+      },
     author:[String],
     pages: Number,
     categories: Array,
@@ -14,6 +20,18 @@ const bookSchema = new Schema({
     swapper:{
       type: Schema.Types.ObjectId,
       ref: 'swapper'
+      },
+    placePic: String,
+    place: {
+      type: {
+        address: {
+          type: String,
+          require: true
+        },
+        coordinates: {
+          type: [Number],
+          require: true
+        } }
       }
 }, {
   timestamps: {

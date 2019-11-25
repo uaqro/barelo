@@ -38,7 +38,7 @@ router.get('/new', (_, res)=> {
 })
 
 router.post('/new/ISBN', async (req, res) => {
-  const { ISBN10 } = req.body;
+  const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
   const buuk = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${g_key}`)
   const buk = {
@@ -51,6 +51,10 @@ router.post('/new/ISBN', async (req, res) => {
     idioma: buuk.volumeInfo.language,
     publisher: buuk.volumeInfo.publisher,
     publishDate: buuk.volumeInfo.publishedDate,
+    place: {
+      address:address,
+      coordinates:[lng,lat]
+    },
     swapper: id
   }
   books.create(buk)
@@ -73,7 +77,7 @@ router.post('/new/form', async (req, res) => {
     pic,
     idioma,
     publisher,
-    publishedDate} = req.body;
+    publishedDate, address, lng, lat} = req.body;
 
   const buk = {
     title:title,
@@ -85,6 +89,10 @@ router.post('/new/form', async (req, res) => {
     idioma:idioma,
     publisher:publisher,
     publishDate:publishedDate,
+    place: {
+      address:address,
+      coordinates:[lng,lat]
+    },
     swapper:id
   }
   

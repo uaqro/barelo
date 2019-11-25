@@ -1,6 +1,31 @@
 
 <form action = '/new/ISBN' method='POST'>
+  <div id='map'></div>
+  <input id="lng" type="text" name="location[coordinates][0]" hidden>
+  <input id="lat" type="text" name="location[coordinates][1]" hidden>
+  <input id="address" type="text" name="location[address]" hidden>
 </form>
 
 <form action='/new/form' method='POST'>
+    <div id='map'></div>
+    <input id="lng" type="text" name="location[coordinates][0]" hidden>
+    <input id="lat" type="text" name="location[coordinates][1]" hidden>
+    <input id="address" type="text" name="location[address]" hidden>
 </form>
+<script>
+  require('dotenv').config()
+  mapboxgl.accessToken = process.env.MAP;
+  const map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11'
+  });
+  const geoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken
+  })
+  map.addControl(geoCoder)
+  geoCoder.on('results', (results) => {
+    document.querySelector('#address').value = results.features[0].place_name
+    document.querySelector('#lat').value = results.features[0].center[1];
+    document.querySelector('#lng').value = results.features[0].center[0];
+  })
+</script>
