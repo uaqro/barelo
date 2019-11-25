@@ -54,7 +54,12 @@ router.post('/new/ISBN', async (req, res) => {
     swapper: id
   }
   books.create(buk)
-  res.redirect('/user/confirmation') 
+    .then(buki => user.findByIdAndUpdate(
+      id,{ $push: {publishedBooks: buki._id }})
+        .then(res.redirect('/user/confirmation') )
+        .catch())
+    .catch()
+  
 })
 
 router.post('/new/form', async (req, res) => {
@@ -82,7 +87,12 @@ router.post('/new/form', async (req, res) => {
     publishDate:publishedDate,
     swapper:id
   }
+  
   books.create(buk)
-  res.redirect('/user/confirmation') 
+    .then(buki => user.findByIdAndUpdate(
+      id,{ $push: {publishedBooks: buki._id }})
+        .then(res.redirect('/user/confirmation') )
+        .catch())
+    .catch()
 })
 

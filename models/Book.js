@@ -9,8 +9,8 @@ const bookSchema = new Schema({
     categories: Array,
     pic: String,
     idioma: String,
-    publisher: buuk.volumeInfo.publisher,
-    publishDate: buuk.volumeInfo.publishedDate,
+    publisher: String,
+    publishDate: String,
     swapper:{
       type: Schema.Types.ObjectId,
       ref: 'swapper'

@@ -3,7 +3,28 @@ const Schema   = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  password: String
+  email:String,
+  facebook_id: {
+    type: String
+  },
+  photoURL: {
+    type: String,
+    default:
+      "https://www.awlrescueme.com/images/Resources.jpg"
+  },
+  password: String,
+  publishedBooks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Books Given"
+    }
+  ],
+  pickedBooks: [
+    {
+      type: Schema.Types.ObjectId,
+      ref:'Books Picked'
+    }
+  ]
 }, {
   timestamps: {
     createdAt: 'created_at',
