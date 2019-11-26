@@ -2,13 +2,10 @@ const router = require('express').Router()
 const books = require('../models/Book')
 const user = require('../models/User')
 const axios = require('axios')
-
+const { detailGet, ISBNform} = require("../controllers/userControllers")
 
 //VISTA DE TODOS LOS LIBROS
-router.get('/index', (_, res) => {
-  const buks = books.find()
-  res.render('user/index', buks)
-})
+router.get('/index', detailGet)
 
 //DETAIL
 
@@ -41,63 +38,9 @@ router.get('/new', (_, res) => {
   res.render('user/new')
 })
 
-router.post('/new/ISBN', async (req, res) => {
-  const {
-    ISBN10
-  } = req.body;
-  const {
-    id
-  } = req.user;
-  const buuk = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${g_key}`)
-  const buk = {
-    title: buuk.volumeInfo.title,
-    description: buuk.volumeInfo.description,
-    author: buuk.volumeInfo.authors,
-    pages: buuk.volumeInfo.pageCount,
-    categories: buuk.volumeInfo.categories,
-    pic: buuk.volumeInfo.imageLinks.thumbnail,
-    idioma: buuk.volumeInfo.language,
-    publisher: buuk.volumeInfo.publisher,
-    publishDate: buuk.volumeInfo.publishedDate,
-    place: {
-      address:address,
-      coordinates:[lng,lat]
-    },
-    swapper: id
-  }
-  books.create(buk)
-  res.redirect('/user/confirmation')
-})
+router.post('/new/ISBN', ISBNform);
 
-router.post('/new/form', async (req, res) => {
-  const {
-    id
-  } = req.user;
-  const {
-    title,
-    description,
-    author,
-    pages,
-    categories,
-    pic,
-    idioma,
-    publisher,
-    publishedDate
-  } = req.body;
+router.post('/new/form', postForm)
 
-  const buk = {
-    title: title,
-    description: description,
-    author: author,
-    pages: pages,
-    categories: categories,
-    pic: pic,
-    idioma: idioma,
-    publisher: publisher,
-    publishDate: publishedDate,
-    swapper: id
-  }
-  
-  books.create(buk)
-  res.redirect('/user/confirmation')
-})
+
+module.exports = router;
