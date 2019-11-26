@@ -1,1 +1,11 @@
 <h2>Book Details</h2>
+
+<p>{{buk.title}}</p>
+<p>{{buk.description}}</p>
+{{#each buk.author as |auth|}}
+<p>{{auth}}</p>
+{{/each}}
+<p>{{buk.pages}}</p>
+<p>{{buk.swapper.username}}</p>
+<p>{{buk.publisher}}</p>
+<p>{{buk.publishDate}}</p>
