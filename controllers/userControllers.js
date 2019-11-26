@@ -6,9 +6,14 @@ exports.indexGet = (req, res) => {
   const { id, location } = req.user;
   const buks = books
     .find({
-      $centerSphere: [
-        [location.coordinates.lng, location.coordinates.ltd],
-        0.00157
+      $and: [
+        {
+          $centerSphere: [
+            [location.coordinates.lng, location.coordinates.ltd],
+            0.00157
+          ]
+        },
+        { picked: false }
       ]
     })
     .populate("swapper");
@@ -49,16 +54,11 @@ exports.ISBNform = async (req, res) => {
   await user.save();
   res.redirect("/user/confirmation");
 };
-
 // exports POST User
 
 exports.postForm = async (req, res) => {
-  const {
-    id
-  } = req.user;
-  const {
-    secure_url
-  } = req.file;
+  const { id } = req.user;
+  const { secure_url } = req.file;
   const {
     title,
     description,
@@ -99,4 +99,66 @@ exports.postForm = async (req, res) => {
   user.tokens = credits;
   await user.save();
   res.redirect("/user/confirmation");
+};
+
+exports.getpatchForm = async (req, res) => {
+  const { id } = req.params;
+  const buk = await books.findOne({ _id: id });
+  res.render("user/patch");
+};
+
+exports.patchForm = async (req, res) => {
+  const { id } = req.params;
+  const {
+    title,
+    description,
+    author,
+    pages,
+    categories,
+    pic,
+    idioma,
+    publisher,
+    publishedDate,
+    address,
+    lng,
+    lat
+  } = req.body;
+  const buk = await books.findOneAndUpdate(
+    { _id: id },
+    {
+      title: title,
+      description: description,
+      author: author,
+      pages: pages,
+      categories: categories,
+      pic: pic,
+      idioma: idioma,
+      publisher: publisher,
+      publishDate: publishedDate,
+      placePic: secure_url,
+      place: {
+        address: address,
+        coordinates: [lng, lat]
+      }
+    }
+  );
+  res.redirect("/user/index");
+};
+
+exports.deleteBook = async (req, res) => {
+  const { id } = req.params;
+  const { u_id } = req.body;
+  const bookmodel = await books.findById(id);
+  if (!bookmodel.picked) {
+    books.findByIdAndDelete({ _id: id });
+    user.findByIdAndUpdate(u_id, { $pull: { publishedBooks: { $in: id } } });
+  } else {
+    alert("Picked books cannot be deleted.");
+  }
+};
+
+exports.pickABook = async (req, res) => {
+  const { id } = req.params;
+
+  books.findByIdAndUpdate(id, { picked: true });
 };

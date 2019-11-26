@@ -6,13 +6,16 @@ const uploadCloud = require("../config/cloudinary");
 const {
   indexGet,
   ISBNform,
-  postForm
+  postForm,
+  getpatchForm,
+  patchForm,
+  deleteBook
 } = require("../controllers/userControllers");
 
 //VISTA DE TODOS LOS LIBROS
 router.get("/index", indexGet);
 
-//DETAIL
+//DETAIL - READ
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -34,16 +37,22 @@ router.get("/profile", (_, res) => {
   res.render("user/profile", user);
 });
 
-//ADD NEW
+//ADD NEW - CREATE
 
 router.get("/new", (_, res) => {
   res.render("user/new");
 });
 
-//FORMS
-
 router.post("/new/ISBN", uploadCloud.single("photo"), ISBNform);
 
 router.post("/new/form", uploadCloud.single("photo"), postForm);
+
+//PATCH FORM - UPDATE
+
+router.get("/:id/patch", getpatchForm);
+router.post("/:id/patch", patchForm);
+
+//DELETE
+router.post("/:id/delete", deleteBook);
 
 module.exports = router;
