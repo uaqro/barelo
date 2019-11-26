@@ -24,7 +24,11 @@ const userSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref:'Books Picked'
     }
-  ]
+  ],
+  tokens: {
+    type: this.publishedBooks.length - this.pickedBooks.length,
+    default: 0
+  }
 }, {
   timestamps: {
     createdAt: 'created_at',

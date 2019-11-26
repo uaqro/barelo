@@ -12,6 +12,7 @@ const path         = require('path');
 const session    = require("express-session");
 const MongoStore = require('connect-mongo')(session);
 const flash      = require("connect-flash");
+const { checkUser, isAuth }  = require('./middlewares/index')
     
 
 mongoose
@@ -76,13 +77,13 @@ require('./passport')(app);
     
 
 const index = require('./routes/index');
-app.use('/', index);
+app.use('/', checkUser, index);
 
 const authRoutes = require('./routes/auth');
 app.use('/auth', authRoutes);
 
 const protectedRoutes = require('./routes/protected');
-app.use('/user', protectedRoutes)
+app.use('/user', protectedRoutes, isAuth)
       
 
 module.exports = app;

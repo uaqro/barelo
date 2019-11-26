@@ -4,16 +4,11 @@ const user = require("../models/User.js")
 
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
 exports.detailGet = (req, res)=> {
-  res.render("user/index")
+  const { id, location } = req.user
+  const buks = books.find({$centerSphere: [[location.coordinates.lng, location.coordinates.ltd], 0.00157]})
+  res.render("user/index", buks)
 }
-/*
-exports.detailGEt = (req, res)=> {
-  { id, location} = req.user
-  const buks = books.find({ $centerSphere: [ [ location.coordinates.lng , location.coordinates.ltd ],  ] })
-  { $centerSphere: [ [ <x>, <y> ], <radius> ] }
-  res.render('user/index', buks)
-  }
-}*/
+
 // exports post ISBN
 exports.ISBNform = async (req, res)=>{
   const { ISBN10, lng, lat, address } = req.body;
@@ -36,14 +31,18 @@ exports.ISBNform = async (req, res)=>{
       coordinates:[lng,lat]
     },
     swapper: id
-  }
+    }
+  
   books.create(buk)
     .then(buki => user.findByIdAndUpdate(
-      id,{ $push: {publishedBooks: buki._id }})
-        .then(res.redirect('/user/confirmation') )
+      id,{ $set: {$push: {publishedBooks: buki._id }}}
+        .then(() => {
+          res.redirect('/user/confirmation')
+        })
         .catch())
-    .catch()
-  }
+        )
+        .catch()
+};
 
 // exports POST User
 
@@ -71,6 +70,7 @@ exports.postForm = async (req, res) => {
     idioma:idioma,
     publisher:publisher,
     publishDate:publishedDate,
+    placePic:secure_url,
     place: {
       address:address,
       coordinates:[lng,lat]
@@ -80,9 +80,12 @@ exports.postForm = async (req, res) => {
   
   books.create(buk)
     .then(buki => user.findByIdAndUpdate(
-      id,{ $push: {publishedBooks: buki._id }})
-        .then(res.redirect('/user/confirmation') )
+      id,{ $set: {$push: {publishedBooks: buki._id }}}
+        .then(() => {
+          res.redirect('/user/confirmation')
+        })
         .catch())
-    .catch()
+        )
+        .catch()
   }
 
