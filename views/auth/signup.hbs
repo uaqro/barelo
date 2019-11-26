@@ -1,6 +1,4 @@
-<h2>Signup</h2>
-
-<form action="/auth/signup" method="POST" id="form-container">
+{{!-- <form action="/auth/signup" method="POST" id="form-container">
   <label for="username">Username</label>
   <input id="username" type="text" name="username" placeholder="JonSnow">
 
@@ -10,7 +8,7 @@
   <input id="password" type="password" name="password" placeholder="Your password">
   <br>
   {{#if message }}
-    <div class="error-message">{{ message }}</div>
+  <div class="error-message">{{ message }}</div>
   {{/if}}
 
   <br><br>
@@ -22,4 +20,131 @@
     Do you already have an account?
     <a href="/auth/login">Login</a>
   </p>
-</form>
+</form> --}}
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet'
+  href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+<!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+<div class="container">
+  <h2>Signup</h2>
+
+  <div class="columns">
+    <div class="column is-one-third">
+
+      <form action="/auth/signup" method="POST" id="form-container" enctype='multipart/form-data'>
+        {{!-- username --}}
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="text" name="username" placeholder="username">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </p>
+        </div>
+        {{!-- email --}}
+        <div class="field">
+          <p class="control has-icons-left has-icons-right">
+            <input class="input" type="email" name="email" placeholder="Email">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+            {{!-- <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span> --}}
+          </p>
+        </div>
+        {{!-- password --}}
+        <div class="field">
+          <p class="control has-icons-left">
+            <input class="input" type="password" placeholder="Password">
+            <span class="icon is-small is-left">
+              <i class="fas fa-lock"></i>
+            </span>
+          </p>
+        </div>
+        {{#if message }}
+        <div class="error-message">{{ message }}</div>
+        {{/if}}
+
+        {{!-- add file --}}
+
+        {{!-- <input class="file-input" type="file" name="resume"> --}}
+        <div id="file-js-example" class="file has-name">
+          <label class="file-label">
+            <input class="file-input" type="file" name="photo" id="photo" accept="image/*">
+
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose a file…
+              </span>
+            </span>
+            <span class="file-name">
+              Add a profile pic!
+            </span>
+          </label>
+        </div>
+
+        {{!-- Button --}}
+        <br>
+        <div class="field">
+          <div id='map'></div>
+        </div>
+
+        {{!-- Button --}}
+        <br>
+        <div class="field">
+          <p class="control">
+            <button class="button is-primary">
+              Create an Account
+            </button>
+          </p>
+        </div>
+
+      </form>
+    </div>
+  </div>
+  <p class="account-message">
+    Do you already have an account?
+    <a href="/auth/login">Login</a>
+  </p>
+</div>
+
+
+{{!-- mapboxscript --}}
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-79.4512, 43.6568],
+    zoom: 13
+  });
+
+  map.addControl(new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    mapboxgl: mapboxgl
+  }));
+  geoCoder.on('results', (results) => {
+    document.querySelector('#address').value = results.features[0].place_name
+    document.querySelector('#lat').value = results.features[0].center[1];
+    document.querySelector('#lng').value = results.features[0].center[0];
+  });
+
+</script>
+
+{{!-- upload file bulma script --}}
+<script>
+  const fileInput = document.querySelector('#file-js-example input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js-example .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
+</script>

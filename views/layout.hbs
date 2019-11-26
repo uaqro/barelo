@@ -11,18 +11,60 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
   {{!-- toggle menu --}}
   <script src="https://bulma.io/vendor/native.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 
 <body>
 
-  <nav>
-    <a href="/">Home</a>
-    <a href="/auth/login">Login</a>
-    <a href="/auth/signup">Signup</a>
-    <a href="/auth/logout">Logout</a>
+  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand is-one-quarter">
+      <a class="navbar-item" href="/">
+        <img src="/images/barelo-full.png">
+      </a>
+      {{!-- burger menu --}}
+      {{!-- <a role=" button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span href="/auth/signup" aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a> --}}
+    </div>
+
+    {{#if logged}}
+
+    <div class="navbar-end is-one-quarter">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a href="/auth/signup" class="button is-danger">
+            <strong>Sign up</strong>
+          </a>
+          <a href="/auth/logout" class="button is-light">Log Out</a>
+        </div>
+      </div>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item">Add a new Book</a>
+      </div>
+
+      {{else}}
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
+            <a href="/auth/login" class="button is-light">Log in </a>
+          </div>
+        </div>
+      </div>
+      {{/if}}
+
+    </div>
   </nav>
 
   {{{body}}}
+
 
   <script src="/javascripts/script.js"></script>
 </body>

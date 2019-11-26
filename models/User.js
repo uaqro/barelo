@@ -1,32 +1,27 @@
 const mongoose = require('mongoose');
-const Schema   = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   username: String,
-  email:String,
+  email: String,
   facebook_id: {
     type: String
   },
   photoURL: {
     type: String,
-    default:
-      "https://www.awlrescueme.com/images/Resources.jpg"
+    default: "https://www.awlrescueme.com/images/Resources.jpg"
   },
   password: String,
-  publishedBooks: [
-    {
-      type: Schema.Types.ObjectId,
-      ref: "Books Given"
-    }
-  ],
-  pickedBooks: [
-    {
-      type: Schema.Types.ObjectId,
-      ref:'Books Picked'
-    }
-  ],
+  publishedBooks: [{
+    type: Schema.Types.ObjectId,
+    ref: "Books Given"
+  }],
+  pickedBooks: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Books Picked'
+  }],
   tokens: {
-    type: this.publishedBooks.length - this.pickedBooks.length,
+    type: Number,
     default: 0
   }
 }, {
