@@ -29,12 +29,10 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
 <div class="container">
-  <h2>Signup</h2>
-
-  <div class="columns">
-    <div class="column is-one-third">
-
-      <form action="/auth/signup" method="POST" id="form-container" enctype='multipart/form-data'>
+  <div class="columns is-mobile is-centered">
+    <div class="column is-half">
+      <h2>Signup</h2>
+      <form action="/auth/signup" method="POST" id="form-container">
         {{!-- username --}}
         <div class="field">
           <p class="control has-icons-left has-icons-right">

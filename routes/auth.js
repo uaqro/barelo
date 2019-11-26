@@ -8,7 +8,9 @@ const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
 router.get("/login", (req, res, next) => {
-  res.render("auth/login", { message: req.flash("error") });
+  res.render("auth/login", {
+    message: req.flash("error")
+  });
 });
 
 router.post(
@@ -29,24 +31,34 @@ router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const { secure_url } = req.file;
-  const { address, lng, ltd } = req.body;
+  const {
+    address,
+    lng,
+    ltd
+  } = req.body;
   if (username === "" || password === "") {
-    res.render("auth/signup", { message: "Indicate username and password" });
+    res.render("auth/signup", {
+      message: "Indicate username and password"
+    });
     return;
   }
 
-  User.findOne({ username }, "username", (err, user) => {
+  User.findOne({
+    username
+  }, "username", (err, user) => {
     if (user !== null) {
-      res.render("auth/signup", { message: "The username already exists" });
+      res.render("auth/signup", {
+        message: "The username already exists"
+      });
       return;
     }
 
-    const salt = bcrypt.genSaltSync(bcryptSalt);
-    const hashPass = bcrypt.hashSync(password, salt);
+    //const salt = bcrypt.genSaltSync(bcryptSalt);
+    //const hashPass = bcrypt.hashSync(password, salt);
 
     const newUser = new User({
       username,
-      password: hashPass,
+      password: password,
       photoURL: secure_url,
       place: {
         address: address,
@@ -60,7 +72,9 @@ router.post("/signup", (req, res, next) => {
         res.redirect("/");
       })
       .catch(err => {
-        res.render("auth/signup", { message: "Something went wrong" });
+        res.render("auth/signup", {
+          message: "Something went wrong"
+        });
       });
   });
 });
