@@ -27,7 +27,7 @@ router.get("/signup", (req, res, next) => {
   res.render("auth/signup");
 });
 
-router.post("/signup", (req, res, next) => {
+router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
   const { secure_url } = req.file;
