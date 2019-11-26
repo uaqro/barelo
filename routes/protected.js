@@ -104,3 +104,5 @@ router.post('/new/form', async (req, res) => {
     .catch()
 })
 
+
+module.exports = router;
