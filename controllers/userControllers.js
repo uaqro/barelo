@@ -1,36 +1,28 @@
-const books = require("../models/Book.js")
-const user = require("../models/User.js")
-
+const books = require("../models/Book.js");
+const user = require("../models/User.js");
 
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
 exports.indexGet = (req, res) => {
-  const {
-    id,
-    location
-  } = req.user
-  const buks = books.find({
-    $centerSphere: [
-      [location.coordinates.lng, location.coordinates.ltd], 0.00157
-    ]
-  }).populate("swapper")
-  res.render("user/index", buks)
-}
+  const { id, location } = req.user;
+  const buks = books
+    .find({
+      $centerSphere: [
+        [location.coordinates.lng, location.coordinates.ltd],
+        0.00157
+      ]
+    })
+    .populate("swapper");
+  res.render("user/index", buks);
+};
 
 // exports post ISBN
 exports.ISBNform = async (req, res) => {
-  const {
-    ISBN10,
-    lng,
-    lat,
-    address
-  } = req.body;
-  const {
-    id
-  } = req.user;
-  const buuk = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${g_key}`);
-  const {
-    secure_url
-  } = req.file;
+  const { ISBN10, lng, lat, address } = req.body;
+  const { id } = req.user;
+  const buuk = await axios.get(
+    `https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${g_key}`
+  );
+  const { secure_url } = req.file;
   const buk = {
     title: buuk.volumeInfo.title,
     description: buuk.volumeInfo.description,
@@ -47,22 +39,15 @@ exports.ISBNform = async (req, res) => {
       coordinates: [lng, lat]
     },
     swapper: id
-  }
+  };
 
-  books.create(buk)
-    .then(buki => user.findByIdAndUpdate(
-      id, {
-        $set: {
-          $push: {
-            publishedBooks: buki._id
-          }
-        }
-      }
-      .then(() => {
-        res.redirect('/user/confirmation')
-      })
-      .catch()))
-    .catch()
+  const buki = await books.create(buk);
+  const user = await user.findOne({ _id: id });
+  user.publishedBooks.push(buki._id);
+  let credits = user.publishedBooks.length - user.pickedBooks.length;
+  user.tokens = credits;
+  await user.save();
+  res.redirect("/user/confirmation");
 };
 
 // exports POST User
@@ -105,20 +90,13 @@ exports.postForm = async (req, res) => {
       coordinates: [lng, lat]
     },
     swapper: id
-  }
+  };
 
-  books.create(buk)
-    .then(buki => user.findByIdAndUpdate(
-      id, {
-        $set: {
-          $push: {
-            publishedBooks: buki._id
-          }
-        }
-      }
-      .then(() => {
-        res.redirect('/user/confirmation')
-      })
-      .catch()))
-    .catch()
-}
+  const buki = await books.create(buk);
+  const user = await user.findOne({ _id: id });
+  user.publishedBooks.push(buki._id);
+  let credits = user.publishedBooks.length - user.pickedBooks.length;
+  user.tokens = credits;
+  await user.save();
+  res.redirect("/user/confirmation");
+};
