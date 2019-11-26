@@ -3,10 +3,10 @@ const books = require('../models/Book')
 const user = require('../models/User')
 const axios = require('axios')
 const uploadCloud = require("../config/cloudinary")
-const { detailGet, ISBNform, postForm} = require("../controllers/userControllers")
+const { indexGet, ISBNform, postForm} = require("../controllers/userControllers")
 
 //VISTA DE TODOS LOS LIBROS
-router.get('/index', detailGet)
+router.get('/index', indexGet)
 
 //DETAIL
 
@@ -14,7 +14,7 @@ router.get('/:id', (req, res) => {
   const {
     id
   } = req.params;
-  const selBook = books.findById(id)
+  const selBook = books.findById(id).populate("swapper")
   res.render('user/detail', selBook)
 })
 
@@ -29,7 +29,8 @@ router.get('/confirmation', (_, res) => {
 router.get('/profile', (_, res) => {
   const {
     id
-  } = req.user = id
+  } = req.user
+  const swapper = user.findById(id).populate("pickedBooks","publishedBooks")
   res.render('user/profile', user)
 })
 

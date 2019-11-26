@@ -3,9 +3,9 @@ const user = require("../models/User.js")
 
 
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
-exports.detailGet = (req, res)=> {
+exports.indexGet = (req, res)=> {
   const { id, location } = req.user
-  const buks = books.find({$centerSphere: [[location.coordinates.lng, location.coordinates.ltd], 0.00157]})
+  const buks = books.find({$centerSphere: [[location.coordinates.lng, location.coordinates.ltd], 0.00157]}).populate("swapper")
   res.render("user/index", buks)
 }
 
@@ -89,3 +89,4 @@ exports.postForm = async (req, res) => {
         .catch()
   }
 
+exports.
