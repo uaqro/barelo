@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const books = require("../models/Book");
 const user = require("../models/User");
+const badges = require("../models/Badge");
 const axios = require("axios");
 const uploadCloud = require("../config/cloudinary");
 const {
@@ -16,13 +17,16 @@ const {
 //VISTA DE TODOS LOS LIBROS
 router.get("/index", indexGet);
 
-//DETAIL - READ
+//DETAIL - READ FUCKING WORKS!
 
 router.get("/:id/book-details", async (req, res) => {
   const { id } = req.params;
-  const buk = await books.findById(id).populate("swapper");
-  const show = req.user.pickedBooks.includes(id);
-  res.render("user/detail", { buk }, show);
+  const { _id } = req.user;
+  const buk = await books.findById(id);
+  const usr = await user.findById(_id);
+  const show = true;
+  //const show = await usr.pickedBooks.includes(id);
+  res.render("user/detail", { buk, show });
 });
 
 router.post("/:id/pick", pickABook);
@@ -35,9 +39,12 @@ router.get("/confirmation", (_, res) => {
 
 //USER PROFILE
 
-router.get("/profile", (req, res) => {
+router.get("/profile", async (req, res) => {
   const { id } = req.user;
-  const swapper = user.findById(id).populate("pickedBooks publishedBooks");
+  const batx = await badges.find({ swapper: id });
+  const swapper = await user.findById(id);
+
+  await swapper.populate("pickedBooks publishedBooks badges");
   res.render("user/profile", swapper);
 });
 
