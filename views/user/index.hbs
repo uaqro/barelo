@@ -1,11 +1,7 @@
 <h2>Books Available</h2>
-
+{{#each buks as |buk|}}
 <p>{{buk.title}}</p>
+<img src={{buk.pic}}>
 <p>{{buk.description}}</p>
-{{#each buk.author as |auth|}}
-<p>{{auth}}</p>
+<p>{{buk.authors.[0]}}</p>>
 {{/each}}
-<p>{{buk.pages}}</p>
-<p>{{buk.swapper.username}}</p>
-<p>{{buk.publisher}}</p>
-<p>{{buk.publishDate}}</p>

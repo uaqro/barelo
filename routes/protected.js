@@ -35,10 +35,10 @@ router.get("/confirmation", (_, res) => {
 
 //USER PROFILE
 
-router.get("/profile", (_, res) => {
+router.get("/profile", (req, res) => {
   const { id } = req.user;
   const swapper = user.findById(id).populate("pickedBooks publishedBooks");
-  res.render("user/profile", user);
+  res.render("user/profile", swapper);
 });
 
 //ADD NEW - CREATE
