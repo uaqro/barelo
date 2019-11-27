@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Oswald:400,700&display=swap");
 * {
   padding: 0;
   margin: 0; }
@@ -6,6 +7,14 @@
   width: 420px;
   height: 420px;
   text-align: center; }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  font-family: 'Oswald', sans-serif; }
 
 .my-secon-nav-main {
   background-color: #01d1b2; }
@@ -27,5 +36,24 @@
     width: 70px; }
   .header-main-home a {
     margin-left: 4px; }
+    .header-main-home a i.select:after {
+      color: white !important; }
+
+.my-fixing {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  height: 54px;
+  bottom: 0;
+  width: 100%; }
+
+.my-fixing-spacing {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; }
+
+.whiting {
+  color: white; }
 
 /*# sourceMappingURL=style.css.map */

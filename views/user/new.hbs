@@ -18,16 +18,7 @@
   <button class="button is-primary">Submit</button>
 </form>
 
-<form action='/new/form' method='POST' enctype='multipart/form-data'>
-  <input type="text" name="">
-  <input type="file" name="photo" id="photo" accept="image/*">
-  <div id='map'></div>
-  <input id="lng" type="text" name="lng" hidden>
-  <input id="lat" type="text" name="lat" hidden>
-  <input id="address" type="text" name="address" hidden>
-  <div id='map'></div>
-  <button class="button is-primary">Submit</button>
-</form>
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
   var map = new mapboxgl.Map({
