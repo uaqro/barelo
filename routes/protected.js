@@ -18,7 +18,7 @@ router.get("/index", indexGet);
 
 //DETAIL - READ
 
-router.get("/:id", (req, res) => {
+router.get("/:id/book-details", (req, res) => {
   const { id } = req.params;
   const buk = books.findOne({ _id: id }).populate("swapper");
   const show = req.user.pickedBooks.includes(id);

@@ -1,6 +1,10 @@
 <form action='/new/ISBN' method='POST' enctype="multipart/form-data">
-  <input type="text" name="ISBN10">
-  <input type="file" name="photo" id="photo" accept="image/*">
+  <div>
+    <input type="text" name="ISBN10">
+  </div>
+  <div>
+    <input type="file" name="photo" id="photo" accept="image/*">
+  </div>
   <input id="lng" type="text" name="lng" hidden>
   <input id="lat" type="text" name="lat" hidden>
   <input id="address" type="text" name="address" hidden>
@@ -19,7 +23,6 @@
   <button class="button is-primary">Submit</button>
 </form>
 <script>
-  require('dotenv').config()
   mapboxgl.accessToken = process.env.MAP;
   const map = new mapboxgl.Map({
     container: 'map',
