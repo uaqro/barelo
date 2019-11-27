@@ -9,6 +9,20 @@
   text-align: center;
 }
 
-div>.secon-nav-main {
+.my-secon-nav-main {
   background-color: #01d1b2;
+
+  .logo-barelo-nav {
+    height: 60px;
+  }
+
+  .second-button-main-nav {
+    margin-right: 10%;
+  }
+
+  .btn-nav-new {
+    color: white;
+    height: 100%;
+    padding: 5px;
+  }
 }

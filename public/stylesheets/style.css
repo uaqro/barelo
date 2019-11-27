@@ -7,7 +7,15 @@
   height: 420px;
   text-align: center; }
 
-div > .secon-nav-main {
+.my-secon-nav-main {
   background-color: #01d1b2; }
+  .my-secon-nav-main .logo-barelo-nav {
+    height: 60px; }
+  .my-secon-nav-main .second-button-main-nav {
+    margin-right: 10%; }
+  .my-secon-nav-main .btn-nav-new {
+    color: white;
+    height: 100%;
+    padding: 5px; }
 
 /*# sourceMappingURL=style.css.map */
