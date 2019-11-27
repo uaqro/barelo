@@ -57,7 +57,7 @@
         {{!-- password --}}
         <div class="field">
           <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password">
+            <input class="input" type="password" placeholder="Password" name='password'>
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
@@ -68,7 +68,9 @@
         {{/if}}
 
         {{!-- add file --}}
-
+        <input id="lng" type="text" name="lng" hidden>
+        <input id="lat" type="text" name="lat" hidden>
+        <input id="address" type="text" name="address" hidden>
         {{!-- <input class="file-input" type="file" name="resume"> --}}
         <div id="file-js-example" class="file has-name">
           <label class="file-label">
@@ -123,11 +125,15 @@
     center: [-79.4512, 43.6568],
     zoom: 13
   });
-
-  map.addControl(new MapboxGeocoder({
+  var geoCoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
+    marker: {
+      color: 'orange'
+    },
     mapboxgl: mapboxgl
-  }));
+  });
+  map.addControl(geoCoder);
+
   geoCoder.on('results', (results) => {
     document.querySelector('#address').value = results.features[0].place_name
     document.querySelector('#lat').value = results.features[0].center[1];

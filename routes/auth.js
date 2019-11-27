@@ -2,7 +2,7 @@ const express = require("express");
 const passport = require("passport");
 const router = express.Router();
 const User = require("../models/User");
-const uploadCloud = require('../config/cloudinary.js');
+const uploadCloud = require("../config/cloudinary.js");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
@@ -31,14 +31,12 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
+  console.log(req.user);
+  console.log(req.body);
   // const {
   //   secure_url
   // } = req.file;
-  const {
-    address,
-    lng,
-    ltd
-  } = req.body;
+  const { address, lng, ltd } = req.body;
   if (username === "" || password === "") {
     res.render("auth/signup", {
       message: "Indicate username and password"
@@ -46,40 +44,44 @@ router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
     return;
   }
 
-  User.findOne({
-    username
-  }, "username", (err, user) => {
-    if (user !== null) {
-      res.render("auth/signup", {
-        message: "The username already exists"
-      });
-      return;
-    }
-
-    //const salt = bcrypt.genSaltSync(bcryptSalt);
-    //const hashPass = bcrypt.hashSync(password, salt);
-
-    const newUser = new User({
-      username,
-      password: password,
-      // photoURL: secure_url,
-      place: {
-        address: address,
-        coordinates: [lng, ltd]
-      }
-    });
-
-    newUser
-      .save()
-      .then(() => {
-        res.redirect("/user/index");
-      })
-      .catch(err => {
+  User.findOne(
+    {
+      username
+    },
+    "username",
+    (err, user) => {
+      if (user !== null) {
         res.render("auth/signup", {
-          message: "Something went wrong"
+          message: "The username already exists"
         });
+        return;
+      }
+
+      //const salt = bcrypt.genSaltSync(bcryptSalt);
+      //const hashPass = bcrypt.hashSync(password, salt);
+
+      const newUser = new User({
+        username,
+        password: password,
+        // photoURL: secure_url,
+        place: {
+          address: address,
+          coordinates: [lng, ltd]
+        }
       });
-  });
+
+      newUser
+        .save()
+        .then(() => {
+          res.redirect("/auth/login");
+        })
+        .catch(err => {
+          res.render("auth/signup", {
+            message: "Something went wrong"
+          });
+        });
+    }
+  );
 });
 
 router.get("/logout", (req, res) => {

@@ -3,13 +3,13 @@ const user = require("../models/User.js");
 
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
 exports.indexGet = (req, res) => {
-  const { _id, location } = req.user;
+  const { place } = req.user;
   const buks = books
     .find({
       $and: [
         {
           $centerSphere: [
-            [location.coordinates.lng, location.coordinates.ltd],
+            [place.coordinates.lng, place.coordinates.ltd],
             0.00157
           ]
         },
