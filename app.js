@@ -86,7 +86,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
-require("./passport")(app);
 
 const index = require("./routes/index");
 app.use("/", checkUser, index);
