@@ -6,19 +6,15 @@ require("dotenv").config();
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
 exports.indexGet = (req, res) => {
   const { place } = req.user;
-  const buks = books
-    .find({
-      $and: [
-        {
-          $centerSphere: [
-            [place.coordinates.lng, place.coordinates.ltd],
-            0.00157
-          ]
-        },
-        { picked: false }
-      ]
-    })
-    .populate("swapper");
+  const buks = books.find(); /*{
+    $and: [
+      {
+        $centerSphere: [[place.coordinates.lng, place.coordinates.ltd], 0.00157]
+      },
+      { picked: false }
+    ]
+  });*/
+  //.populate("swapper");
   res.render("user/index", buks);
 };
 
@@ -29,7 +25,7 @@ exports.ISBNform = async (req, res) => {
   const buuk = await axios.get(
     `https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${process.env.g_key}`
   );
-  console.log(buuk.data.items[0]);
+  console.log(buuk.data.items[0].volumeInfo);
   const { secure_url } = req.file;
   const buk = {
     title: buuk.data.items[0].volumeInfo.title,
@@ -50,11 +46,11 @@ exports.ISBNform = async (req, res) => {
   };
 
   const buki = await books.create(buk);
-  const user = await user.findOne({ _id: id });
-  user.publishedBooks.push(buki._id);
-  let credits = user.publishedBooks.length - user.pickedBooks.length;
-  user.tokens = credits;
-  await user.save();
+  const usr = await user.findById(id);
+  usr.publishedBooks.push(buki._id);
+  let credits = usr.publishedBooks.length - usr.pickedBooks.length;
+  usr.tokens = credits;
+  await usr.save();
   console.log("redirect");
   await res.redirect("/user/confirmation");
 };
