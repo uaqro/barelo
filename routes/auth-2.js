@@ -14,29 +14,21 @@ router.get("/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user) => {
-    if (err) {
-      return next(err);
-    }
-    if (!user) {
-      return res.redirect("/auth/login");
-    }
-    req.logIn(user, err => {
-      if (err) {
-        return next(err);
-      }
-      return res.redirect("/user/index");
-    });
-  })(req, res, next);
-});
+router.post(
+  "/login",
+  passport.authenticate("local", {
+    successRedirect: "/user/index",
+    failureRedirect: "/auth/login"
+  })
+);
+
 router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
-  const { name, email, password, address, lng, lat } = req.body;
+  const { username, email, password, address, lng, lat } = req.body;
   const { secure_url } = req.file;
   User.register(
     {
       email,
-      name,
+      username,
       place: {
         address,
         coordinates: [lng, lat]
@@ -45,7 +37,7 @@ router.post("/signup", uploadCloud.single("photo"), (req, res, next) => {
     },
     password
   )
-    .then(user => res.redirect("/login"))
+    .then(user => res.redirect("/auth/login"))
     .catch(err => {
       if (err.email === "UserExistsError") {
         return res.render("auth/signup", {

@@ -4,11 +4,8 @@ const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new Schema(
   {
-    name: String,
+    username: String,
     email: String,
-    facebook_id: {
-      type: String
-    },
     photoURL: {
       type: String,
       default: "https://www.awlrescueme.com/images/Resources.jpg"
@@ -50,6 +47,6 @@ const userSchema = new Schema(
     }
   }
 );
-userSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+userSchema.plugin(passportLocalMongoose, { usernameField: "username" });
 const User = mongoose.model("User", userSchema);
 module.exports = User;
