@@ -2,17 +2,12 @@
   padding: 0;
   margin: 0; }
 
-a {
-  color: #00B7FF; }
-
-.menu-lefties {
-  display: inline; }
-
-.menu-rigties {
-  display: inline; }
-
 #map {
   width: 420px;
-  height: 420px; }
+  height: 420px;
+  text-align: center; }
+
+div > .secon-nav-main {
+  background-color: #01d1b2; }
 
 /*# sourceMappingURL=style.css.map */
