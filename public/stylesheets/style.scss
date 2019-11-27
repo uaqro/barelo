@@ -3,12 +3,43 @@
   margin: 0;
 }
 
+$color-my-main: #01d1b2;
+
 #map {
   width: 420px;
   height: 420px;
   text-align: center;
 }
 
-div>.secon-nav-main {
-  background-color: #01d1b2;
+.my-secon-nav-main {
+  background-color: $color-my-main;
+
+  .logo-barelo-nav {
+    height: 60px;
+  }
+}
+
+.second-button-main-nav {
+  margin-right: 10%;
+}
+
+.header-main-home {
+  height: 54px;
+  background-color: $color-my-main;
+  display: flex;
+  padding: 0 2%;
+  justify-content: space-between;
+  align-items: center;
+
+  .logo-barelo-nav {
+    img {
+      padding-top: 4px;
+      width: 70px;
+    }
+  }
+
+  a {
+    margin-left: 4px;
+  }
+
 }

@@ -5,93 +5,94 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<div class="container">
-  <div class="columns is-desktop is-centered">
-    <div class="column is-half">
-      <h2>Signup</h2>
-      <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
-        {{!-- username --}}
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input class="input" type="text" name="username" placeholder="username">
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </p>
-        </div>
-        {{!-- email --}}
-        <div class="field">
-          <p class="control has-icons-left has-icons-right">
-            <input class="input" type="email" name="email" placeholder="Email">
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-            {{!-- <span class="icon is-small is-right">
+<section class="section">
+  <div class="container">
+    <div class="columns is-desktop is-centered">
+      <div class="column is-half">
+        <h2>Signup</h2>
+        <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
+          {{!-- username --}}
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="text" name="username" placeholder="username">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+          {{!-- email --}}
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="email" name="email" placeholder="Email">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+              {{!-- <span class="icon is-small is-right">
         <i class="fas fa-check"></i>
       </span> --}}
-          </p>
-        </div>
-        {{!-- password --}}
-        <div class="field">
-          <p class="control has-icons-left">
-            <input class="input" type="password" placeholder="Password" name='password'>
-            <span class="icon is-small is-left">
-              <i class="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        {{#if message }}
-        <div class="error-message">{{ message }}</div>
-        {{/if}}
-
-        {{!-- add file --}}
-        <input id="lng" type="text" name="lng" hidden>
-        <input id="lat" type="text" name="lat" hidden>
-        <input id="address" type="text" name="address" hidden>
-        {{!-- <input class="file-input" type="file" name="resume"> --}}
-        <div id="file-js-example" class="file has-name">
-          <label class="file-label">
-            <input class="file-input" type="file" name="photo" id="photo" accept="image/*">
-
-            <span class="file-cta">
-              <span class="file-icon">
-                <i class="fas fa-upload"></i>
+            </p>
+          </div>
+          {{!-- password --}}
+          <div class="field">
+            <p class="control has-icons-left">
+              <input class="input" type="password" placeholder="Password" name='password'>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
               </span>
-              <span class="file-label">
-                Choose a file…
+            </p>
+          </div>
+          {{#if message }}
+          <div class="error-message">{{ message }}</div>
+          {{/if}}
+
+          {{!-- add file --}}
+          <input id="lng" type="text" name="lng" hidden>
+          <input id="lat" type="text" name="lat" hidden>
+          <input id="address" type="text" name="address" hidden>
+          {{!-- <input class="file-input" type="file" name="resume"> --}}
+          <div id="file-js-example" class="file has-name">
+            <label class="file-label">
+              <input class="file-input" type="file" name="photo" id="photo" accept="image/*">
+
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
               </span>
-            </span>
-            <span class="file-name">
-              Add a profile pic!
-            </span>
-          </label>
-        </div>
+              <span class="file-name">
+                Add a profile pic!
+              </span>
+            </label>
+          </div>
 
-        {{!-- Button --}}
-        <br>
-        <div class="field">
-          <div id='map'></div>
-        </div>
+          {{!-- Button --}}
+          <br>
+          <div class="field">
+            <div id='map'></div>
+          </div>
 
-        {{!-- Button --}}
-        <br>
-        <div class="field">
-          <p class="control">
-            <button class="button is-primary">
-              Create an Account
-            </button>
-          </p>
-        </div>
+          {{!-- Button --}}
+          <br>
+          <div class="field">
+            <p class="control">
+              <button class="button is-primary">
+                Create an Account
+              </button>
+            </p>
+          </div>
 
-      </form>
+        </form>
+      </div>
     </div>
+    <p class="account-message">
+      Do you already have an account?
+      <a href="/auth/login">Login</a>
+    </p>
   </div>
-  <p class="account-message">
-    Do you already have an account?
-    <a href="/auth/login">Login</a>
-  </p>
-</div>
-
+</section>
 
 {{!-- mapboxscript --}}
 <script>

@@ -17,58 +17,73 @@
 
 <body>
 
-  <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand is-one-quarter">
-      <a class="navbar-item" href="/">
-        <img src="/images/barelo-full.png">
-      </a>
-    </div>
-    {{#if logged}}
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a href="user/new" class="navbar-item">Add a new Book</a>
+  {{#if logged}}
+  {{!-- desktop main van menu --}}
+  <div class="my-secon-nav-main is-hidden-mobile">
+    <nav class="level">
+      <div class="level-left">
+        <a class="navbar-item button is-primary logo-barelo-nav" href="/">
+          <img src="/images/barelo-full.png">
+        </a>
+        <div class="level-item">
+          <a href="user/new" class="navbar-item button is-primary">Add a new Book</a>
+        </div>
       </div>
-      <div class="navbar-end is-one-quarter">
-        <div class="navbar-item">
+      <div class="level-right">
+        <div class="level-item">
           <button class="button is-primary is-inverted is-outlined">
             <a href="/user/profile"> <i class="far fa-user whitecolor"></i></a>
           </button>
         </div>
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/auth/logout" class="button is-light">Log Out</a>
-          </div>
+        <div class="level-item second-button-main-nav">
+          <a href="/auth/logout" class="button is-light">Log Out</a>
         </div>
       </div>
-      {{else}}
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
-            <a href="/auth/login" class="button is-light">Log in </a>
-          </div>
-        </div>
-      </div>
-      {{/if}}
+    </nav>
+  </div>
+  {{!-- mobile nav top --}}
+  <div class="header-main-home is-hidden-desktop is-hidden-tablet">
+    <a class="logo-barelo-nav" href="/">
+      <img src="/images/barelo-icon.png">
+    </a>
+    <div>
+      <a href="/auth/logout" class="button is-light">Log Out</a>
     </div>
-  </nav>
-
-  {{!-- secondary nav --}}
-  <div class="secon-nav-main">
-    <h1>im green</h1>
-
   </div>
 
-  <nav class="level">
-    <div class="level-left">
-      <a class="navbar-item" href="/">
-        <img src="/images/barelo-full.png">
-      </a>
+  {{else}}
+  {{!-- desktop main van menu --}}
+  <div class="my-secon-nav-main is-hidden-mobile">
+    <nav class="level">
+      <div class="level-left">
+        <a class="navbar-item button is-primary logo-barelo-nav" href="/">
+          <img src="/images/barelo-full.png">
+        </a>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
+        </div>
+        <div class="level-item second-button-main-nav">
+          <a href="/auth/login" class="button is-light">Log in </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  {{!-- mobile nav top --}}
+  <div class="header-main-home is-hidden-desktop is-hidden-tablet">
+    <a class="logo-barelo-nav" href="/">
+      <img src="/images/barelo-icon.png">
+    </a>
+    <div>
+      <a href="/auth/signup" class=" button is-danger"><strong>Sign up</strong></a>
+      <a href="/auth/login" class="button is-light">Log in </a>
     </div>
-  </nav>
+  </div>
+
+  {{/if}}
 
   {{{body}}}
-
 
   <script src="/javascripts/script.js"></script>
 </body>

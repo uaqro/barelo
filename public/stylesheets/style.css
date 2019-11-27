@@ -7,7 +7,25 @@
   height: 420px;
   text-align: center; }
 
-div > .secon-nav-main {
+.my-secon-nav-main {
   background-color: #01d1b2; }
+  .my-secon-nav-main .logo-barelo-nav {
+    height: 60px; }
+
+.second-button-main-nav {
+  margin-right: 10%; }
+
+.header-main-home {
+  height: 54px;
+  background-color: #01d1b2;
+  display: flex;
+  padding: 0 2%;
+  justify-content: space-between;
+  align-items: center; }
+  .header-main-home .logo-barelo-nav img {
+    padding-top: 4px;
+    width: 70px; }
+  .header-main-home a {
+    margin-left: 4px; }
 
 /*# sourceMappingURL=style.css.map */
