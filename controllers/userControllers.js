@@ -24,7 +24,6 @@ exports.indexGet = (req, res) => {
 
 // exports post ISBN
 exports.ISBNform = async (req, res) => {
-  console.log("hasta aquí bien");
   const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
   const buuk = await axios.get(
