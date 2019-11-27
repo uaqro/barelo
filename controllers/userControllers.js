@@ -4,18 +4,24 @@ const axios = require("axios");
 require("dotenv").config();
 
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
-exports.indexGet = (req, res) => {
+exports.indexGet = async (req, res) => {
   const { place } = req.user;
-  const buks = books.find(); /*{
+  console.log(place);
+  const buks = await books.find({
     $and: [
       {
-        $centerSphere: [[place.coordinates.lng, place.coordinates.ltd], 0.00157]
+        place: {
+          $nearSphere: {
+            $geometry: { type: "Point", coordinates: [-99.164629, 19.427936] },
+            $maxDistance: 10000
+          }
+        }
       },
       { picked: false }
     ]
-  });*/
-  //.populate("swapper");
-  res.render("user/index", buks);
+  });
+  console.log(buks);
+  res.render("user/index", { buks });
 };
 
 // exports post ISBN
@@ -44,7 +50,6 @@ exports.ISBNform = async (req, res) => {
     },
     swapper: id
   };
-
   const buki = await books.create(buk);
   const usr = await user.findById(id);
   usr.publishedBooks.push(buki._id);

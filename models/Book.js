@@ -25,14 +25,17 @@ const bookSchema = new Schema(
     placePic: String,
     place: {
       type: {
-        address: {
-          type: String,
-          require: true
-        },
-        coordinates: {
-          type: [Number],
-          require: true
-        }
+        type: String,
+        default: "Point",
+        require: true
+      },
+      address: {
+        type: String,
+        require: true
+      },
+      coordinates: {
+        type: [Number],
+        require: true
       }
     },
     picked: {

@@ -34,7 +34,8 @@ const userSchema = new Schema(
           require: true
         },
         coordinates: {
-          type: [Number],
+          type: "Point",
+          coordinates: [Number],
           require: true
         }
       }
