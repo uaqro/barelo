@@ -171,5 +171,5 @@ exports.pickABook = async (req, res) => {
   usr.tokens = credits;
   await usr.save();
   await books.findByIdAndUpdate(id, { picked: true });
-  res.redirect(`user/${id}/book-details`);
+  res.redirect(`/user/${id}/book-details`);
 };
