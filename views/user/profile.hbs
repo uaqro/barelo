@@ -1,13 +1,22 @@
-<img src="" alt="">
-<h2>Username</h2>
+<img src="{{this.photoURL}}">
+<h2>{{this.username}}</h2>
+
 <div>
   <h4>Books Left</h4>
+  {{#each this.publishedBooks as |buk|}}
+  <p>{{buk.title}}</p>
+  {{/each}}
+
 </div>
 <div>
   <h4>Books Picked</h4>
+  {{#each this.pickedBooks as |buuk|}}
+  <p>{{buuk.title}}</p>
+  {{/each}}
 </div>
 <div>
-  <p>Tokens Available</p>
+  <p><strong>Tokens Available</strong></p>
+  <p>{{this.tokens}}</p>
 </div>
 <div>
   <h3>Badges</h3>

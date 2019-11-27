@@ -1,14 +1,13 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const badgeSchema = new Schema({
-  name: String,
-  image: String,
+const commentSchema = new Schema({
+  body: String,
   swapper: {
     type: Schema.Types.ObjectId,
     ref: "User"
   }
 });
 
-const Badge = mongoose.model("Badge", badgeSchema);
-module.exports = Badge;
+const Comment = mongoose.model("Comment", commentSchema);
+module.exports = Comment;
