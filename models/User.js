@@ -39,7 +39,13 @@ const userSchema = new Schema(
           require: true
         }
       }
-    }
+    },
+    badges: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Badges"
+      }
+    ]
   },
   {
     timestamps: {

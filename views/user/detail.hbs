@@ -9,3 +9,65 @@
 <p>{{buk.swapper.username}}</p>
 <p>{{buk.publisher}}</p>
 <p>{{buk.publishDate}}</p>
+<script>
+  let name = "{{buk.title}}"
+  let lng = Number("{{ buk.place.coordinates.[0]}}")
+  let lat = Number("{{ buk.place.coordinates.[1]}}");
+</script>
+
+{{#if show}}
+
+<div id='map'></div>
+<img src={{buk.placePic}}>
+{{else}}
+<form action='/user/{{buk._id}}/pick' method='POST'>
+  <button>Pick this book</button>
+</form>
+{{/if}}
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v10',
+    center: [lng, lat],
+    zoom: 18
+  });
+  map.on('load', function () {
+
+    map.addLayer({
+      "id": "points",
+      "type": "symbol",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": [{
+            // feature for Mapbox DC
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [lng, lat]
+            },
+            "properties": {
+              "title": name,
+              "icon": "anchor"
+            }
+          }]
+        }
+      },
+      "layout": {
+        // get the icon name from the source's "icon" property
+        // concatenate the name to get an icon from the style's sprite sheet
+        "icon-image": ["concat", ["get", "icon"], "-15"],
+        // get the title name from the source's "title" property
+        "text-field": ["get", "title"],
+        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+        "text-offset": [0, 0.6],
+        "text-anchor": "top"
+      }
+    });
+
+  });
+
+</script>
