@@ -1,0 +1,7 @@
+<h2>Books Available</h2>
+{{#each buks as |buk|}}
+<p>{{buk.title}}</p>
+<img src={{buk.pic}}>
+<p>{{buk.authors.[0]}}</p>
+<a href="/user/{{buk._id}}/book-details" type="button">Get Book</a>
+{{/each}}

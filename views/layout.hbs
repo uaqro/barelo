@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  {{!-- toggle menu --}}
+  <script src="https://bulma.io/vendor/native.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+
+  {{#if logged}}
+  {{!-- desktop main van menu --}}
+  <div class="my-secon-nav-main is-hidden-mobile">
+    <nav class="level">
+      <div class="level-left">
+        <a class="navbar-item button is-primary logo-barelo-nav" href="/">
+          <img src="/images/barelo-full.png">
+        </a>
+        <div class="level-item">
+          <a href="/user/new" class="navbar-item button is-primary">Add a new Book</a>
+        </div>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <button class="button is-primary is-inverted is-outlined">
+            <a href="/user/profile"> <i class="far fa-user white "></i></a>
+          </button>
+        </div>
+        <div class="level-item second-button-main-nav">
+          <a href="/auth/logout" class="button is-light">Log Out</a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  {{!-- mobile nav top --}}
+  <div class="header-main-home is-hidden-desktop is-hidden-tablet">
+    <a class="logo-barelo-nav" href="/">
+      <img src="/images/barelo-icon.png">
+    </a>
+    <div>
+      <a href="/auth/logout" class="button is-light">Log Out</a>
+    </div>
+  </div>
+
+  {{else}}
+  {{!-- desktop main van menu --}}
+  <div class="my-secon-nav-main is-hidden-mobile">
+    <nav class="level">
+      <div class="level-left">
+        <a class="navbar-item button is-primary logo-barelo-nav" href="/">
+          <img src="/images/barelo-full.png">
+        </a>
+      </div>
+      <div class="level-right">
+        <div class="level-item">
+          <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
+        </div>
+        <div class="level-item second-button-main-nav">
+          <a href="/auth/login" class="button is-light">Log in </a>
+        </div>
+      </div>
+    </nav>
+  </div>
+  {{!-- mobile nav top --}}
+  <div class="header-main-home is-hidden-desktop is-hidden-tablet">
+    <a class="logo-barelo-nav" href="/">
+      <img src="/images/barelo-icon.png">
+    </a>
+    <div>
+      <a href="/auth/signup" class=" button is-danger"><strong>Sign up</strong></a>
+      <a href="/auth/login" class="button is-light">Log in </a>
+    </div>
+  </div>
+
+
+
+  {{/if}}
+
+
+
+  <div class="my-fixing">
+    <nav class="my-fixing-spacing level is-mobile is-hidden-table is-hidden-desktop is-hidden-widescreen">
+      <div class="level-item ">
+        <div>
+          <a href="/user/index"><i class="far fa-compass fa-2x whiting"></i></a>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <a href="/user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <a href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+
+</html>
