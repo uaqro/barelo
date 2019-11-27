@@ -1,14 +1,22 @@
 <form action='/new/ISBN' method='POST' enctype="multipart/form-data">
+  <input type="text" name="ISBN10">
   <input type="file" name="photo" id="photo" accept="image/*">
+  <input id="lng" type="text" name="lng" hidden>
+  <input id="lat" type="text" name="lat" hidden>
+  <input id="address" type="text" name="address" hidden>
+  <div id="map"></div>
+  <button class="button is-primary">Submit</button>
 </form>
 
 <form action='/new/form' method='POST' enctype='multipart/form-data'>
   <input type="text" name="">
   <input type="file" name="photo" id="photo" accept="image/*">
   <div id='map'></div>
-  <input id="lng" type="text" name="location[coordinates][0]" hidden>
-  <input id="lat" type="text" name="location[coordinates][1]" hidden>
-  <input id="address" type="text" name="location[address]" hidden>
+  <input id="lng" type="text" name="lng" hidden>
+  <input id="lat" type="text" name="lat" hidden>
+  <input id="address" type="text" name="address" hidden>
+  <div id='map'></div>
+  <button class="button is-primary">Submit</button>
 </form>
 <script>
   require('dotenv').config()

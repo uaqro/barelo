@@ -9,7 +9,8 @@ const {
   postForm,
   getpatchForm,
   patchForm,
-  deleteBook
+  deleteBook,
+  pickABook
 } = require("../controllers/userControllers");
 
 //VISTA DE TODOS LOS LIBROS
@@ -19,9 +20,12 @@ router.get("/index", indexGet);
 
 router.get("/:id", (req, res) => {
   const { id } = req.params;
-  const selBook = books.findOne({ _id: id }).populate("swapper");
-  res.render("user/detail", selBook);
+  const buk = books.findOne({ _id: id }).populate("swapper");
+  const show = req.user.pickedBooks.includes(id);
+  res.render("user/detail", buk, show);
 });
+
+router.post("/:id/pick", pickABook);
 
 //CONFIRMATION
 
@@ -33,7 +37,7 @@ router.get("/confirmation", (_, res) => {
 
 router.get("/profile", (_, res) => {
   const { id } = req.user;
-  const swapper = user.findById(id).populate("pickedBooks", "publishedBooks");
+  const swapper = user.findById(id).populate("pickedBooks publishedBooks");
   res.render("user/profile", user);
 });
 
@@ -54,5 +58,9 @@ router.post("/:id/patch", patchForm);
 
 //DELETE
 router.post("/:id/delete", deleteBook);
+
+//Unlock image
+
+router.post("/:id/getBook", async (req, res) => {});
 
 module.exports = router;

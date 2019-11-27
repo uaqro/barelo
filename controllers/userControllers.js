@@ -158,7 +158,14 @@ exports.deleteBook = async (req, res) => {
 };
 
 exports.pickABook = async (req, res) => {
+  const { _id } = req.user;
   const { id } = req.params;
-
-  books.findByIdAndUpdate(id, { picked: true });
+  const user = await user.findOne({ _id: _id });
+  user.pickedBooks.push(id);
+  let credits = user.publishedBooks.length - user.pickedBooks.length;
+  user.tokens = credits;
+  await user.save();
+  await books.findByIdAndUpdate(id, { picked: true });
+  req.app.locals.id.pickedBook = true;
+  res.redirect(`/${id}`);
 };

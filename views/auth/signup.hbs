@@ -32,11 +32,11 @@
   <div class="columns is-mobile is-centered">
     <div class="column is-half">
       <h2>Signup</h2>
-      <form action="/auth/signup" method="POST" id="form-container">
+      <form action="/auth/signup" method="POST" id="form-container" enctype="multipart/form-data">
         {{!-- username --}}
         <div class="field">
           <p class="control has-icons-left has-icons-right">
-            <input class="input" type="text" name="username" placeholder="username">
+            <input class="input" type="text" name="name" placeholder="username">
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
