@@ -22,34 +22,25 @@
       <a class="navbar-item" href="/">
         <img src="/images/barelo-full.png">
       </a>
-      {{!-- burger menu --}}
-      {{!-- <a role=" button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
-        data-target="navbarBasicExample">
-        <span href="/auth/signup" aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a> --}}
     </div>
-
     {{#if logged}}
-
-    <div class="navbar-end is-one-quarter">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a href="/auth/signup" class="button is-danger">
-            <strong>Sign up</strong>
-          </a>
-          <a href="/auth/logout" class="button is-light">Log Out</a>
-        </div>
-      </div>
-    </div>
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item">Add a new Book</a>
+        <a href="user/new" class="navbar-item">Add a new Book</a>
       </div>
-
+      <div class="navbar-end is-one-quarter">
+        <div class="navbar-item">
+          <button class="button is-primary is-inverted is-outlined">
+            <a href="/user/profile"> <i class="far fa-user whitecolor"></i></a>
+          </button>
+        </div>
+        <div class="navbar-item">
+          <div class="buttons">
+            <a href="/auth/logout" class="button is-light">Log Out</a>
+          </div>
+        </div>
+      </div>
       {{else}}
-
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
@@ -59,7 +50,20 @@
         </div>
       </div>
       {{/if}}
+    </div>
+  </nav>
 
+  {{!-- secondary nav --}}
+  <div class="secon-nav-main">
+    <h1>im green</h1>
+
+  </div>
+
+  <nav class="level">
+    <div class="level-left">
+      <a class="navbar-item" href="/">
+        <img src="/images/barelo-full.png">
+      </a>
     </div>
   </nav>
 

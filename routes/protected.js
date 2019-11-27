@@ -19,8 +19,12 @@ router.get("/index", indexGet);
 //DETAIL - READ
 
 router.get("/:id/book-details", (req, res) => {
-  const { id } = req.params;
-  const buk = books.findOne({ _id: id }).populate("swapper");
+  const {
+    id
+  } = req.params;
+  const buk = books.findOne({
+    _id: id
+  }).populate("swapper");
   const show = req.user.pickedBooks.includes(id);
   res.render("user/detail", buk, show);
 });
@@ -36,7 +40,9 @@ router.get("/confirmation", (_, res) => {
 //USER PROFILE
 
 router.get("/profile", (req, res) => {
-  const { id } = req.user;
+  const {
+    id
+  } = req.user;
   const swapper = user.findById(id).populate("pickedBooks publishedBooks");
   res.render("user/profile", swapper);
 });
