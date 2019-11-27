@@ -20,7 +20,7 @@ const bookSchema = new Schema(
     publishDate: String,
     swapper: {
       type: Schema.Types.ObjectId,
-      ref: "swapper"
+      ref: "User"
     },
     placePic: String,
     place: {

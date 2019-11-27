@@ -14,13 +14,13 @@ const userSchema = new Schema(
     publishedBooks: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Books Given"
+        ref: "Book"
       }
     ],
     pickedBooks: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Books Picked"
+        ref: "Book"
       }
     ],
     tokens: {
