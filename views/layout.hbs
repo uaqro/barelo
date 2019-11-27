@@ -17,47 +17,9 @@
 
 <body>
 
-  {{!-- <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand is-one-quarter">
-      <a class="navbar-item" href="/">
-        <img src="/images/barelo-full.png">
-      </a>
-    </div>
-    {{#if logged}}
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <a href="user/new" class="navbar-item">Add a new Book</a>
-      </div>
-      <div class="navbar-end is-one-quarter">
-        <div class="navbar-item">
-          <button class="button is-primary is-inverted is-outlined">
-            <a href="/user/profile"> <i class="far fa-user whitecolor"></i></a>
-          </button>
-        </div>
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/auth/logout" class="button is-light">Log Out</a>
-          </div>
-        </div>
-      </div>
-      {{else}}
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
-            <a href="/auth/login" class="button is-light">Log in </a>
-          </div>
-        </div>
-      </div>
-      {{/if}}
-    </div>
-  </nav> --}}
-
-  {{!-- secondary nav --}}
-
-
   {{#if logged}}
-  <div class="my-secon-nav-main">
+  {{!-- desktop main van menu --}}
+  <div class="my-secon-nav-main is-hidden-mobile">
     <nav class="level">
       <div class="level-left">
         <a class="navbar-item button is-primary logo-barelo-nav" href="/">
@@ -79,8 +41,19 @@
       </div>
     </nav>
   </div>
+  {{!-- mobile nav top --}}
+  <div class="header-main-home is-hidden-desktop is-hidden-tablet">
+    <a class="logo-barelo-nav" href="/">
+      <img src="/images/barelo-icon.png">
+    </a>
+    <div>
+      <a href="/auth/logout" class="button is-light">Log Out</a>
+    </div>
+  </div>
+
   {{else}}
-  <div class="my-secon-nav-main">
+  {{!-- desktop main van menu --}}
+  <div class="my-secon-nav-main is-hidden-mobile">
     <nav class="level">
       <div class="level-left">
         <a class="navbar-item button is-primary logo-barelo-nav" href="/">
@@ -97,7 +70,22 @@
       </div>
     </nav>
   </div>
+  {{!-- mobile nav top --}}
+  <div class="header-main-home is-hidden-desktop is-hidden-tablet">
+    <a class="logo-barelo-nav" href="/">
+      <img src="/images/barelo-icon.png">
+    </a>
+    <div>
+      <a href="/auth/signup" class=" button is-danger"><strong>Sign up</strong></a>
+      <a href="/auth/login" class="button is-light">Log in </a>
+    </div>
+  </div>
+
+
   {{/if}}
+
+
+
 
   {{{body}}}
 
