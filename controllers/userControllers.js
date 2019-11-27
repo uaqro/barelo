@@ -1,5 +1,7 @@
 const books = require("../models/Book.js");
 const user = require("../models/User.js");
+const axios = require("axios");
+require("dotenv").config();
 
 // QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
 exports.indexGet = (req, res) => {
@@ -22,22 +24,24 @@ exports.indexGet = (req, res) => {
 
 // exports post ISBN
 exports.ISBNform = async (req, res) => {
+  console.log("hasta aquí bien");
   const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
   const buuk = await axios.get(
-    `https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${g_key}`
+    `https://www.googleapis.com/books/v1/volumes?q=+isbn:${ISBN10}&key=${process.env.g_key}`
   );
+  console.log(buuk.data.items[0]);
   const { secure_url } = req.file;
   const buk = {
-    title: buuk.volumeInfo.title,
-    description: buuk.volumeInfo.description,
-    author: buuk.volumeInfo.authors,
-    pages: buuk.volumeInfo.pageCount,
-    categories: buuk.volumeInfo.categories,
-    pic: buuk.volumeInfo.imageLinks.thumbnail,
-    idioma: buuk.volumeInfo.language,
-    publisher: buuk.volumeInfo.publisher,
-    publishDate: buuk.volumeInfo.publishedDate,
+    title: buuk.data.items[0].volumeInfo.title,
+    description: buuk.data.items[0].volumeInfo.description,
+    author: buuk.data.items[0].volumeInfo.authors,
+    pages: buuk.data.items[0].volumeInfo.pageCount,
+    categories: buuk.data.items[0].volumeInfo.categories,
+    pic: buuk.data.items[0].volumeInfo.imageLinks.thumbnail,
+    idioma: buuk.data.items[0].volumeInfo.language,
+    publisher: buuk.data.items[0].volumeInfo.publisher,
+    publishDate: buuk.data.items[0].volumeInfo.publishedDate,
     placePic: secure_url,
     place: {
       address: address,
@@ -52,7 +56,8 @@ exports.ISBNform = async (req, res) => {
   let credits = user.publishedBooks.length - user.pickedBooks.length;
   user.tokens = credits;
   await user.save();
-  res.redirect("/user/confirmation");
+  console.log("redirect");
+  await res.redirect("/user/confirmation");
 };
 // exports POST User
 
