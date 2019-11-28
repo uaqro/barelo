@@ -1,7 +1,21 @@
-<h2>Books Available</h2>
-{{#each buks as |buk|}}
-<p>{{buk.title}}</p>
-<img src={{buk.pic}}>
-<p>{{buk.authors.[0]}}</p>
-<a href="/user/{{buk._id}}/book-details" type="button">Get Book</a>
-{{/each}}
+<section class="section index-page">
+	<div class="columns is-mobile is-centered">
+		<div class="container">
+			<h2 class="hp20">Books Available</h2>
+			<hr>
+			<div class="book-wrapper">
+				{{#each buks as |buk|}}
+				<div class="one-book">
+					<img class="" src={{buk.pic}}>
+					<div>
+						<p class="has-text-weight-medium	">{{buk.title}}</p>
+					</div>
+					<a href="/user/{{buk._id}}/book-details" type="button">View Book</a>
+					<hr>
+				</div>
+				{{/each}}
+			</div>
+		</div>
+	</div>
+	</div>
+</section>

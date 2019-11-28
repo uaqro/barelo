@@ -3,6 +3,9 @@
   padding: 0;
   margin: 0; }
 
+a {
+  color: #01d1b2; }
+
 #map {
   width: 420px;
   height: 420px;
@@ -15,6 +18,12 @@ h4,
 h5,
 h5 {
   font-family: 'Oswald', sans-serif; }
+
+h2 {
+  font-size: 2.5rem; }
+
+h4 {
+  font-size: 1.2rem; }
 
 .my-secon-nav-main {
   background-color: #01d1b2; }
@@ -55,5 +64,44 @@ h5 {
 
 .whiting {
   color: white; }
+
+.index-page {
+  display: flex;
+  justify-content: center; }
+  .index-page .hp20 {
+    margin-left: 20px; }
+  .index-page .book-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start; }
+  .index-page .one-book {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 380px;
+    padding: 0 20px; }
+    .index-page .one-book img {
+      height: 228px;
+      width: 160px; }
+    .index-page .one-book a {
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase; }
+    .index-page .one-book button {
+      border: none; }
+    .index-page .one-book p {
+      text-align: center;
+      line-height: 18px;
+      width: 160px; }
+    .index-page .one-book div {
+      height: 36px; }
+
+.gray-bg {
+  background-color: #F5F5F5;
+  width: 100vw;
+  height: 100vh; }
 
 /*# sourceMappingURL=style.css.map */

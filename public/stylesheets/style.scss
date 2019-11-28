@@ -6,6 +6,12 @@
 }
 
 $color-my-main: #01d1b2;
+$color-my-gray: #F5F5F5;
+$color-my-red: #F14768;
+
+a {
+  color: $color-my-main;
+}
 
 #map {
   width: 420px;
@@ -20,6 +26,14 @@ h4,
 h5,
 h5 {
   font-family: 'Oswald', sans-serif;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h4 {
+  font-size: 1.2rem;
 }
 
 .my-secon-nav-main {
@@ -76,4 +90,74 @@ h5 {
 
 .whiting {
   color: white;
+}
+
+// .index-container {
+//   width: 80%;
+// }
+.index-page {
+  display: flex;
+  justify-content: center;
+
+  .hp20 {
+    margin-left: 20px;
+  }
+
+  .book-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    // justify-content: space-between;
+    align-content: flex-start;
+  }
+
+  .one-book {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 380px;
+    padding: 0 20px;
+
+    img {
+      height: 228px;
+      width: 160px;
+    }
+
+    a {
+      // color: $color-my-main;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      // color: $color-my-red;
+    }
+
+    button {
+      border: none;
+    }
+
+    p {
+      text-align: center;
+      line-height: 18px;
+      width: 160px;
+
+    }
+
+    div {
+      height: 36px;
+    }
+  }
+
+
+}
+
+
+
+
+
+.gray-bg {
+  background-color: $color-my-gray;
+  width: 100vw;
+  height: 100vh;
 }
