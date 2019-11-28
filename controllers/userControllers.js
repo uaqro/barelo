@@ -199,6 +199,10 @@ exports.getProfile = async (req, res) => {
   const swapper = await user
     .findById(id)
     .populate("pickedBooks publishedBooks");
-  console.log(swapper);
   res.render("user/ownProfile", swapper);
+};
+exports.confirmBook = async (req, res) => {
+  const { id } = req.params;
+  const buk = await books.findById(id);
+  res.render("user/confirm", buk);
 };

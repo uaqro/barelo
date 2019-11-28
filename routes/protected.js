@@ -28,6 +28,7 @@ router.get("/new", (_, res) => {
 });
 router.post("/new/ISBN", uploadCloud.single("photo"), ISBNform);
 router.post("/new/form", uploadCloud.single("photo"), postForm);
+router.get("/:id/confirm", confirmBook);
 
 //PATCH FORM - UPDATE
 router.get("/:id/patch", getpatchForm);
