@@ -4,21 +4,58 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<form method="POST" action="/user/patched" enctype="multipart/form-data">
-  <input type="text" name="username" value="{{this.username}}" disabled>
-  <br>
-  <input type="text" name="email" value="{{this.email}}">
-  <br>
-  <input type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}">
-  <br>
-  <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
-  <input type="text" id="lng" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
-  <input type="text" id="lat" name="lat" value="{{this.place.coordinates.[1]}}" hidden>
-  <div id='map'></div>
-  <br>
-  <button>Submit</button>
 
-</form>
+<section class="section">
+  <div class="container">
+    <h2 class="is-uppercase">Update Profile</h2>
+    <hr>
+    <form method="POST" action="/user/patched" enctype="multipart/form-data">
+      <div class="field">
+        <input class="input" type="text" name="username" placeholder="Disabled input" value="{{this.username}}"
+          disabled>
+      </div>
+      <div class="field">
+        <p class="control has-icons-left has-icons-right">
+          <input class="input" type="email" name="email" value="{{this.email}}">
+          <span class="icon is-small is-left">
+            <i class="fas fa-envelope"></i>
+          </span>
+        </p>
+      </div>
+      <img src=" {{this.photoURL}}" alt="">
+      <div id="file-js-example" class="file has-name  is-primary is-fullwidth">
+        <label class="file-label">
+          <input class="file-input" type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            Change your profile pic
+          </span>
+        </label>
+      </div>
+      <br>
+
+      {{!-- <input type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}"> --}}
+      <br>
+      <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
+      <input type="text" id="lng" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
+      <input type="text" id="lat" name="lat" value="{{this.place.coordinates.[1]}}" hidden>
+      <div id='map'></div>
+      <br>
+      <button class="button is-danger is-fullwidth">Change your information {{this.username}}</button>
+    </form>
+
+  </div>
+</section>
+
+
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
   var map = new mapboxgl.Map({

@@ -7,7 +7,13 @@
       <div class="column is-one-fifth ">
         <div class="round-corners-mine">
           <img class="round-border-books" src={{buk.pic}}>
-
+          {{#if showEdit}}
+          <div class="btn-modifiers-book">
+            <a type="button" class="button is-info is-fullwidth is-block" href="/user/{{buk._id}}/patch">Edit Book</a>
+            <a type="button" class="button is-danger is-fullwidth is-block" href="/user/{{buk._id}}/delete">Delete
+              Book</a>
+          </div>
+          {{/if}}
         </div>
       </div>
       <div class="column">
@@ -29,13 +35,7 @@
       </div>
     </div>
 
-    {{#if showEdit}}
-    <a type="button" class="button is-light" href="/user/{{buk._id}}/patch">Edit Book</a>
-    <a type="button" class="button is-danger " href="/user/{{buk._id}}/delete">Delete Book</a>
 
-
-    <button></button>
-    {{/if}}
 
     {{#if showA}}
     <div id='map'></div>

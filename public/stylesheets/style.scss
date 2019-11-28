@@ -207,6 +207,10 @@ h4 {
 
 ////////////////////////////
 #book-details {
+  .btn-modifiers-book>a {
+    margin: 10px 0;
+  }
+
   .details-wrapper {
     display: flex;
   }
@@ -214,8 +218,6 @@ h4 {
   img {
     width: 100%;
   }
-
-
 
   .giver-box {
     background-color: $color-my-gray;

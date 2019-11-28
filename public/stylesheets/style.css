@@ -142,6 +142,9 @@ h4 {
   -moz-border-radius: 10px;
   border-radius: 10px; }
 
+#book-details .btn-modifiers-book > a {
+  margin: 10px 0; }
+
 #book-details .details-wrapper {
   display: flex; }
 
