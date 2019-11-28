@@ -21,26 +21,32 @@
 
     <p><a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a></p>
     <p>{{buk.publisher}}</p>
-
-    <script>
-      let name = "{{buk.title}}"
-      let lng = Number("{{ buk.place.coordinates.[0]}}")
-      let lat = Number("{{ buk.place.coordinates.[1]}}");
-    </script>
-
-    {{#if show}}
+    {{#if showA}}
     <div id='map'></div>
     <img src={{buk.placePic}}>
     {{else}}
+    {{#if showB}}
     <form action='/user/{{buk._id}}/pick' method='POST'>
       <button>Pick this book</button>
     </form>
     {{/if}}
+    {{/if}}
+
+
 
   </div>
 </section>
 
 
+
+
+
+
+<script>
+  let name = "{{buk.title}}"
+  let lng = Number("{{ buk.place.coordinates.[0]}}")
+  let lat = Number("{{ buk.place.coordinates.[1]}}");
+</script>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
 

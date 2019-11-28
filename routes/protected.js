@@ -10,35 +10,47 @@ const {
   getpatchForm,
   patchForm,
   deleteBook,
+  delBook,
   pickABook,
   newComment,
   seeProfile,
   bookDetails,
-  getProfile
+  getProfile,
+  confirmBook,
+  deleteUser,
+  editUser,
+  patchUser,
+  editComment,
+  patchComment,
+  deleteComment
 } = require("../controllers/userControllers");
 
-//VISTA DE TODOS LOS LIBROS
+//BOOKS
 router.get("/index", indexGet);
 router.get("/:id/book-details", bookDetails);
 router.post("/:id/pick", pickABook);
-
-//ADD NEW - CREATE
 router.get("/new", (_, res) => {
   res.render("user/new");
 });
 router.post("/new/ISBN", uploadCloud.single("photo"), ISBNform);
 router.post("/new/form", uploadCloud.single("photo"), postForm);
-
-//PATCH FORM - UPDATE
+router.get("/:id/confirm", confirmBook);
 router.get("/:id/patch", getpatchForm);
 router.post("/:id/patch", patchForm);
-
-//DELETE
 router.post("/:id/delete", deleteBook);
+router.post("/:id/delete-origin", delBook);
 
 //PROFILES
 router.get("/profile", getProfile);
 router.get("/:id/profile", seeProfile);
-router.post("/new/comment", newComment);
+router.get("/delete-user", deleteUser);
+router.get("/patch-user", editUser);
+router.post("/patched", patchUser);
+
+//COMMENTS
+router.post("/:id/new-comment", newComment);
+router.get("/:id/delete-comment", deleteComment);
+router.get("/:id/edit-comment", editComment);
+router.post("/:id/patch-comment", patchComment);
 
 module.exports = router;

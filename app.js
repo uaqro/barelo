@@ -12,10 +12,7 @@ const passport = require("./config/passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
-const {
-  checkUser,
-  isAuth
-} = require("./middlewares/index");
+const { checkUser, isAuth } = require("./middlewares/index");
 
 mongoose
   .connect("mongodb://localhost/barelo", {

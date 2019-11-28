@@ -1,0 +1,10 @@
+<p>{{buk.title}}</p>
+<p>{{buk.description}}</p>
+{{#each buk.author as |auth|}}
+<p>{{auth}}</p>
+{{/each}}
+<p>{{buk.pages}}</p>
+<p>{{buk.publisher}}</p>
+<p>{{buk.publishDate}}</p>
+<form method="POST" href="/{{buk._id}}/delete-origin"><button>Delete</button></form>
+<button>Okay</button>
