@@ -51,6 +51,27 @@
     </div>
   </div>
 
+  {{!-- mobile nav bottom --}}
+  <div class="my-fixing is-hidden-desktop is-hidden-table">
+    <nav class="my-fixing-spacing level is-mobile is-hidden-table is-hidden-desktop is-hidden-widescreen">
+      <div class="level-item ">
+        <div>
+          <i class="far fa-compass fa-2x whiting"></i>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <a href="user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <a href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
+        </div>
+      </div>
+    </nav>
+  </div>
+
   {{else}}
   {{!-- desktop main van menu --}}
   <div class="my-secon-nav-main is-hidden-mobile">
@@ -80,34 +101,7 @@
       <a href="/auth/login" class="button is-light">Log in </a>
     </div>
   </div>
-
-
-
   {{/if}}
-
-
-
-  <div class="my-fixing">
-    <nav class="my-fixing-spacing level is-mobile is-hidden-table is-hidden-desktop is-hidden-widescreen">
-      <div class="level-item ">
-        <div>
-          <a href="/user/index"><i class="far fa-compass fa-2x whiting"></i></a>
-        </div>
-      </div>
-      <div class="level-item">
-        <div>
-          <a href="/user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
-        </div>
-      </div>
-      <div class="level-item">
-        <div>
-          <a href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
-        </div>
-      </div>
-    </nav>
-  </div>
-
-
 
   {{{body}}}
 
