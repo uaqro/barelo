@@ -146,23 +146,24 @@ exports.bookDetails = async (req, res) => {
   console.log(usr.tokens);
   res.render("user/detail", { buk, showA, showB, showC, showEdit });
 };
-
-//HAY QUE EDITAR ESTO:
 exports.seeProfile = async (req, res) => {
+  let commentsArray = [];
   const { id } = req.params;
   const { _id } = req.user;
   const swapper = await user.findById(id).populate("commentsRec");
-  let commentsArray = [];
-  swapper.commentsRec.forEach(e => {
-    const komment = Comment.findById(e).populate("swapperPosting");
-    commentsArray.push(komment);
-  });
-  commentsArray.forEach(e => {
+
+  await swapper.commentsRec.forEach(async e => {
+    let x = false;
+    let cont = await Comment.findById(e).populate("swapperPosting");
     if (String(e.swapperPosting._id) === String(_id)) {
-      e.show = true;
+      x = true;
     }
+    commentsArray.push({
+      content: cont,
+      show: x
+    });
   });
-  res.render("user/otherProfile", swapper);
+  await res.render("user/otherProfile", { swapper, commentsArray });
 };
 
 // router.get('/:id/delete-comment', deleteComment)
@@ -176,7 +177,7 @@ exports.deleteComment = async (req, res) => {
     $pull: { commentsRec: { $in: id } }
   });
   await Comment.findByIdAndDelete(id);
-  res.redirect(`/user/${swapperRec}/profile`);
+  res.redirect(`/user/${com.swapperRec}/profile`);
 };
 exports.editComment = async (req, res) => {
   const { id } = req.params; //Id del comentario
@@ -186,7 +187,9 @@ exports.editComment = async (req, res) => {
 exports.patchComment = async (req, res) => {
   const { id } = req.params;
   const { comment } = req.body;
-  await Comment.findByIdAndUpdate(id, { comment });
+  const com = await Comment.findById(id);
+  com.body = comment;
+  await com.save();
   res.redirect(`/user/${com.swapperRec}/profile`);
 };
 exports.newComment = async (req, res) => {
@@ -207,7 +210,7 @@ exports.newComment = async (req, res) => {
   await res.redirect(`/user/${id}/profile`);
 };
 
-//CRUD USER - YA VAN TODOS
+//CRUD USER
 exports.getProfile = async (req, res) => {
   const { id } = req.user;
   const swapper = await user
