@@ -151,14 +151,17 @@ exports.bookDetails = async (req, res) => {
 exports.seeProfile = async (req, res) => {
   const { id } = req.params;
   const { _id } = req.user;
-  const swapper = await user.findById(id);
-  console.log(swapper.commentsRec);
+  const swapper = await user.findById(id).populate("commentsRec");
+  let commentsArray = [];
   swapper.commentsRec.forEach(e => {
-    if (e.swapperPosting._id === _id) {
+    const komment = Comment.findById(e).populate("swapperPosting");
+    commentsArray.push(komment);
+  });
+  commentsArray.forEach(e => {
+    if (String(e.swapperPosting._id) === String(_id)) {
       e.show = true;
     }
   });
-  x;
   res.render("user/otherProfile", swapper);
 };
 
