@@ -1,10 +1,64 @@
-<p>{{buk.title}}</p>
-<p>{{buk.description}}</p>
-{{#each buk.author as |auth|}}
+<p>{{this.title}}</p>
+<p>{{this.description}}</p>
+{{#each this.author as |auth|}}
 <p>{{auth}}</p>
 {{/each}}
-<p>{{buk.pages}}</p>
-<p>{{buk.publisher}}</p>
-<p>{{buk.publishDate}}</p>
-<form method="POST" href="/{{buk._id}}/delete-origin"><button>Delete</button></form>
-<button>Okay</button>
+<p>{{this.pages}}</p>
+<p>{{this.publisher}}</p>
+<p>{{this.publishDate}}</p>
+<div id="map"></div>
+<form method="POST" href="/{{this._id}}/delete-origin"><button>Delete</button></form>
+<a href="/user/index" type="button"><button>Looks Great!</button></a>
+
+<script>
+  let name = "{{this.title}}"
+  let lng = Number("{{ this.place.coordinates.[0]}}")
+  let lat = Number("{{ this.place.coordinates.[1]}}");
+</script>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
+
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/light-v10',
+    zoom: 18,
+    center: [lng, lat]
+  });
+  map.on('load', function () {
+
+    map.addLayer({
+      "id": "points",
+      "type": "symbol",
+      "source": {
+        "type": "geojson",
+        "data": {
+          "type": "FeatureCollection",
+          "features": [{
+            // feature for Mapbox DC
+            "type": "Feature",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [lng, lat]
+            },
+            "properties": {
+              "title": name,
+              "icon": "anchor"
+            }
+          }]
+        }
+      },
+      "layout": {
+        // get the icon name from the source's "icon" property
+        // concatenate the name to get an icon from the style's sprite sheet
+        "icon-image": ["concat", ["get", "icon"], "-15"],
+        // get the title name from the source's "title" property
+        "text-field": ["get", "title"],
+        "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+        "text-offset": [0, 0.6],
+        "text-anchor": "top"
+      }
+    });
+
+  })
+
+</script>

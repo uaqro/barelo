@@ -4,16 +4,20 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<form method="POST" href="/user/patched" enctype="multipart/form-data">
-  <input type="text" value={{usr.username}} disabled>
-  <input type="text" value={{usr.email}}>
-  <input class="file-input" type="file" name="photo" id="photo" accept="image/*">
-  <input type="text" id="address" value={{usr.place.address}} hidden>
-  <input type="number" id="lng" value={{usr.place.coordinates[0]}} hidden>
-  <input type="number" id="lat" value={{usr.place.coordinates[1]}} hidden>
-
-  <button>Submit</button>
+<form method="POST" action="/user/patched" enctype="multipart/form-data">
+  <input type="text" name="username" value="{{this.username}}" disabled>
+  <br>
+  <input type="text" name="email" value="{{this.email}}">
+  <br>
+  <input type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}">
+  <br>
+  <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
+  <input type="number" id="lng" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
+  <input type="number" id="lat" name="lat" value="{{this.place.coordinates.[1]}}" hidden>
   <div id='map'></div>
+  <br>
+  <button>Submit</button>
+
 </form>
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';

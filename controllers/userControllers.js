@@ -134,6 +134,7 @@ exports.pickABook = async (req, res) => {
   const { _id } = req.user;
   const { id } = req.params;
   const usr = await user.findById(_id);
+  const showAlert = false;
   usr.pickedBooks.push(id);
   let credits = usr.publishedBooks.length - usr.pickedBooks.length;
   usr.tokens = credits;
@@ -144,25 +145,29 @@ exports.pickABook = async (req, res) => {
 exports.bookDetails = async (req, res) => {
   const { id } = req.params;
   const { _id } = req.user;
-  const showB = true;
+  let showB = true;
+  let showC = false;
   let buk = await books.findById(id).populate("swapper");
   const usr = await user.findById(_id);
   const showA = await usr.pickedBooks.includes(id);
   if (_id === buk.swapper._id) {
     showB = false;
   }
-  console.log(buk.swapper._id);
-  res.render("user/detail", { buk, showA, showB });
+  if (usr.tokens < 1) {
+    console.log("hasta aquí sí");
+    showB = false;
+    showC = true;
+  }
+  console.log(showB);
+  console.log(usr.tokens);
+  res.render("user/detail", { buk, showA, showB, showC });
 };
 
 //HAY QUE EDITAR ESTO:
 exports.seeProfile = async (req, res) => {
   const { id } = req.params;
   const { _id } = req.user;
-  const swapper = await user
-    .findById(id)
-    .populate("commentsRec")
-    .commentsRec.populate("swapperPosting");
+  const swapper = await user.findById(id);
   console.log(swapper.commentsRec);
   swapper.commentsRec.forEach(e => {
     if (e.swapperPosting._id === _id) {
@@ -237,17 +242,29 @@ exports.editUser = async (req, res) => {
 exports.patchUser = async (req, res) => {
   const { id } = req.user;
   const { address, lng, lat, email } = req.body;
-  const { secure_url } = req.file;
-  const updt = {
-    place: {
-      address,
-      coordinates: [lng, lat]
-    },
-    email,
-    photoURL: secure_url
-  };
-  await user.findByIdAndUpdate(id, updt);
-  res.redirect("user/profile");
+  if (req.file) {
+    const { secure_url } = req.file;
+    const updt = {
+      place: {
+        address,
+        coordinates: [lng, lat]
+      },
+      email,
+      photoURL: secure_url
+    };
+    await user.findByIdAndUpdate(id, updt);
+    res.redirect("/user/profile");
+  } else {
+    const updt = {
+      place: {
+        address,
+        coordinates: [lng, lat]
+      },
+      email
+    };
+    await user.findByIdAndUpdate(id, updt);
+    res.redirect("/user/profile");
+  }
 };
 //NO SE ESTÁ USANDO
 exports.postForm = async (req, res) => {

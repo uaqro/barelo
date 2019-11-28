@@ -45,7 +45,7 @@ router.get("/profile", getProfile);
 router.get("/:id/profile", seeProfile);
 router.get("/delete-user", deleteUser);
 router.get("/patch-user", editUser);
-router.post("/patched", patchUser);
+router.post("/patched", uploadCloud.single("photo"), patchUser);
 
 //COMMENTS
 router.post("/:id/new-comment", newComment);
