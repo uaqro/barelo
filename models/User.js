@@ -45,6 +45,18 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Badges"
       }
+    ],
+    commentsRec: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comments"
+      }
+    ],
+    commentsPost: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comments"
+      }
     ]
   },
   {

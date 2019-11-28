@@ -3,7 +3,11 @@ const Schema = mongoose.Schema;
 
 const commentSchema = new Schema({
   body: String,
-  swapper: {
+  swapperPosting: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
+  swapperRec: {
     type: Schema.Types.ObjectId,
     ref: "User"
   }
