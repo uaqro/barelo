@@ -10,6 +10,10 @@ const commentSchema = new Schema({
   swapperRec: {
     type: Schema.Types.ObjectId,
     ref: "User"
+  },
+  show: {
+    type: Boolean,
+    default: true
   }
 });
 

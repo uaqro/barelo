@@ -15,14 +15,15 @@
   let lat = Number("{{ buk.place.coordinates.[1]}}");
 </script>
 
-{{#if show}}
-
+{{#if showA}}
 <div id='map'></div>
 <img src={{buk.placePic}}>
 {{else}}
+{{#if showB}}
 <form action='/user/{{buk._id}}/pick' method='POST'>
   <button>Pick this book</button>
 </form>
+{{/if}}
 {{/if}}
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';

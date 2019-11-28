@@ -28,10 +28,15 @@
   </ul>
   {{#each this.commentsRec as |comment|}}
   <p>comment</p>
+  {{#if comment.show}}
+  <a href="/user/{{comment._id}}/delete-comment" type="button">Delete</a>
+  <a href="/user/{{comment._id}}/edit-comment" type="button">Edit</a>
+  {{/if}}
+  <p>{{comment.body}}</p>
+  <a href="/user/{{comment.swapperPosting._id}}/profile">{{comment.swapperPosting.username}}</a>
   {{/each}}
-
-  {{!-- 
-  ESTE ES EL FORM QUE TIENE QUE IR DENTRO DEL MODAL DE ENVIAR COMMENT
   <form action='/user/new/comment' method='POST'>
-  </form> --}}
+    <input type='text' name="comment">
+    <buttom>Submit</buttom>
+  </form>
 </div>
