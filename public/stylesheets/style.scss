@@ -10,7 +10,7 @@ $color-my-gray: #F5F5F5;
 $color-my-red: #F14768;
 
 a {
-  color: $color-my-main;
+  color: $color-my-gray;
 }
 
 #map {
@@ -30,6 +30,11 @@ h5 {
 
 h2 {
   font-size: 2.5rem;
+}
+
+h3 {
+  font-size: 2rem;
+
 }
 
 h4 {
@@ -92,9 +97,6 @@ h4 {
   color: white;
 }
 
-// .index-container {
-//   width: 80%;
-// }
 .index-page {
   display: flex;
   justify-content: center;
@@ -126,7 +128,7 @@ h4 {
     }
 
     a {
-      // color: $color-my-main;
+      color: $color-my-main;
       font-weight: 600;
       text-decoration: none;
       text-transform: uppercase;
@@ -152,7 +154,23 @@ h4 {
 
 }
 
+#book-details {
+  .details-wrapper {
+    display: flex;
+  }
 
+  .lefties-align {
+    margin-right: 40px;
+    box-sizing: border-box;
+
+    img {
+      width: 400px;
+    }
+
+  }
+
+
+}
 
 
 

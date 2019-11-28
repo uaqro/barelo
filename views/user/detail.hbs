@@ -1,29 +1,46 @@
-<h2>Book Details</h2>
+<section class="section" id="book-details">
+  <div class="container">
+    <h2 class="is-uppercase	">Book Details</h2>
+    <hr>
+    <div class="details-wrapper">
+      <div class="lefties-align">
+        <img class="" src={{buk.pic}}>
+      </div>
+      <div class="righties-align">
+        <h3 class="">{{buk.title}}</h3>
+        {{#each buk.author as |auth|}}
+        <p>{{auth}}</p>
+        {{/each}}
+        <p>{{buk.description}}</p>
+        <p>Pages no.{{buk.pages}}</p>
+        <p>Published in: {{buk.publishDate}}</p>
+      </div>
+    </div> {{!-- end of details-wrappr --}}
 
-<p>{{buk.title}}</p>
-<p>{{buk.description}}</p>
-{{#each buk.author as |auth|}}
-<p>{{auth}}</p>
-{{/each}}
-<p>{{buk.pages}}</p>
-<p><a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a></p>
-<p>{{buk.publisher}}</p>
-<p>{{buk.publishDate}}</p>
-<script>
-  let name = "{{buk.title}}"
-  let lng = Number("{{ buk.place.coordinates.[0]}}")
-  let lat = Number("{{ buk.place.coordinates.[1]}}");
-</script>
 
-{{#if show}}
 
-<div id='map'></div>
-<img src={{buk.placePic}}>
-{{else}}
-<form action='/user/{{buk._id}}/pick' method='POST'>
-  <button>Pick this book</button>
-</form>
-{{/if}}
+    <p><a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a></p>
+    <p>{{buk.publisher}}</p>
+
+    <script>
+      let name = "{{buk.title}}"
+      let lng = Number("{{ buk.place.coordinates.[0]}}")
+      let lat = Number("{{ buk.place.coordinates.[1]}}");
+    </script>
+
+    {{#if show}}
+    <div id='map'></div>
+    <img src={{buk.placePic}}>
+    {{else}}
+    <form action='/user/{{buk._id}}/pick' method='POST'>
+      <button>Pick this book</button>
+    </form>
+    {{/if}}
+
+  </div>
+</section>
+
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
 
