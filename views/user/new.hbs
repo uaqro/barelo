@@ -4,19 +4,169 @@
 <!-- Promise polyfill script required to use Mapbox GL Geocoder in IE 11 -->
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-<form action='/user/new/ISBN' method='POST' enctype="multipart/form-data">
-  <div>
-    <input type="text" name="ISBN10">
+
+
+<section class="section" id="new-book-add">
+  <div class="container">
+    <h2 class="is-uppercase">Add a book & start swapping!</h2>
+    <h4>Remember, just give one to get one, just follow this simple steps:</h4>
+    <hr>
+    {{!-- step render --}}
+    <div class="steps" id="stepsDemo">
+      <div class="step-item is-active is-success">
+        <div class="step-marker">1</div>
+        <div class="step-details">
+          <p class="step-title">ISBN</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-marker">2</div>
+        <div class="step-details">
+          <p class="step-title">Picture</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-marker">3</div>
+        <div class="step-details">
+          <p class="step-title">Location</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-marker">4</div>
+        <div class="step-details">
+          <p class="step-title">Finish</p>
+        </div>
+      </div>
+      {{!-- end fo markers --}}
+      {{!-- step one --}}
+      <form action='/user/new/ISBN' method='POST' enctype="multipart/form-data">
+        <div class="steps-content">
+          <div class="step-content has-text-centered is-active">
+            <div class="columns is-desktop">
+              <div class="column">
+                <div class="field">
+                  <img src="/images/barcode.png" alt="">
+                  <div class="control">
+                    <input class="input is-large" type="text" name="ISBN10"
+                      placeholder="Type here the number that comes in the back of your book..." data-validate="require">
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <p>Fin the ISBN code behind your book, and type the numbers beneath it in the input field under the bar
+                  code.</p>
+              </div>
+            </div>
+          </div>
+          {{!-- step two --}}
+          <div class="step-content has-text-centered">
+            <div class="columns is-desktop">
+              <div class="column">
+                <p>Take a picture of the place where you will leave the book so the scavanger could find it!
+                  ps.. you could give it in person if you wish!.
+                </p>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <div class="file is-large has-name">
+                    <label class="file-label">
+                      <input class="file-input" type="file" name="photo" id="photo" accept="image/*">
+                      <span class="file-cta">
+                        <span class="file-icon">
+                          <i class="fas fa-upload"></i>
+                        </span>
+                        <span class="file-label">
+                          Large file…
+                        </span>
+                      </span>
+                      <span class="file-name">
+                        Screen Shot 2017-07-29 at 15.54.25.png
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{!-- step two end --}}
+          {{!-- step tree  --}}
+          <div class="step-content has-text-centered">
+            <div class="columns">
+              <div class="column">
+                <input id="lng" type="text" name="lng" hidden>
+                <input id="lat" type="text" name="lat" hidden>
+                <input id="address" type="text" name="address" hidden>
+                <div id="map"></div>
+              </div>
+              <div class="column">
+                Last but not least, tell you next reader where the book is going to be so this person can find it and
+                start reading.
+              </div>
+            </div>
+          </div>
+          {{!-- step tree end --}}
+          {{!-- step four  --}}
+          <div class="step-content has-text-centered">
+            <h1 class="title is-4">Your book ready to be published, click on the submit buttun whenever you are ready!
+            </h1>
+            <button class="button is-primary">Submit</button>
+          </div>
+        </div>
+        <div class="steps-actions">
+          <div class="steps-action">
+            <a href="#" data-nav="previous" class="button is-light">Previous</a>
+          </div>
+          <div class="steps-action">
+            <a href="#" data-nav="next" class="button is-light">Next</a>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+
+
+
+
+  </div> {{!-- end of container --}}
+</section>{{!-- end of all --}}
+
+{{!-- do not erase! --}}
+<script> bulmaSteps.attach(); </script>
+{{!-- do not erase! --}}
+
+{{!-- 
+<section class="section" id="book-add">
+  <div class="container">
+    <h2 class="is-uppercase">Add a book to give away</h2>
+    <h4>Remember, just give one to get one.</h4>
+    <hr>
+    <form action='/user/new/ISBN' method='POST' enctype="multipart/form-data">
+      <div class="columns ">
+        <div class="column  is-half">
+          <div class="field">
+            <img src="/images/barcode.png" alt="">
+            <div class="control">
+              <input class="input is-large" type="text" name="ISBN10"
+                placeholder="Type here the number that comes in the back of your book...">
+            </div>
+          </div>
+          <div>
+            <input type="file" name="photo" id="photo" accept="image/*">
+          </div>
+          <button class="button is-primary">Submit</button>
+        </div>
+        <div class="column">
+          Second column
+          <input id="lng" type="text" name="lng" hidden>
+          <input id="lat" type="text" name="lat" hidden>
+          <input id="address" type="text" name="address" hidden>
+          <div id="map"></div>
+        </div>
+      </div>
+    </form>
   </div>
-  <div>
-    <input type="file" name="photo" id="photo" accept="image/*">
-  </div>
-  <input id="lng" type="text" name="lng" hidden>
-  <input id="lat" type="text" name="lat" hidden>
-  <input id="address" type="text" name="address" hidden>
-  <div id="map"></div>
-  <button class="button is-primary">Submit</button>
-</form>
+</section> --}}
 
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';

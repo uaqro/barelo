@@ -8,15 +8,15 @@
 $color-my-main: #01d1b2;
 $color-my-gray: #F5F5F5;
 $color-my-red: #F14768;
+$color-my-dark-gray: #4A4A4A;
 
 a {
   color: $color-my-gray;
 }
 
 #map {
-  width: 420px;
-  height: 420px;
-  text-align: center;
+  width: 500px;
+  height: 500px;
 }
 
 h1,
@@ -101,6 +101,11 @@ h4 {
   display: flex;
   justify-content: center;
 
+  hr {
+    background-color: $color-my-dark-gray;
+    opacity: 0.1;
+  }
+
   .hp20 {
     margin-left: 20px;
   }
@@ -164,14 +169,28 @@ h4 {
     box-sizing: border-box;
 
     img {
-      width: 400px;
+      width: 300px !important;
     }
-
   }
-
-
 }
 
+#new-book-add {
+  form {
+    width: 90%;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+
+    img {
+      width: 50%;
+    }
+
+    #map {
+      height: 500px;
+      width: 500px;
+    }
+  }
+}
 
 
 .gray-bg {
