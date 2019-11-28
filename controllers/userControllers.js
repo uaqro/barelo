@@ -22,9 +22,7 @@ exports.indexGet = async (req, res) => {
   });
   res.render("user/index", { buks });
 };
-
 // CRUD LIBROS
-
 exports.ISBNform = async (req, res) => {
   const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
@@ -67,47 +65,30 @@ exports.getpatchForm = async (req, res) => {
   const { id } = req.params;
   const buk = await books.findById(id);
   if (!buk.picked) {
-    res.render("user/edit-book", buk);
+    res.render("user/updateBook", buk);
   } else {
     alert("You cannot edit picked books");
   }
 };
 exports.patchForm = async (req, res) => {
   const { id } = req.params;
-  const {
-    title,
-    description,
-    author,
-    pages,
-    categories,
-    pic,
-    idioma,
-    publisher,
-    publishedDate,
-    address,
-    lng,
-    lat
-  } = req.body;
-  const buk = await books.findOneAndUpdate(
-    { _id: id },
-    {
-      title: title,
-      description: description,
-      author: author,
-      pages: pages,
-      categories: categories,
-      pic: pic,
-      idioma: idioma,
-      publisher: publisher,
-      publishDate: publishedDate,
-      placePic: secure_url,
-      place: {
-        address: address,
-        coordinates: [lng, lat]
-      }
-    }
-  );
-  res.redirect("/user/index");
+  const { address, lng, lat } = req.body;
+  if (req.file) {
+    const { secure_url } = req.file;
+    const buk = await books.findById(id);
+    buk.place.address = address;
+    buk.place.cooordinates = [lng, lat];
+    buk.picPlace = secure_url;
+    await buk.save();
+    res.redirect(`/user/${id}/book-details`);
+  } else {
+    const buk = await books.findById(id);
+    console.log(buk.place);
+    buk.place.address = address;
+    buk.place.cooordinates = [lng, lat];
+    await buk.save();
+    res.redirect(`/user/${id}/book-details`);
+  }
 };
 exports.deleteBook = async (req, res) => {
   const { id } = req.params;
@@ -147,20 +128,23 @@ exports.bookDetails = async (req, res) => {
   const { _id } = req.user;
   let showB = true;
   let showC = false;
+  let showEdit = false;
   let buk = await books.findById(id).populate("swapper");
   const usr = await user.findById(_id);
   const showA = await usr.pickedBooks.includes(id);
-  if (_id === buk.swapper._id) {
+
+  if (String(_id) == String(buk.swapper._id)) {
+    console.log("El visitante es el publicante");
     showB = false;
+    showEdit = true;
   }
   if (usr.tokens < 1) {
-    console.log("hasta aquí sí");
     showB = false;
     showC = true;
   }
   console.log(showB);
   console.log(usr.tokens);
-  res.render("user/detail", { buk, showA, showB, showC });
+  res.render("user/detail", { buk, showA, showB, showC, showEdit });
 };
 
 //HAY QUE EDITAR ESTO:
@@ -220,7 +204,7 @@ exports.newComment = async (req, res) => {
   await res.redirect(`/user/${id}/profile`);
 };
 
-//CRUD USER
+//CRUD USER - YA VAN TODOS
 exports.getProfile = async (req, res) => {
   const { id } = req.user;
   const swapper = await user
