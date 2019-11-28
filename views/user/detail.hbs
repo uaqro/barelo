@@ -53,11 +53,24 @@
 
   </div>
 </section>
+{{#if showC}}
+<div class="notification">
+  <p>You don't have enough tokens :(</p><br>
+  <button><a href="/user/new">Add a new book to win tokens!!</a></button>
+  <button class="delete"></button>
+</div>
+{{/if}}
 
-
-
-
-
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+      $notification = $delete.parentNode;
+      $delete.addEventListener('click', () => {
+        $notification.parentNode.removeChild($notification);
+      });
+    });
+  });
+</script>
 
 <script>
   let name = "{{buk.title}}"
