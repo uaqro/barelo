@@ -116,14 +116,36 @@ h4 {
     .index-page .one-book div {
       height: 36px; }
 
+.round-border-books {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px; }
+
 #book-details .details-wrapper {
   display: flex; }
 
-#book-details .lefties-align {
-  margin-right: 40px;
-  box-sizing: border-box; }
-  #book-details .lefties-align img {
-    width: 300px !important; }
+#book-details img {
+  width: 100%; }
+
+#book-details .giver-box {
+  background-color: #F5F5F5;
+  border: 1px solid #F5F5F5;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6% 0; }
+  #book-details .giver-box img {
+    width: 80px;
+    clip-path: circle(40px at center);
+    align-self: center; }
+  #book-details .giver-box h4 {
+    color: #4A4A4A; }
+  #book-details .giver-box a {
+    color: #01d1b2;
+    font-size: 2rem; }
+  #book-details .giver-box a:hover {
+    text-decoration: underline; }
 
 #new-book-add form {
   width: 90%;
@@ -155,7 +177,7 @@ h4 {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0;
+  margin: 30px 0 10px 0;
   padding: 0;
   align-self: center; }
   #main-profile .token-coin p {

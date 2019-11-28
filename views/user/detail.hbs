@@ -2,22 +2,41 @@
   <div class="container">
     <h2 class="is-uppercase">Book Details</h2>
     <hr>
-    <div class="details-wrapper">
-      <div class="lefties-align">
-        <img class="" src={{buk.pic}}>
+
+    <div class="columns">
+      <div class="column is-one-fifth ">
+        <div class="round-corners-mine">
+          <img class="round-border-books" src={{buk.pic}}>
+
+        </div>
       </div>
-      <div class="righties-align">
+      <div class="column">
         <h3 class="">{{buk.title}}</h3>
         {{#each buk.author as |auth|}}
-        <p>{{auth}}</p>
+        <p><strong>by:</strong>{{auth}}</p>
         {{/each}}
         <p>{{buk.description}}</p>
         <p>Pages no.{{buk.pages}}</p>
         <p>Published in: {{buk.publishDate}}</p>
         <p>Publisher: {{buk.publisher}}</p>
-        <p>by: <a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a></p>
       </div>
-    </div> {{!-- end of details-wrappr --}}
+      <div class="column is-one-fifth ">
+        <div class="giver-box">
+          <h4>This book was published by:</h4>
+          <img class="" src={{buk.swapper.photoURL}}>
+          <a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
 
     {{#if showA}}
     <div id='map'></div>
@@ -25,7 +44,7 @@
     {{else}}
     {{#if showB}}
     <form action='/user/{{buk._id}}/pick' method='POST'>
-      <button>Pick this book</button>
+      <button class="button is-primary">Pick this book</button>
     </form>
     {{/if}}
     {{/if}}
