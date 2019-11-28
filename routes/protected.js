@@ -22,11 +22,6 @@ router.get("/index", indexGet);
 router.get("/:id/book-details", bookDetails);
 router.post("/:id/pick", pickABook);
 
-//CONFIRMATION
-router.get("/confirmation", (_, res) => {
-  res.render("user/confirmation");
-});
-
 //ADD NEW - CREATE
 router.get("/new", (_, res) => {
   res.render("user/new");

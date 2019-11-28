@@ -54,8 +54,7 @@ exports.ISBNform = async (req, res) => {
   let credits = usr.publishedBooks.length - usr.pickedBooks.length;
   usr.tokens = credits;
   await usr.save();
-  console.log("redirect");
-  await res.redirect("/user/confirmation");
+  await res.redirect("/user/index");
 };
 exports.getpatchForm = async (req, res) => {
   const { id } = req.params;
