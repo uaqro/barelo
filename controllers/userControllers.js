@@ -4,7 +4,6 @@ const Comment = require("../models/Comment.js");
 const axios = require("axios");
 require("dotenv").config();
 
-// QUERY DETAILS AQUÍ EL QUERY TIENE QUE FILTRAR LA UBICACIÓN POR RADIO
 exports.indexGet = async (req, res) => {
   const { place } = req.user;
   console.log(place);
@@ -24,8 +23,6 @@ exports.indexGet = async (req, res) => {
   console.log(buks);
   res.render("user/index", { buks });
 };
-
-// exports post ISBN
 exports.ISBNform = async (req, res) => {
   const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
@@ -60,14 +57,11 @@ exports.ISBNform = async (req, res) => {
   console.log("redirect");
   await res.redirect("/user/confirmation");
 };
-// exports POST User
-
 exports.getpatchForm = async (req, res) => {
   const { id } = req.params;
   const buk = await books.findOne({ _id: id });
   res.render("user/patch");
 };
-
 exports.patchForm = async (req, res) => {
   const { id } = req.params;
   const {
@@ -105,7 +99,6 @@ exports.patchForm = async (req, res) => {
   );
   res.redirect("/user/index");
 };
-
 exports.deleteBook = async (req, res) => {
   const { id } = req.params;
   const { u_id } = req.body;
@@ -117,7 +110,6 @@ exports.deleteBook = async (req, res) => {
     alert("Picked books cannot be deleted.");
   }
 };
-
 exports.pickABook = async (req, res) => {
   const { _id } = req.user;
   const { id } = req.params;
@@ -151,7 +143,6 @@ exports.newComment = async (req, res) => {
   await reciever.save();
   await res.redirect(`/user/${id}/profile`);
 };
-
 exports.postForm = async (req, res) => {
   const { id } = req.user;
   const { secure_url } = req.file;
@@ -195,4 +186,20 @@ exports.postForm = async (req, res) => {
   user.tokens = credits;
   await user.save();
   res.redirect("/user/confirmation");
+};
+exports.bookDetails = async (req, res) => {
+  const { id } = req.params;
+  const { _id } = req.user;
+  const buk = await books.findById(id);
+  const usr = await user.findById(_id);
+  const show = await usr.pickedBooks.includes(id);
+  res.render("user/detail", { buk, show });
+};
+exports.getProfile = async (req, res) => {
+  const { id } = req.user;
+  const swapper = await user
+    .findById(id)
+    .populate("pickedBooks publishedBooks");
+  console.log(swapper);
+  res.render("user/ownProfile", swapper);
 };
