@@ -13,7 +13,7 @@ const commentSchema = new Schema({
   },
   show: {
     type: Boolean,
-    default: true
+    default: false
   }
 });
 

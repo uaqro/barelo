@@ -4,6 +4,7 @@ const Comment = require("../models/Comment.js");
 const axios = require("axios");
 require("dotenv").config();
 
+//FUNCIONES PÁGINA
 exports.indexGet = async (req, res) => {
   const { place } = req.user;
   const buks = await books.find({
@@ -21,6 +22,9 @@ exports.indexGet = async (req, res) => {
   });
   res.render("user/index", { buks });
 };
+
+// CRUD LIBROS
+
 exports.ISBNform = async (req, res) => {
   const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
@@ -61,8 +65,12 @@ exports.confirmBook = async (req, res) => {
 };
 exports.getpatchForm = async (req, res) => {
   const { id } = req.params;
-  const buk = await books.findOne({ _id: id });
-  res.render("user/patch");
+  const buk = await books.findById(id);
+  if (!buk.picked) {
+    res.render("user/edit-book", buk);
+  } else {
+    alert("You cannot edit picked books");
+  }
 };
 exports.patchForm = async (req, res) => {
   const { id } = req.params;
@@ -133,19 +141,36 @@ exports.pickABook = async (req, res) => {
   await books.findByIdAndUpdate(id, { picked: true });
   res.redirect(`/user/${id}/book-details`);
 };
+exports.bookDetails = async (req, res) => {
+  const { id } = req.params;
+  const { _id } = req.user;
+  const showB = true;
+  let buk = await books.findById(id).populate("swapper");
+  const usr = await user.findById(_id);
+  const showA = await usr.pickedBooks.includes(id);
+  if (_id === buk.swapper._id) {
+    showB = false;
+  }
+  console.log(buk.swapper._id);
+  res.render("user/detail", { buk, showA, showB });
+};
 
 //HAY QUE EDITAR ESTO:
 exports.seeProfile = async (req, res) => {
   const { id } = req.params;
   const { _id } = req.user;
-  const swapper = await user.findById(id).populate("commentsRec");
-  await swapper.commentsRec.forEach(e => {
-    e.populate("swapperPosting");
+  const swapper = await user
+    .findById(id)
+    .populate("commentsRec")
+    .commentsRec.populate("swapperPosting");
+  console.log(swapper.commentsRec);
+  swapper.commentsRec.forEach(e => {
     if (e.swapperPosting._id === _id) {
       e.show = true;
     }
   });
-  res.render("/user/profile", swapper);
+  x;
+  res.render("user/otherProfile", swapper);
 };
 
 // router.get('/:id/delete-comment', deleteComment)
@@ -164,12 +189,12 @@ exports.deleteComment = async (req, res) => {
 exports.editComment = async (req, res) => {
   const { id } = req.params; //Id del comentario
   const com = await Comment.findById(id);
-  res.render("user/edit-comment", com);
+  res.render("user/editComment", com);
 };
 exports.patchComment = async (req, res) => {
   const { id } = req.params;
-  const { body } = req.body;
-  await Comment.findByIdAndUpdate(id, { body });
+  const { comment } = req.body;
+  await Comment.findByIdAndUpdate(id, { comment });
   res.redirect(`/user/${com.swapperRec}/profile`);
 };
 exports.newComment = async (req, res) => {
@@ -189,6 +214,42 @@ exports.newComment = async (req, res) => {
   await reciever.save();
   await res.redirect(`/user/${id}/profile`);
 };
+
+//CRUD USER
+exports.getProfile = async (req, res) => {
+  const { id } = req.user;
+  const swapper = await user
+    .findById(id)
+    .populate("pickedBooks publishedBooks");
+  res.render("user/ownProfile", swapper);
+};
+exports.deleteUser = async (req, res) => {
+  const { id } = req.user;
+  req.logout();
+  await user.findByIdAndDelete(id);
+  res.redirect("/");
+};
+exports.editUser = async (req, res) => {
+  const { id } = req.user;
+  const usr = await user.findById(id);
+  res.render("user/updateProfile", usr);
+};
+exports.patchUser = async (req, res) => {
+  const { id } = req.user;
+  const { address, lng, lat, email } = req.body;
+  const { secure_url } = req.file;
+  const updt = {
+    place: {
+      address,
+      coordinates: [lng, lat]
+    },
+    email,
+    photoURL: secure_url
+  };
+  await user.findByIdAndUpdate(id, updt);
+  res.redirect("user/profile");
+};
+//NO SE ESTÁ USANDO
 exports.postForm = async (req, res) => {
   const { id } = req.user;
   const { secure_url } = req.file;
@@ -232,51 +293,4 @@ exports.postForm = async (req, res) => {
   user.tokens = credits;
   await user.save();
   res.redirect("/user/confirmation");
-};
-exports.bookDetails = async (req, res) => {
-  const { id } = req.params;
-  const { _id } = req.user;
-  const showB = true;
-  let buk = await books.findById(id).populate("swapper");
-  const usr = await user.findById(_id);
-  const showA = await usr.pickedBooks.includes(id);
-  if (_id === buk.swapper._id) {
-    showB = false;
-  }
-  console.log(buk.swapper);
-  res.render("user/detail", { buk, showA, showB });
-};
-exports.getProfile = async (req, res) => {
-  const { id } = req.user;
-  const swapper = await user
-    .findById(id)
-    .populate("pickedBooks publishedBooks");
-  res.render("user/ownProfile", swapper);
-};
-
-exports.deleteUser = async (req, res) => {
-  const { id } = req.user;
-  req.logout();
-  await user.findByIdAndDelete(id);
-  res.redirect("/");
-};
-exports.editUser = async (req, res) => {
-  const { id } = req.user;
-  const usr = await user.findById(id);
-  res.render("user/updateProfile", usr);
-};
-exports.patchUser = async (req, res) => {
-  const { id } = req.user;
-  const { address, lng, lat, email } = req.body;
-  const { secure_url } = req.file;
-  const updt = {
-    place: {
-      address,
-      coordinates: [lng, lat]
-    },
-    email,
-    photoURL: secure_url
-  };
-  await user.findByIdAndUpdate(id, updt);
-  res.redirect("user/profile");
 };

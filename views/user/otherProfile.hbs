@@ -35,7 +35,7 @@
   <p>{{comment.body}}</p>
   <a href="/user/{{comment.swapperPosting._id}}/profile">{{comment.swapperPosting.username}}</a>
   {{/each}}
-  <form action='/user/new/comment' method='POST'>
+  <form action='/user/{{this._id}}/new-comment' method='POST'>
     <input type='text' name="comment">
     <buttom>Submit</buttom>
   </form>

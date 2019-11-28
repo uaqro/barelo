@@ -4,10 +4,11 @@
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
 
-<form method="POST" href="/user/patched">
+<form method="POST" href="/user/patched" enctype="multipart/form-data">
   <input type="text" value={{usr.username}} disabled>
   <input type="text" value={{usr.email}}>
-  <input type="text" id="address" value={{usr.place.address}}>
+  <input class="file-input" type="file" name="photo" id="photo" accept="image/*">
+  <input type="text" id="address" value={{usr.place.address}} hidden>
   <input type="number" id="lng" value={{usr.place.coordinates[0]}} hidden>
   <input type="number" id="lat" value={{usr.place.coordinates[1]}} hidden>
 

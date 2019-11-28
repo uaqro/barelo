@@ -14,10 +14,11 @@
         <p>{{buk.description}}</p>
         <p>Pages no.{{buk.pages}}</p>
         <p>Published in: {{buk.publishDate}}</p>
+        <p>Publisher: {{buk.publisher}}</p>
+        <p>by: <a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a></p>
       </div>
     </div> {{!-- end of details-wrappr --}}
-    <p><a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a></p>
-    <p>{{buk.publisher}}</p>
+
     {{#if showA}}
     <div id='map'></div>
     <img src={{buk.placePic}}>
