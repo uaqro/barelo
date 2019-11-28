@@ -30,8 +30,11 @@
     </div>
 
     {{#if showEdit}}
-    <button><a href="/user/{{buk._id}}/patch">Edit Book</a></button>
-    <button><a href="/user/{{buk._id}}/delete">Delete Book</a></button>
+    <a type="button" class="button is-light" href="/user/{{buk._id}}/patch">Edit Book</a>
+    <a type="button" class="button is-danger " href="/user/{{buk._id}}/delete">Delete Book</a>
+
+
+    <button></button>
     {{/if}}
 
     {{#if showA}}

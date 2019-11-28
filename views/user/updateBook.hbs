@@ -3,17 +3,46 @@
   href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
-<form method="POST" action="/user/{{this._id}}/patched" enctype="multipart/form-data">
-  <br>
-  <input type="file" name="photo" id="photo" accept="image/*" value="{{this.placePic}}">
-  <br>
-  <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
-  <input type="number" id="lng" step="any" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
-  <input type="number" id="lat" name="lat" step="any" value="{{this.place.coordinates.[1]}}" hidden>
-  <div id='map'></div>
-  <br>
-  <button>Submit</button>
-</form>
+
+<section class="section">
+  <div class="container">
+    <h2 class="is-uppercase">Update your book location</h2>
+    <h4>Remember to update you picture as well for other people to find it too!</h4>
+    <hr>
+    <form method="POST" action="/user/{{this._id}}/patched" enctype="multipart/form-data">
+      <br>
+      <div id="file-js-example" class="file has-name  is-primary is-fullwidth">
+        <label class="file-label">
+          <input class="file-input" type="file" name="photo" id="photo" accept="image/*" value="{{this.placePic}}">
+
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+          <span class="file-name">
+            Add another picture of your book in the new location!
+          </span>
+        </label>
+      </div>
+      <br>
+      <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
+      <input type="number" id="lng" step="any" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
+      <input type="number" id="lat" name="lat" step="any" value="{{this.place.coordinates.[1]}}" hidden>
+      <div id='map'></div>
+      <br>
+      <button class="button is-danger is-fullwidth">Change location for this book</button>
+    </form>
+  </div>
+</section>
+
+
+
+
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
   var map = new mapboxgl.Map({
@@ -39,4 +68,15 @@
     document.querySelector('#lng').value = lng;
   });
 
+</script>
+
+{{!-- upload file bulma script --}}
+<script>
+  const fileInput = document.querySelector('#file-js-example input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js-example .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
 </script>

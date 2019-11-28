@@ -46,6 +46,18 @@ h4 {
   width: 100%;
   z-index: 3; }
 
+.btn-token {
+  background-image: url("/images/token1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none; }
+  .btn-token p {
+    font-size: 1rem;
+    font-weight: 600; }
+
 .my-secon-nav-main {
   background-color: #01d1b2; }
   .my-secon-nav-main .logo-barelo-nav {
@@ -212,6 +224,10 @@ h4 {
   #main-profile .one-book-profile p {
     margin: 10px 0;
     text-align: center; }
+  #main-profile .one-book-profile a {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #01d1b2; }
 
 #main-profile .centerizeme {
   text-align: center;
@@ -223,6 +239,13 @@ h4 {
   margin: 20px 0;
   display: flex;
   flex-wrap: wrap; }
+
+.steps .step-item.is-success.is-completed .step-marker {
+  background-color: #01d1b2 !important; }
+
+.steps .step-item.is-success.is-active .step-marker {
+  border-color: #01d1b2 !important;
+  color: #01d1b2 !important; }
 
 @media (max-width: 550px) {
   #mapSignup {

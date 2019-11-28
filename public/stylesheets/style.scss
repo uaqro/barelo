@@ -65,6 +65,22 @@ h4 {
   z-index: 3;
 }
 
+.btn-token {
+  background-image: url('/images/token1.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+
+  p {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+
+
 .my-secon-nav-main {
   background-color: $color-my-main;
 
@@ -314,6 +330,12 @@ h4 {
       margin: 10px 0;
       text-align: center;
     }
+
+    a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: $color-my-main;
+    }
   }
 
   .centerizeme {
@@ -328,6 +350,17 @@ h4 {
     display: flex;
     flex-wrap: wrap;
   }
+}
+
+
+//resetting the styles for the step counter in the new book
+.steps .step-item.is-success.is-completed .step-marker {
+  background-color: $color-my-main !important;
+}
+
+.steps .step-item.is-success.is-active .step-marker {
+  border-color: $color-my-main !important;
+  color: $color-my-main !important;
 }
 
 // #confirm-upload-book {
