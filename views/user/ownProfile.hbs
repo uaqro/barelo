@@ -1,6 +1,7 @@
 <section class="section" id="main-profile">
   <div class="container">
     <div class="columns">
+      {{!-- column profile box --}}
       <div class="column is-one-quarter  centerizeme">
         <img src="{{this.photoURL}}" alt="profile-pic">
         <h2>Hello {{this.username}}</h2>
@@ -15,63 +16,52 @@
         </div>
       </div>
       {{!-- column profile box --}}
-
       <div class="column">
-
-
-        <div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column">
-      </div>{{!-- end of column one --}}
-      <div class="column">
-        <div>
-          <h4 class="is-uppercase">Books Left</h4>
-          <div class="one-book-profile">
+        <div class="column is-block">
+          <h4 class="is-uppercase">Books Shared</h4>
+          <div class="not-yet-carousel">
             {{#each this.publishedBooks as |buk|}}
-            <img src="{{buk.pic}}" alt="">
-            <p>{{buk.title}}</p>
+            <div class="one-book-profile ">
+              <img src="{{buk.pic}}" alt="">
+              <p>{{buk.title}}</p>
+            </div>
             {{/each}}
           </div>
         </div>
-      </div>{{!-- end of column two --}}
-    </div>{{!-- end of wrapper columnss --}}
+        <div class="column is-block">
+          <h4 class="is-uppercase">Books Picked</h4>
+          <div class="not-yet-carousel">
+            {{#each this.pickedBooks as |buuk|}}
+            <div class="one-book-profile ">
+              <img src="{{buk.pic}}" alt="">
+              <p>{{buk.title}}</p>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>{{!-- end of colum rigth  --}}
+    </div>{{!-- end ofcolumsss  --}}
 
-
-    <div>
-      <h4 class="is-uppercase">Books Picked</h4>
-      {{#each this.pickedBooks as |buuk|}}
-      <p>{{buuk.title}}</p>
+    <div class="columns"> {{!--badges columns --}}
+      {{#each this.commentsRec as |comment|}}
+      <p>comment</p>
       {{/each}}
-    </div>
 
-    {{#each this.commentsRec as |comment|}}
-    <p>comment</p>
-    {{/each}}
-    <div>
-      <h3>Badges</h3>
-      <ul>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-      </ul>
-    </div>
+      <div>
+        <h3>Badges</h3>
+        <ul>
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+          <li>4</li>
+        </ul>
+      </div>
 
+    </div> {{!--badges columns --}}
+  </div>{{!-- end of container  --}}
 
 
 
-    {{!-- 
-    <div class="">
-      <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
-    </div>
-    <div class="">
-      <a href="/auth/login" class="button is-light">Log in </a>
-    </div> --}}
 
 
 
