@@ -15,12 +15,23 @@ a {
 }
 
 body {
-  margin-top: 3%;
+  padding-top: 3%;
 }
 
 #map {
+  width: 80vw;
+  height: 500px;
+}
+
+#mapSignup {
   width: 500px;
   height: 500px;
+}
+
+#mapNew {
+  float: right;
+  width: 400px;
+  height: 300px;
 }
 
 h1,
@@ -231,10 +242,10 @@ h4 {
       width: 50%;
     }
 
-    #map {
-      height: 500px;
-      width: 500px;
-    }
+    // #map {
+    //   height: 500px;
+    //   width: 500px;
+    // }
   }
 }
 
@@ -316,5 +327,19 @@ h4 {
     margin: 20px 0;
     display: flex;
     flex-wrap: wrap;
+  }
+}
+
+// #confirm-upload-book {
+//   .map {
+//     width: 100vw ;
+//     height: 400px ;
+//   }
+// }
+
+@media (max-width: 550px) {
+  #mapSignup {
+    width: 300px;
+    height: 300px;
   }
 }

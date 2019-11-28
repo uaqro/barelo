@@ -90,13 +90,13 @@
           </div>
           {{!-- step two end --}}
           {{!-- step tree  --}}
-          <div class="step-content has-text-centered">
+          <div class="step-content">
             <div class="columns">
               <div class="column">
                 <input id="lng" type="text" name="lng" hidden>
                 <input id="lat" type="text" name="lat" hidden>
                 <input id="address" type="text" name="address" hidden>
-                <div id="map"></div>
+                <div id="mapNew"></div>
               </div>
               <div class="column">
                 Last but not least, tell you next reader where the book is going to be so this person can find it and
@@ -171,7 +171,7 @@
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
   var map = new mapboxgl.Map({
-    container: 'map',
+    container: 'mapNew',
     style: 'mapbox://styles/mapbox/streets-v11',
     center: [-99.1423675, 19.435354],
     zoom: 10

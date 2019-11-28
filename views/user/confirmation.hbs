@@ -1,4 +1,36 @@
-<p>{{this.title}}</p>
+<section class="section" id="confirm-upload-book">
+  <div class="container">
+    <h2 class="is-uppercase">Is this the correct book?</h2>
+    <hr>
+    <div class="columns">
+      <div class="column">
+        <img class="round-border-books" src={{this.pic}}>
+      </div>
+      <div class="column">
+        <h3>{{this.title}}</h3>
+
+      </div>
+      <div class="column is-one-fifth">
+        <form method="POST" href="/{{this._id}}/delete-origin"><button>Delete</button></form>
+        <a href="/user/index" type="button"><button>Looks Great!</button></a>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <div id="map"></div>
+
+      </div>
+    </div>
+
+
+
+
+
+
+  </div> {{!-- end main container --}}
+</section> {{!-- end main section --}}
+
 <p>{{this.description}}</p>
 {{#each this.author as |auth|}}
 <p>{{auth}}</p>
@@ -6,9 +38,8 @@
 <p>{{this.pages}}</p>
 <p>{{this.publisher}}</p>
 <p>{{this.publishDate}}</p>
-<div id="map"></div>
-<form method="POST" href="/{{this._id}}/delete-origin"><button>Delete</button></form>
-<a href="/user/index" type="button"><button>Looks Great!</button></a>
+<div id="map" style="width: 500px; height:500px"></div>
+
 
 <script>
   let name = "{{this.title}}"

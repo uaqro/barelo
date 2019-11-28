@@ -11,9 +11,8 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
   {{!-- toggle menu --}}
   <script src="https://bulma.io/vendor/native.js"></script>
-  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
-  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
-  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" /> --}}
+  <script src="https://static-assets.mapbox.com/gl-pricing/dist/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-steps@2.2.1/dist/css/bulma-steps.min.css">
   <script src="https://cdn.jsdelivr.net/npm/bulma-steps@2.2.1/dist/js/bulma-steps.js"></script>
 
@@ -95,7 +94,7 @@
 
   {{else}}
   {{!-- desktop main nav menu --}}
-  <div class="my-secon-nav-main is-hidden-mobile">
+  <div class="my-secon-nav-main is-hidden-mobile my-fixed-top-nav">
     <nav class="level">
       <div class="level-left">
         <a class="navbar-item button is-primary logo-barelo-nav" href="/">
