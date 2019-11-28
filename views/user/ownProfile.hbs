@@ -1,34 +1,81 @@
-<img src="{{this.photoURL}}">
-<h2>{{this.username}}</h2>
+<section class="section" id="main-profile">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter  centerizeme">
+        <img src="{{this.photoURL}}" alt="profile-pic">
+        <h2>Hello {{this.username}}</h2>
+        <hr>
+        <div class="token-coin">
+          <p>{{this.tokens}}</p>
+        </div>
+        <h4 class="is-uppercase">tokens</h4>
+        <div class="bottom-buttons-prof">
+          <a href="/user/patch-user" class="button is-light" type="button">Update my profile</a>
+          <a href="/user/delete-user" class="button is-danger" type="button">Delete my profile</a>
+        </div>
+      </div>
+      {{!-- column profile box --}}
 
-<div>
-  <h4>Books Left</h4>
-  {{#each this.publishedBooks as |buk|}}
-  <p>{{buk.title}}</p>
-  {{/each}}
+      <div class="column">
 
-</div>
-<div>
-  <h4>Books Picked</h4>
-  {{#each this.pickedBooks as |buuk|}}
-  <p>{{buuk.title}}</p>
-  {{/each}}
-</div>
-<div>
-  <p><strong>Tokens Available</strong></p>
-  <p>{{this.tokens}}</p>
-</div>
-{{#each this.commentsRec as |comment|}}
-<p>comment</p>
-{{/each}}
-<div>
-  <h3>Badges</h3>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-  </ul>
-</div>
-<a href="/user/patch-user" type="button">Update my profile</a>
-<a href="/user/delete-user" type="button">Delete my profile</a>
+
+        <div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+      </div>{{!-- end of column one --}}
+      <div class="column">
+        <div>
+          <h4 class="is-uppercase">Books Left</h4>
+          <div class="one-book-profile">
+            {{#each this.publishedBooks as |buk|}}
+            <img src="{{buk.pic}}" alt="">
+            <p>{{buk.title}}</p>
+            {{/each}}
+          </div>
+        </div>
+      </div>{{!-- end of column two --}}
+    </div>{{!-- end of wrapper columnss --}}
+
+
+    <div>
+      <h4 class="is-uppercase">Books Picked</h4>
+      {{#each this.pickedBooks as |buuk|}}
+      <p>{{buuk.title}}</p>
+      {{/each}}
+    </div>
+
+    {{#each this.commentsRec as |comment|}}
+    <p>comment</p>
+    {{/each}}
+    <div>
+      <h3>Badges</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+    </div>
+
+
+
+
+    {{!-- 
+    <div class="">
+      <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
+    </div>
+    <div class="">
+      <a href="/auth/login" class="button is-light">Log in </a>
+    </div> --}}
+
+
+
+
+
+  </div>{{!-- end of main container --}}
+</section>

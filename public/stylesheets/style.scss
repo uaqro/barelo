@@ -148,7 +148,6 @@ h4 {
       text-align: center;
       line-height: 18px;
       width: 160px;
-
     }
 
     div {
@@ -197,4 +196,71 @@ h4 {
   background-color: $color-my-gray;
   width: 100vw;
   height: 100vh;
+}
+
+
+#main-profile {
+  img[alt="profile-pic"] {
+    width: 160px;
+    clip-path: circle(80px at center);
+    align-self: center;
+
+  }
+
+  .token-coin {
+    background-image: url('/images/token1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    align-self: center;
+
+    p {
+      font-size: 3rem;
+    }
+  }
+
+  .bottom-buttons-prof {
+    margin: 20px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+
+    a {
+      margin: 10px 0;
+    }
+  }
+
+  .one-book-profile {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 180px;
+    padding: 0 20px;
+
+    img {
+      height: 228px;
+      width: 160px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+    }
+  }
+
+  .centerizeme {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+  }
 }

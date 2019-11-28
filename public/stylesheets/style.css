@@ -130,4 +130,53 @@ h4 {
   width: 100vw;
   height: 100vh; }
 
+#main-profile img[alt="profile-pic"] {
+  width: 160px;
+  clip-path: circle(80px at center);
+  align-self: center; }
+
+#main-profile .token-coin {
+  background-image: url("/images/token1.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  align-self: center; }
+  #main-profile .token-coin p {
+    font-size: 3rem; }
+
+#main-profile .bottom-buttons-prof {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; }
+  #main-profile .bottom-buttons-prof a {
+    margin: 10px 0; }
+
+#main-profile .one-book-profile {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  padding: 0 20px; }
+  #main-profile .one-book-profile img {
+    height: 228px;
+    width: 160px;
+    text-align: center; }
+  #main-profile .one-book-profile p {
+    text-align: center; }
+
+#main-profile .centerizeme {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-content: center; }
+
 /*# sourceMappingURL=style.css.map */
