@@ -29,24 +29,20 @@
           <img src="/images/barelo-full.png">
         </a>
         <div class="level-item">
-          <button class="button is-primary is-inverted is-outlined">
-            <a class="has-text-weight-bold" href="/user/new">
-              <span class="btn-text-nav">Add a new Book </span>
-              <span class="icon is-small">
-                <i class="far fa-plus-square"></i>
-              </span>
-            </a>
-          </button>
+          <a type="button" class="has-text-weight-bold button is-primary is-inverted is-outlined" href="/user/new">
+            <span class="btn-text-nav">Add a new Book </span>
+            <span class="icon is-small">
+              <i class="far fa-plus-square"></i>
+            </span>
+          </a>
         </div> {{!-- add books button --}}
         <div class="level-item">
-          <button class="button is-primary is-inverted is-outlined">
-            <a class="has-text-weight-bold" href="/user/index">
-              <span class="btn-text-nav">View books near Me</span>
-              <span class="icon is-small">
-                <i class="far far fa-compass"></i>
-              </span>
-            </a>
-          </button>
+          <a type="button" class="has-text-weight-bold button is-primary is-inverted is-outlined" href="/user/index">
+            <span class="btn-text-nav">View books near Me</span>
+            <span class="icon is-small">
+              <i class="far far fa-compass"></i>
+            </span>
+          </a>
         </div> {{!-- see books location --}}
 
       </div>
@@ -57,12 +53,13 @@
           </button>
         </div>
         <div class="level-item">
-          <button class="button is-primary is-inverted is-outlined">
-            <a href="/user/profile"> <i class="far fa-user white "></i></a>
-          </button>
+          <a type="button" href="/user/profile" class="has-text-weight-bold button is-primary is-inverted is-outlined">
+            <i class="far fa-user white "></i>
+          </a>
         </div>
         <div class="level-item second-button-main-nav">
-          <a href="/auth/logout" class="has-text-weight-bold button is-primary is-inverted is-outlined">Log Out</a>
+          <a type="button" href="/auth/logout"
+            class="has-text-weight-bold button is-primary is-inverted is-outlined">Log Out</a>
         </div>
       </div>
     </nav>
@@ -76,7 +73,8 @@
       <button class="btn-token ">
         <p>{{value}}</p>
       </button>
-      <a href="/auth/logout" class="has-text-weight-bold button is-primary is-inverted is-outlined">Log Out</a>
+      <a type="button" href="/auth/logout" class="has-text-weight-bold button is-primary is-inverted is-outlined">Log
+        Out</a>
     </div>
   </div>
   {{!-- mobile nav bottom --}}
@@ -84,17 +82,17 @@
     <nav class="my-fixing-spacing level is-mobile ">
       <div class="level-item ">
         <div>
-          <a href="/user/index"><i class="far fa-compass fa-2x whiting"></i></a>
+          <a type="button" href="/user/index"><i class="far fa-compass fa-2x whiting"></i></a>
         </div>
       </div>
       <div class="level-item">
         <div>
-          <a href="/user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
+          <a type="button" href="/user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
         </div>
       </div>
       <div class="level-item">
         <div>
-          <a href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
+          <a type="button" href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
         </div>
       </div>
     </nav>
@@ -111,10 +109,10 @@
       </div>
       <div class="level-right">
         <div class="level-item">
-          <a href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
+          <a type="button" href="/auth/signup" class="button is-danger"><strong>Sign up</strong></a>
         </div>
         <div class="level-item second-button-main-nav">
-          <a href="/auth/login" class="button is-light">Log in </a>
+          <a type="button" href="/auth/login" class="button is-light">Log in </a>
         </div>
       </div>
     </nav>
@@ -125,8 +123,8 @@
       <img src="/images/barelo-icon.png">
     </a>
     <div>
-      <a href="/auth/signup" class=" button is-danger"><strong>Sign up</strong></a>
-      <a href="/auth/login" class="button is-light">Log in </a>
+      <a type="button" href="/auth/signup" class=" button is-danger"><strong>Sign up</strong></a>
+      <a type="button" href="/auth/login" class="button is-light">Log in </a>
     </div>
   </div>
 
