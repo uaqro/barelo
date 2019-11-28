@@ -12,16 +12,19 @@ const passport = require("./config/passport");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const flash = require("connect-flash");
-const { checkUser, isAuth } = require("./middlewares/index");
+const {
+  checkUser,
+  isAuth
+} = require("./middlewares/index");
 
 mongoose
-  .connect("mongodb://localhost/barelo", {
-    useNewUrlParser: true
-  })
-  // .connect(process.env.DB, {
-  //   useNewUrlParser: true,
-  //   useUnifiedTopology: true
+  // .connect("mongodb://localhost/barelo", {
+  //   useNewUrlParser: true
   // })
+  .connect(process.env.DB, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  })
   .then(x => {
     console.log(
       `Connected to Mongo! Database name: "${x.connections[0].name}"`
