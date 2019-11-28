@@ -13,12 +13,16 @@
   <script src="https://bulma.io/vendor/native.js"></script>
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.css' rel='stylesheet' />
+  {{!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css" /> --}}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma-steps@2.2.1/dist/css/bulma-steps.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/bulma-steps@2.2.1/dist/js/bulma-steps.js"></script>
+
 </head>
 
 <body>
 
   {{#if logged}}
-  {{!-- desktop main van menu --}}
+  {{!-- desktop main nav menu --}}
   <div class="my-secon-nav-main is-hidden-mobile">
     <nav class="level">
       <div class="level-left">
@@ -26,9 +30,26 @@
           <img src="/images/barelo-full.png">
         </a>
         <div class="level-item">
-          <a href="/user/new" class="navbar-item button is-primary">Add a new Book <i
-              class="far fa-plus-square whiting"></i></a>
-        </div>
+          <button class="button is-primary is-inverted is-outlined">
+            <a class="has-text-weight-bold" href="/user/new">
+              <span class="btn-text-nav">Add a new Book </span>
+              <span class="icon is-small">
+                <i class="far fa-plus-square"></i>
+              </span>
+            </a>
+          </button>
+        </div> {{!-- add books button --}}
+        <div class="level-item">
+          <button class="button is-primary is-inverted is-outlined">
+            <a class="has-text-weight-bold" href="/user/index">
+              <span class="btn-text-nav">View books near Me</span>
+              <span class="icon is-small">
+                <i class="far far fa-compass"></i>
+              </span>
+            </a>
+          </button>
+        </div> {{!-- see books location --}}
+
       </div>
       <div class="level-right">
         <div class="level-item">
@@ -37,7 +58,7 @@
           </button>
         </div>
         <div class="level-item second-button-main-nav">
-          <a href="/auth/logout" class="button is-primary is-inverted is-outlined">Log Out</a>
+          <a href="/auth/logout" class="has-text-weight-bold button is-primary is-inverted is-outlined">Log Out</a>
         </div>
       </div>
     </nav>
@@ -48,7 +69,7 @@
       <img src="/images/barelo-icon.png">
     </a>
     <div>
-      <a href="/auth/logout" class="button is-primary is-inverted is-outlined">Log Out</a>
+      <a href="/auth/logout" class="has-text-weight-bold button is-primary is-inverted is-outlined">Log Out</a>
     </div>
   </div>
   {{!-- mobile nav bottom --}}

@@ -7,9 +7,8 @@ a {
   color: #F5F5F5; }
 
 #map {
-  width: 420px;
-  height: 420px;
-  text-align: center; }
+  width: 500px;
+  height: 500px; }
 
 h1,
 h2,
@@ -71,6 +70,9 @@ h4 {
 .index-page {
   display: flex;
   justify-content: center; }
+  .index-page hr {
+    background-color: #4A4A4A;
+    opacity: 0.1; }
   .index-page .hp20 {
     margin-left: 20px; }
   .index-page .book-wrapper {
@@ -110,7 +112,18 @@ h4 {
   margin-right: 40px;
   box-sizing: border-box; }
   #book-details .lefties-align img {
-    width: 400px; }
+    width: 300px !important; }
+
+#new-book-add form {
+  width: 90%;
+  display: flex;
+  align-content: center;
+  flex-direction: column; }
+  #new-book-add form img {
+    width: 50%; }
+  #new-book-add form #map {
+    height: 500px;
+    width: 500px; }
 
 .gray-bg {
   background-color: #F5F5F5;
