@@ -49,13 +49,13 @@ const userSchema = new Schema(
     commentsRec: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Comments"
+        ref: "Comment"
       }
     ],
     commentsPost: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Comments"
+        ref: "Comment"
       }
     ]
   },

@@ -1,22 +1,22 @@
-<img src="{{this.photoURL}}">
-<h2>{{this.username}}</h2>
+<img src="{{swapper.photoURL}}">
+<h2>{{swapper.username}}</h2>
 
 <div>
   <h4>Books Left</h4>
-  {{#each this.publishedBooks as |buk|}}
+  {{#each swapper.publishedBooks as |buk|}}
   <p>{{buk.title}}</p>
   {{/each}}
 
 </div>
 <div>
   <h4>Books Picked</h4>
-  {{#each this.pickedBooks as |buuk|}}
+  {{#each swapper.pickedBooks as |buuk|}}
   <p>{{buuk.title}}</p>
   {{/each}}
 </div>
 <div>
   <p><strong>Tokens Available</strong></p>
-  <p>{{this.tokens}}</p>
+  <p>{{swapper.tokens}}</p>
 </div>
 <div>
   <h3>Badges</h3>
@@ -26,17 +26,20 @@
     <li>3</li>
     <li>4</li>
   </ul>
-  {{#each this.commentsRec as |comment|}}
-  <p>comment</p>
+  {{#each commentsArray as |comment|}}
   {{#if comment.show}}
-  <a href="/user/{{comment._id}}/delete-comment" type="button">Delete</a>
-  <a href="/user/{{comment._id}}/edit-comment" type="button">Edit</a>
+  <a href="/user/{{comment.content._id}}/delete-comment" type="button">
+    <h1>Delete</h1>
+  </a>
+  <a href="/user/{{comment.content._id}}/edit-comment" type="button">Edit</a>
   {{/if}}
-  <p>{{comment.body}}</p>
-  <a href="/user/{{comment.swapperPosting._id}}/profile">{{comment.swapperPosting.username}}</a>
+  <p>{{comment.content.body}}</p>
+  <a href="/user/{{comment.content.swapperPosting._id}}/profile">{{comment.content.swapperPosting.username}}</a>
+  <img src="{{comment.content.swapperPosting.photoURL}}">
   {{/each}}
-  <form action='/user/{{this._id}}/new-comment' method='POST'>
+  <h2>Post a Comment</h2>
+  <form action='/user/{{swapper._id}}/new-comment' method='POST'>
     <input type='text' name="comment">
-    <buttom>Submit</buttom>
+    <button>Submit</button>
   </form>
 </div>
