@@ -50,6 +50,26 @@
       <a href="/auth/logout" class="button is-light">Log Out</a>
     </div>
   </div>
+  {{!-- mobile nav bottom --}}
+  <div class="my-fixing is-hidden-tablet is-hidden-desktop is-hidden-widescreen">
+    <nav class="my-fixing-spacing level is-mobile ">
+      <div class="level-item ">
+        <div>
+          <a href="/user/index"><i class="far fa-compass fa-2x whiting"></i></a>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <a href="/user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
+        </div>
+      </div>
+      <div class="level-item">
+        <div>
+          <a href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
+        </div>
+      </div>
+    </nav>
+  </div>
 
   {{else}}
   {{!-- desktop main van menu --}}
@@ -87,25 +107,7 @@
 
 
 
-  <div class="my-fixing">
-    <nav class="my-fixing-spacing level is-mobile is-hidden-table is-hidden-desktop is-hidden-widescreen">
-      <div class="level-item ">
-        <div>
-          <a href="/user/index"><i class="far fa-compass fa-2x whiting"></i></a>
-        </div>
-      </div>
-      <div class="level-item">
-        <div>
-          <a href="/user/new"><i class="far fa-plus-square fa-2x whiting"></i></a>
-        </div>
-      </div>
-      <div class="level-item">
-        <div>
-          <a href="/user/profile"> <i class="far fa-user fa-2x whiting"></i></a>
-        </div>
-      </div>
-    </nav>
-  </div>
+
 
 
 

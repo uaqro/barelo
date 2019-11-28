@@ -10,7 +10,9 @@ const {
   getpatchForm,
   patchForm,
   deleteBook,
-  pickABook
+  pickABook,
+  newComment,
+  seeProfile
 } = require("../controllers/userControllers");
 
 //VISTA DE TODOS LOS LIBROS
@@ -43,7 +45,7 @@ router.get("/profile", async (req, res) => {
     .findById(id)
     .populate("pickedBooks publishedBooks");
   console.log(swapper);
-  res.render("user/profile", swapper);
+  res.render("user/ownProfile", swapper);
 });
 
 //ADD NEW - CREATE
@@ -67,5 +69,12 @@ router.post("/:id/delete", deleteBook);
 //Unlock image
 
 router.post("/:id/getBook", async (req, res) => {});
+
+// Person profile page
+
+router.get("/:id/profile", seeProfile);
+//Post comment
+
+router.post("/new/comment", newComment);
 
 module.exports = router;

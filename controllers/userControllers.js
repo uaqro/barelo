@@ -1,5 +1,6 @@
 const books = require("../models/Book.js");
 const user = require("../models/User.js");
+const Comment = require("../models/Comment.js");
 const axios = require("axios");
 require("dotenv").config();
 
@@ -60,51 +61,6 @@ exports.ISBNform = async (req, res) => {
   await res.redirect("/user/confirmation");
 };
 // exports POST User
-
-exports.postForm = async (req, res) => {
-  const { id } = req.user;
-  const { secure_url } = req.file;
-  const {
-    title,
-    description,
-    author,
-    pages,
-    categories,
-    pic,
-    idioma,
-    publisher,
-    publishedDate,
-    address,
-    lng,
-    lat
-  } = req.body;
-
-  const buk = {
-    title: title,
-    description: description,
-    author: author,
-    pages: pages,
-    categories: categories,
-    pic: pic,
-    idioma: idioma,
-    publisher: publisher,
-    publishDate: publishedDate,
-    placePic: secure_url,
-    place: {
-      address: address,
-      coordinates: [lng, lat]
-    },
-    swapper: id
-  };
-
-  const buki = await books.create(buk);
-  const user = await user.findOne({ _id: id });
-  user.publishedBooks.push(buki._id);
-  let credits = user.publishedBooks.length - user.pickedBooks.length;
-  user.tokens = credits;
-  await user.save();
-  res.redirect("/user/confirmation");
-};
 
 exports.getpatchForm = async (req, res) => {
   const { id } = req.params;
@@ -172,4 +128,71 @@ exports.pickABook = async (req, res) => {
   await usr.save();
   await books.findByIdAndUpdate(id, { picked: true });
   res.redirect(`/user/${id}/book-details`);
+};
+exports.seeProfile = async (req, res) => {
+  const { id } = req.params;
+  const swapper = await user.findById(id);
+  res.render("/user/profile", swapper);
+};
+exports.newComment = async (req, res) => {
+  const { _id } = req.user;
+  const { id } = req.params;
+  const { comment } = req.body;
+  const newComment = await Comment.create({
+    body: comment,
+    swapperPosting: _id,
+    swapperRec: id
+  });
+  const giver = await user.findById(_id);
+  const reciever = await user.findById(id);
+  giver.commentsPost.push(newComment._id);
+  reciever.commentsRec.push(newComment._id);
+  await giver.save();
+  await reciever.save();
+  await res.redirect(`/user/${id}/profile`);
+};
+
+exports.postForm = async (req, res) => {
+  const { id } = req.user;
+  const { secure_url } = req.file;
+  const {
+    title,
+    description,
+    author,
+    pages,
+    categories,
+    pic,
+    idioma,
+    publisher,
+    publishedDate,
+    address,
+    lng,
+    lat
+  } = req.body;
+
+  const buk = {
+    title: title,
+    description: description,
+    author: author,
+    pages: pages,
+    categories: categories,
+    pic: pic,
+    idioma: idioma,
+    publisher: publisher,
+    publishDate: publishedDate,
+    placePic: secure_url,
+    place: {
+      address: address,
+      coordinates: [lng, lat]
+    },
+    swapper: id
+  };
+
+  const buki = await books.create(buk);
+  const user = await user.findOne({ _id: id });
+  user.publishedBooks.push(buki._id);
+  let credits = user.publishedBooks.length - user.pickedBooks.length;
+  user.tokens = credits;
+  await user.save();
+  res.redirect("/user/confirmation");
 };
