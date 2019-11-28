@@ -268,7 +268,15 @@ exports.editUser = async (req, res) => {
 exports.patchUser = async (req, res) => {
   const { id } = req.user;
   const { address, lng, lat, email } = req.body;
-  const updt = { place: { address, coordinates: [lng, lat] }, email };
+  const { secure_url } = req.file;
+  const updt = {
+    place: {
+      address,
+      coordinates: [lng, lat]
+    },
+    email,
+    photoURL: secure_url
+  };
   await user.findByIdAndUpdate(id, updt);
   res.redirect("user/profile");
 };
