@@ -1,0 +1,42 @@
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet'
+  href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.4.2/mapbox-gl-geocoder.css' type='text/css' />
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+<form method="POST" action="/user/{{this._id}}/patched" enctype="multipart/form-data">
+  <br>
+  <input type="file" name="photo" id="photo" accept="image/*" value="{{this.placePic}}">
+  <br>
+  <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
+  <input type="number" id="lng" step="any" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
+  <input type="number" id="lat" name="lat" step="any" value="{{this.place.coordinates.[1]}}" hidden>
+  <div id='map'></div>
+  <br>
+  <button>Submit</button>
+</form>
+<script>
+  mapboxgl.accessToken = 'pk.eyJ1IjoidWFxcm8iLCJhIjoiY2szZXl6YjNxMDBweTNjbnRsdHliODF4diJ9.oW-8EsAoPQ-VbQEfeM2xsA';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [-79.4512, 43.6568],
+    zoom: 13
+  });
+  var geoCoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    marker: {
+      color: 'orange'
+    },
+    mapboxgl: mapboxgl
+  });
+  map.addControl(geoCoder);
+
+  geoCoder.on('results', (results) => {
+    const lng = Number(results.features[0].center[0])
+    const lat = Number(results.features[0].center[1])
+    document.querySelector('#address').value = results.features[0].place_name
+    document.querySelector('#lat').value = lat;
+    document.querySelector('#lng').value = lng;
+  });
+
+</script>

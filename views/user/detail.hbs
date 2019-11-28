@@ -29,14 +29,10 @@
       </div>
     </div>
 
-
-
-
-
-
-
-
-
+    {{#if showEdit}}
+    <button><a href="/user/{{buk._id}}/patch">Edit Book</a></button>
+    <button><a href="/user/{{buk._id}}/delete">Delete Book</a></button>
+    {{/if}}
 
     {{#if showA}}
     <div id='map'></div>
