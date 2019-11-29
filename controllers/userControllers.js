@@ -8,17 +8,16 @@ require("dotenv").config();
 exports.indexGet = async (req, res) => {
   const { place } = req.user;
   const buks = await books.find({
-    $and: [
-      {
-        place: {
-          $nearSphere: {
-            $geometry: { type: "Point", coordinates: [-99.164629, 19.427936] },
-            $maxDistance: 10000
-          }
-        }
-      },
-      { picked: false }
-    ]
+    place: {
+      $nearSphere: {
+        $geometry: {
+          type: "Point",
+          coordinates: [place.coordinates[0], place.coordinates[1]]
+        },
+        $maxDistance: 10000
+      }
+    },
+    picked: false
   });
   res.render("user/index", { buks });
 };
