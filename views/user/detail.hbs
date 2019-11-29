@@ -42,9 +42,13 @@
     <img src={{buk.placePic}}>
     {{else}}
     {{#if showB}}
-    <form action='/user/{{buk._id}}/pick' method='POST'>
-      <button class="button is-primary">Pick this book</button>
-    </form>
+    <div class="columns">
+      <div class="is-one-quarter ">
+        <form action='/user/{{buk._id}}/pick' method='POST'>
+          <button class="button is-primary has-text-weight-bold is-fullwidth">Pick this book</button>
+        </form>
+      </div>
+    </div>
     {{/if}}
     {{/if}}
 
@@ -86,6 +90,8 @@
     zoom: 18
   });
   map.on('load', function () {
+    const marker = new mapboxgl.Marker({ color: '#01d1b2' })
+    marker.setLngLat([lng, lat]).setPopup(new mapboxgl.Popup().setHTML(`<span>{{buk.title}}</span>`)).addTo(map)
 
     map.addLayer({
       "id": "points",
@@ -95,7 +101,6 @@
         "data": {
           "type": "FeatureCollection",
           "features": [{
-            // feature for Mapbox DC
             "type": "Feature",
             "geometry": {
               "type": "Point",
@@ -103,7 +108,7 @@
             },
             "properties": {
               "title": name,
-              "icon": "anchor"
+              "icon": "buk"
             }
           }]
         }

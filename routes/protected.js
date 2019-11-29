@@ -36,7 +36,11 @@ router.post("/new/ISBN", uploadCloud.single("photo"), ISBNform);
 router.post("/new/form", uploadCloud.single("photo"), postForm);
 router.get("/:id/confirm", confirmBook);
 router.get("/:id/patch", getpatchForm);
-router.post("/:id/patched", uploadCloud.single("photo"), patchForm);
+router.post(
+  "/:id/:redirectRoute/patched",
+  uploadCloud.single("photo"),
+  patchForm
+);
 router.get("/:id/delete", deleteBook);
 router.get("/:id/delete-origin", delBook);
 

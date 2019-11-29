@@ -7,8 +7,8 @@ const uploadCloud = require("../config/cloudinary.js");
 router.get("/signup", (_, res, next) => {
   res.render("auth/signup");
 });
-router.get("/login", (_, res, next) => {
-  res.render("auth/login");
+router.get("/login", (req, res, next) => {
+  res.render("auth/login", { message: req.flash("error") });
 });
 router.get("/logout", (req, res) => {
   req.logout();
@@ -18,6 +18,7 @@ router.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/user/index",
+    failureFlash: true,
     failureRedirect: "/auth/login"
   })
 );
