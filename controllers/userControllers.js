@@ -10,26 +10,17 @@ exports.indexGet = async (req, res) => {
     place
   } = req.user;
   const buks = await books.find({
-    picked: false
-  })
-  /*{
-      $and: [{
-          place: {
-            $nearSphere: {
-              $geometry: {
-                type: "Point",
-                coordinates: [place.coordinates[0], place.coordinates[1]]
-              },
-              $maxDistance: 10000
-            }
-          }
+    place: {
+      $nearSphere: {
+        $geometry: {
+          type: "Point",
+          coordinates: [place.coordinates[0], place.coordinates[1]]
         },
-        {
-          picked: false
-        }
-      ]
-    })*/
-  ;
+        $maxDistance: 10000
+      }
+    },
+    picked: false
+  });
   res.render("user/index", {
     buks
   });

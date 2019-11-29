@@ -99,6 +99,18 @@ h4 {
 .whiting {
   color: white; }
 
+#login a {
+  color: #01d1b2; }
+
+#login button {
+  font-weight: 600; }
+
+#signup a {
+  color: #01d1b2; }
+
+#signup button {
+  font-weight: 600; }
+
 .index-page {
   display: flex;
   justify-content: center; }
@@ -252,7 +264,7 @@ h4 {
 
 @media (max-width: 550px) {
   #mapSignup {
-    width: 300px;
-    height: 300px; } }
+    width: 440px;
+    height: 440px; } }
 
 /*# sourceMappingURL=style.css.map */

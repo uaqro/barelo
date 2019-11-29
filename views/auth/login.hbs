@@ -1,24 +1,37 @@
-<h2>Login</h2>
-
-<form action="/auth/login" method="POST" id="form-container">
-  <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
-
-  <br><br>
-
-  <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
-  <br>
-  {{#if message }}
-  <div class="error-message">{{ message }}</div>
-  {{/if}}
-
-  <br><br>
-
-  <button>Login</button>
-
-  <p class="account-message">
-    Don't have an account yet?
-    <a href="/auth/signup">Signup</a>
-  </p>
-</form>
+<section class="section" id="login">
+  <div class="container">
+    <div class="columns is-tablet is-centered">
+      <div class="column is-half">
+        <h2>Login</h2>
+        <hr>
+        <form action="/auth/login" method="POST" id="form-container">
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input id="username" class="input" type="text" name="username" placeholder="username">
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left">
+              <input id="password" class="input" type="password" placeholder="Password" name='password'>
+              <span class="icon is-small is-left">
+                <i class="fas fa-lock"></i>
+              </span>
+            </p>
+          </div>
+          {{#if message }}
+          <div class="error-message">{{ message }}</div>
+          {{/if}}
+          <button class="button is-primary is-fullwidth">Log In</button>
+          <br>
+          <p class="account-message">
+            Don't have an account yet?
+            <a type="button" class="has-text-weight-bold" href="/auth/signup">Signup</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
