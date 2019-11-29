@@ -37,7 +37,7 @@ router.post("/new/form", uploadCloud.single("photo"), postForm);
 router.get("/:id/confirm", confirmBook);
 router.get("/:id/patch", getpatchForm);
 router.post(
-  "/:id/:redirectRoute/patched",
+  "/:id/patched",
   uploadCloud.single("photo"),
   patchForm
 );

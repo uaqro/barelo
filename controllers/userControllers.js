@@ -77,14 +77,14 @@ exports.patchForm = async (req, res) => {
     buk.place.cooordinates = [lng, lat];
     buk.picPlace = secure_url;
     await buk.save();
-    res.redirect(redirectRoute);
+    res.redirect(`/user/${buk._id}/book-details`);
   } else {
     const buk = await books.findById(id);
     console.log(buk.place);
     buk.place.address = address;
     buk.place.cooordinates = [lng, lat];
     await buk.save();
-    res.redirect(`/user/${id}/book-details`);
+    res.redirect(`/user/${buk._id}/book-details`);
   }
 };
 exports.deleteBook = async (req, res) => {
