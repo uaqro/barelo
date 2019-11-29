@@ -196,7 +196,7 @@ h4 {
   width: 100%;
   height: 100%; }
 
-#main-profile img[alt="profile-pic"] {
+img[alt="profile-pic"] {
   width: 160px;
   clip-path: circle(80px at center);
   align-self: center; }
@@ -231,18 +231,21 @@ h4 {
   align-items: center;
   justify-content: center;
   width: 160px;
-  margin-right: 30px; }
+  margin-right: 30px;
+  margin-bottom: 30px; }
   #main-profile .one-book-profile img {
     height: 228px;
     width: 160px;
     text-align: center; }
   #main-profile .one-book-profile p {
-    margin: 10px 0;
-    text-align: center; }
+    margin: 6px 0 4px 0;
+    text-align: center;
+    height: 16px; }
   #main-profile .one-book-profile a {
     font-size: 1rem;
     font-weight: 600;
-    color: #01d1b2; }
+    color: #01d1b2;
+    display: block; }
 
 #main-profile .centerizeme {
   text-align: center;
@@ -254,6 +257,13 @@ h4 {
   margin: 20px 0;
   display: flex;
   flex-wrap: wrap; }
+
+.update-form-photo-block {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .update-form-photo-block img {
+    float: right; }
 
 .steps .step-item.is-success.is-completed .step-marker {
   background-color: #01d1b2 !important; }

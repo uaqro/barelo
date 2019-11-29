@@ -10,39 +10,44 @@
     <h2 class="is-uppercase">Update Profile</h2>
     <hr>
     <form method="POST" action="/user/patched" enctype="multipart/form-data">
-      <div class="field">
-        <input class="input" type="text" name="username" placeholder="Disabled input" value="{{this.username}}"
-          disabled>
+      <div class="columns update-form-photo-block">
+        <div class="column is-one-fifth">
+          <img src=" {{this.photoURL}}" alt="profile-pic">
+        </div>
+        <div class="column">
+          <div class="field">
+            <input class="input" type="text" name="username" placeholder="Disabled input" value="{{this.username}}"
+              disabled>
+          </div>
+          <div class="field">
+            <p class="control has-icons-left has-icons-right">
+              <input class="input" type="email" name="email" value="{{this.email}}">
+              <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+              </span>
+            </p>
+          </div>
+          <div id="file-js-example" class="file has-name  is-primary is-fullwidth">
+            <label class="file-label">
+              <input class="file-input" type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose a file…
+                </span>
+              </span>
+              <span class="file-name">
+                Change your profile pic
+              </span>
+            </label>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <p class="control has-icons-left has-icons-right">
-          <input class="input" type="email" name="email" value="{{this.email}}">
-          <span class="icon is-small is-left">
-            <i class="fas fa-envelope"></i>
-          </span>
-        </p>
-      </div>
-      <img src=" {{this.photoURL}}" alt="">
-      <div id="file-js-example" class="file has-name  is-primary is-fullwidth">
-        <label class="file-label">
-          <input class="file-input" type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}">
-          <span class="file-cta">
-            <span class="file-icon">
-              <i class="fas fa-upload"></i>
-            </span>
-            <span class="file-label">
-              Choose a file…
-            </span>
-          </span>
-          <span class="file-name">
-            Change your profile pic
-          </span>
-        </label>
-      </div>
-      <br>
 
       {{!-- <input type="file" name="photo" id="photo" accept="image/*" value="{{this.photoURL}}"> --}}
-      <br>
+
       <input type="text" id="address" name="address" value="{{this.place.address}}" hidden>
       <input type="text" id="lng" name="lng" value="{{this.place.coordinates.[0]}}" hidden>
       <input type="text" id="lat" name="lat" value="{{this.place.coordinates.[1]}}" hidden>
@@ -79,4 +84,14 @@
     document.querySelector('#lng').value = results.features[0].center[0];
   });
 
+</script>
+
+<script>
+  const fileInput = document.querySelector('#file-js-example input[type=file]');
+  fileInput.onchange = () => {
+    if (fileInput.files.length > 0) {
+      const fileName = document.querySelector('#file-js-example .file-name');
+      fileName.textContent = fileInput.files[0].name;
+    }
+  }
 </script>
