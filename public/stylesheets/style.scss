@@ -285,6 +285,20 @@ h4 {
   }
 }
 
+.gray-boxy {
+  background-color: $color-my-gray;
+  border: 1px solid $color-my-gray;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1% 1%;
+
+  img {
+    width: 980%;
+  }
+}
+
 
 .gray-bg {
   background-color: $color-my-gray;

@@ -20,14 +20,14 @@
             <div class="one-book-profile ">
               <img class="round-border-books" src="{{buuk.pic}}" alt="picture of book">
               <p>{{buuk.title}}</p>
-              <a href="/user/{{buuk._id}}/book-details" type="button"><i class="far fa-eye"></i>
+              <a href="/user/{{buuk._id}}/book-details" type="button"><i class="far fa-eye"></i></a>
             </div>
             {{/each}}
           </div>
         </div>
 
         <div class="column is-block">
-          <h4 class="is-uppercase">Books Picked</h4>ç
+          <h4 class="is-uppercase">Books Picked</h4>
           <div class="not-yet-carousel">
             {{#each swapper.pickedBooks as |buuk|}}
             <div class="one-book-profile ">
@@ -50,7 +50,7 @@
 
 
 
-{{#each commentsArray as |comment|}}
+{{!-- {{#each commentsArray as |comment|}}
 {{#if comment.show}}
 <a href="/user/{{comment.content._id}}/delete-comment" type="button">
   <h1>Delete</h1>
@@ -65,4 +65,4 @@
 <form action='/user/{{swapper._id}}/new-comment' method='POST'>
   <input type='text' name="comment">
   <button>Submit</button>
-</form>
+</form> --}}

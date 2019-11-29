@@ -28,10 +28,22 @@
         </label>
       </div>
       <br>
-      <input type="text" id="address" name="address" value="{{buk.place.address}}" hidden>
-      <input type="number" id="lng" step="any" name="lng" value="{{buk.place.coordinates.[0]}}" hidden>
-      <input type="number" id="lat" name="lat" step="any" value="{{buk.place.coordinates.[1]}}" hidden>
-      <div id='map'></div>
+      <div class="columns">
+        <div class="column">
+          <input type="text" id="address" name="address" value="{{buk.place.address}}" hidden>
+          <input type="number" id="lng" step="any" name="lng" value="{{buk.place.coordinates.[0]}}" hidden>
+          <input type="number" id="lat" name="lat" step="any" value="{{buk.place.coordinates.[1]}}" hidden>
+          <div id='map'></div>
+        </div>
+        <div class="column gray-boxy ">
+          <h4 style="text-align: center;">You can find your book here:</h4>
+          <br>
+          <img src={{buk.placePic}}>
+        </div>
+
+
+      </div>
+
       <br>
       <button class="button is-danger is-fullwidth">Change location for this book</button>
     </form>
