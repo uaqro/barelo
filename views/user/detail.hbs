@@ -35,15 +35,13 @@
       </div>
     </div>
 
-
-
     {{#if showA}}
     <div id='map'></div>
     <img src={{buk.placePic}}>
     {{else}}
     {{#if showB}}
     <form action='/user/{{buk._id}}/pick' method='POST'>
-      <button class="button is-primary">Pick this book</button>
+      <button class="button is-primary has-text-weight-bold">Pick this book</button>
     </form>
     {{/if}}
     {{/if}}

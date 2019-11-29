@@ -215,8 +215,6 @@ h4 {
       height: 36px;
     }
   }
-
-
 }
 
 .round-border-books {
@@ -294,14 +292,15 @@ h4 {
   height: 100%;
 }
 
+//////////////////////
+img[alt="profile-pic"] {
+  width: 160px;
+  clip-path: circle(80px at center);
+  align-self: center;
+}
 
+/////////////////////
 #main-profile {
-  img[alt="profile-pic"] {
-    width: 160px;
-    clip-path: circle(80px at center);
-    align-self: center;
-
-  }
 
   .token-coin {
     background-image: url('/images/token1.png');
@@ -341,6 +340,7 @@ h4 {
     justify-content: center;
     width: 160px;
     margin-right: 30px;
+    margin-bottom: 30px;
 
     img {
       height: 228px;
@@ -349,14 +349,16 @@ h4 {
     }
 
     p {
-      margin: 10px 0;
+      margin: 6px 0 4px 0;
       text-align: center;
+      height: 16px;
     }
 
     a {
       font-size: 1rem;
       font-weight: 600;
       color: $color-my-main;
+      display: block;
     }
   }
 
@@ -374,6 +376,15 @@ h4 {
   }
 }
 
+.update-form-photo-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    float: right;
+  }
+}
 
 //resetting the styles for the step counter in the new book
 .steps .step-item.is-success.is-completed .step-marker {
