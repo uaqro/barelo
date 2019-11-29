@@ -21,19 +21,21 @@
           <h4 class="is-uppercase">Books Shared</h4>
           <div class="not-yet-carousel">
             {{#each swapper.publishedBooks as |buk|}}
-            <div class="one-book-profile ">
-              <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
-              <p>{{buk.title}}</p>
-              <div class="crud-btns">
-                <a href="/user/{{buk._id}}/book-details" type="button"><i class="far fa-eye"></i>
-                </a>
-                {{#if buk.picked}}
-                {{else}}
-                <a type="button" href="/user/{{buk._id}}/patch"><i class="far fa-edit" style="color:#266BDA;"></i></a>
-                <a type="button" href="/user/{{buk._id}}/delete"><i class="far fa-trash-alt"
-                    style="color:#F14768;"></i></a>
+            <div>
+              <div class="one-book-profile ">
+                <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
+                <p>{{buk.title}}</p>
+                <div class="crud-btns">
+                  <a href="/user/{{buk._id}}/book-details" type="button"><i class="far fa-eye"></i>
+                  </a>
+                  {{#if buk.picked}}
+                  {{else}}
+                  <a type="button" href="/user/{{buk._id}}/patch"><i class="far fa-edit" style="color:#266BDA;"></i></a>
+                  <a type="button" href="/user/{{buk._id}}/delete"><i class="far fa-trash-alt"
+                      style="color:#F14768;"></i></a>
+                </div>
+                {{/if}}
               </div>
-              {{/if}}
             </div>
             {{/each}}
           </div>
