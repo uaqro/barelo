@@ -6,8 +6,8 @@ The Book Swapping App
 
 Barelo is an app designed to boost the exchange of knowledge between people.
 
--> Give away the books you've read
--> Pick up new books
+_-> Give away the books you've read
+_-> Pick up new books
 
 ## Give one, pick one
 
@@ -23,9 +23,9 @@ Sign up in the app and start uploading your books.</a>
 
 Three steps to upload a book:
 
-1 - Introduce the ISBN-10 code of the book you want to give.
-2 - Take a picture of the place you're leaving the book.
-3 - Pinpoint the location of the book.
+1. Introduce the ISBN-10 code of the book you want to give.
+2. Take a picture of the place you're leaving the book.
+3. Pinpoint the location of the book.
 
 You'll recieve a token to exchange for a book!
 
@@ -40,7 +40,7 @@ It is always nice to be gifted a good book. Leave a comment on the profile of th
 
 ## Start swapping
 
-<a href = "http://barelo.herokuapp.com">Start Swapping!</a>
+[Start Swapping!](http://barelo.herokuapp.com)
 
 If you're lazy, here you have some credentials:
 
