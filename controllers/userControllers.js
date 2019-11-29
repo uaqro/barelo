@@ -20,12 +20,9 @@ exports.indexGet = async (req, res) => {
       }
     },
     picked: false
-<<<<<<< HEAD
   });
   res.render("user/index", {
     buks
-=======
->>>>>>> 82de211f7cbe9e5e1145a6cd2063d13cc219f771
   });
 };
 // CRUD LIBROS
@@ -79,33 +76,16 @@ exports.confirmBook = async (req, res) => {
   res.render("user/confirmation", buk);
 };
 exports.getpatchForm = async (req, res) => {
-<<<<<<< HEAD
   const { backURL } = req.header("Referer");
   const { id } = req.params;
-=======
-  const {
-    id
-  } = req.params;
->>>>>>> 5603edc916b88d0a8c6b65cd35844b2575be9258
   const buk = await books.findById(id);
   if (!buk.picked) {
     res.render("user/updateBook", { buk, backURL });
   }
 };
 exports.patchForm = async (req, res) => {
-<<<<<<< HEAD
   const { id, redirectRoute } = req.params;
   const { address, lng, lat } = req.body;
-=======
-  const {
-    id
-  } = req.params;
-  const {
-    address,
-    lng,
-    lat
-  } = req.body;
->>>>>>> 5603edc916b88d0a8c6b65cd35844b2575be9258
   if (req.file) {
     const {
       secure_url
@@ -126,18 +106,9 @@ exports.patchForm = async (req, res) => {
   }
 };
 exports.deleteBook = async (req, res) => {
-<<<<<<< HEAD
   const { id } = req.params;
   const { _id } = req.user;
   const backURL = req.header("Referer");
-=======
-  const {
-    id
-  } = req.params;
-  const {
-    _id
-  } = req.user;
->>>>>>> 5603edc916b88d0a8c6b65cd35844b2575be9258
   const bookmodel = await books.findById(id);
   if (!bookmodel.picked) {
     await books.findByIdAndDelete(id);
