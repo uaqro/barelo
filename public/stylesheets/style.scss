@@ -20,7 +20,7 @@ body {
 
 #map {
   width: 80vw;
-  height: 500px;
+  height: 400px;
 }
 
 #mapSignup {
@@ -396,12 +396,18 @@ img[alt="profile-pic"] {
   color: $color-my-main !important;
 }
 
-// #confirm-upload-book {
-//   .map {
-//     width: 100vw ;
-//     height: 400px ;
-//   }
-// }
+#confirm-upload-book {
+  p {
+    font-size: .8rem;
+  }
+}
+
+.column-align-horizontal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
 
 @media (max-width: 550px) {
   #mapSignup {

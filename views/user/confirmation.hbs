@@ -5,14 +5,27 @@
     <div class="columns">
       <div class="column">
         <img class="round-border-books" src={{this.pic}}>
+        <p><strong>No. of pages:</strong> {{this.pages}}</p>
+        <p><strong>Published in:</strong> {{this.publishDate}}</p>
+        <p> <strong>By:</strong> {{this.publisher}}</p>
+
       </div>
-      <div class="column">
+      <div class="column is-two-thirds">
         <h3>{{this.title}}</h3>
+        {{#each this.author as |auth|}}
+        <h4>{{auth}}</h4>
+        {{/each}}
+        <p>{{this.description}}</p>
+
 
       </div>
       <div class="column is-one-fifth">
-        <form method="POST" href="/{{this._id}}/delete-origin"><button>Delete</button></form>
-        <a href="/user/index" type="button"><button>Looks Great!</button></a>
+
+        <form method="POST" href="/{{this._id}}/delete-origin"> <a type="button"
+            class="button is-danger is-fullwidth is-block">Delete</a>
+        </form>
+        <br>
+        <a type="button" class="button is-primary is-fullwidth is-block" href="/user/index">Looks Great!</a>
       </div>
     </div>
 
@@ -31,13 +44,6 @@
   </div> {{!-- end main container --}}
 </section> {{!-- end main section --}}
 
-<p>{{this.description}}</p>
-{{#each this.author as |auth|}}
-<p>{{auth}}</p>
-{{/each}}
-<p>{{this.pages}}</p>
-<p>{{this.publisher}}</p>
-<p>{{this.publishDate}}</p>
 <div id="map" style="width: 500px; height:500px"></div>
 
 

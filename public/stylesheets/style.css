@@ -11,7 +11,7 @@ body {
 
 #map {
   width: 80vw;
-  height: 500px; }
+  height: 400px; }
 
 #mapSignup {
   width: 500px;
@@ -271,6 +271,14 @@ img[alt="profile-pic"] {
 .steps .step-item.is-success.is-active .step-marker {
   border-color: #01d1b2 !important;
   color: #01d1b2 !important; }
+
+#confirm-upload-book p {
+  font-size: .8rem; }
+
+.column-align-horizontal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center; }
 
 @media (max-width: 550px) {
   #mapSignup {
