@@ -12,6 +12,7 @@
     "bcrypt": "^3.0.0",
     "body-parser": "^1.18.3",
     "bulma-badge": "^3.0.1",
+    "bulma-carousel": "^4.0.4",
     "cloudinary": "^1.17.0",
     "connect-ensure-login": "^0.1.1",
     "connect-flash": "^0.1.1",

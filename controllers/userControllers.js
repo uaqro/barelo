@@ -3,7 +3,7 @@ const user = require("../models/User.js");
 const Comment = require("../models/Comment.js");
 const axios = require("axios");
 require("dotenv").config();
-//FUNCIONES PÁGINA
+
 exports.indexGet = async (req, res) => {
   const { place } = req.user;
   const buks = await books.find({
@@ -22,7 +22,6 @@ exports.indexGet = async (req, res) => {
     buks
   });
 };
-// CRUD LIBROS
 exports.ISBNform = async (req, res) => {
   const { ISBN10, lng, lat, address } = req.body;
   const { id } = req.user;
@@ -58,7 +57,6 @@ exports.ISBNform = async (req, res) => {
 exports.confirmBook = async (req, res) => {
   const { id } = req.params;
   const buk = await books.findById(id);
-  console.log(buk);
   res.render("user/confirmation", buk);
 };
 exports.getpatchForm = async (req, res) => {
@@ -79,7 +77,6 @@ exports.patchForm = async (req, res) => {
     res.redirect(`/user/${buk._id}/book-details`);
   } else {
     const buk = await books.findById(id);
-    console.log(buk.place);
     buk.place.address = address;
     buk.place.cooordinates = [lng, lat];
     await buk.save();
@@ -143,7 +140,6 @@ exports.bookDetails = async (req, res) => {
     }
   }
   if (String(_id) == String(buk.swapper._id)) {
-    console.log("El visitante es el publicante");
     showB = false;
     showEdit = true;
   }
@@ -151,8 +147,6 @@ exports.bookDetails = async (req, res) => {
     showB = false;
     showC = true;
   }
-  console.log(showB);
-  console.log(usr.tokens);
   res.render("user/detail", {
     buk,
     showA,
@@ -182,7 +176,6 @@ exports.seeProfile = async (req, res) => {
     commentsArray
   });
 };
-// router.get('/:id/delete-comment', deleteComment)
 exports.deleteComment = async (req, res) => {
   const { id } = req.params; //id del comentario
   const com = await Comment.findById(id);
@@ -204,7 +197,7 @@ exports.deleteComment = async (req, res) => {
   res.redirect(`/user/${com.swapperRec}/profile`);
 };
 exports.editComment = async (req, res) => {
-  const { id } = req.params; //Id del comentario
+  const { id } = req.params;
   const com = await Comment.findById(id);
   res.render("user/editComment", com);
 };
@@ -233,12 +226,11 @@ exports.newComment = async (req, res) => {
   await reciever.save();
   await res.redirect(`/user/${id}/profile`);
 };
-//CRUD USER
 exports.getProfile = async (req, res) => {
   const { id } = req.user;
   const swapper = await user
     .findById(id)
-    .populate("pickedBooks publishedBooks");
+    .populate("pickedBooks publishedBooks commentsRec");
   res.render("user/ownProfile", swapper);
 };
 exports.deleteUser = async (req, res) => {
@@ -278,49 +270,4 @@ exports.patchUser = async (req, res) => {
     await user.findByIdAndUpdate(id, updt);
     res.redirect("/user/profile");
   }
-};
-//NO SE ESTÁ USANDO
-exports.postForm = async (req, res) => {
-  const { id } = req.user;
-  const { secure_url } = req.file;
-  const {
-    title,
-    description,
-    author,
-    pages,
-    categories,
-    pic,
-    idioma,
-    publisher,
-    publishedDate,
-    address,
-    lng,
-    lat
-  } = req.body;
-  const buk = {
-    title: title,
-    description: description,
-    author: author,
-    pages: pages,
-    categories: categories,
-    pic: pic,
-    idioma: idioma,
-    publisher: publisher,
-    publishDate: publishedDate,
-    placePic: secure_url,
-    place: {
-      address: address,
-      coordinates: [lng, lat]
-    },
-    swapper: id
-  };
-  const buki = await books.create(buk);
-  const user = await user.findOne({
-    _id: id
-  });
-  user.publishedBooks.push(buki._id);
-  let credits = user.publishedBooks.length - user.pickedBooks.length;
-  user.tokens = credits;
-  await user.save();
-  res.redirect("/user/confirmation");
 };
