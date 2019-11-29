@@ -36,8 +36,15 @@
     </div>
 
     {{#if showA}}
-    <div id='map'></div>
-    <img src={{buk.placePic}}>
+    <div class="columns">
+      <div class="column is-four-fifths">
+        <div id='map'></div>
+      </div>
+      <div class="column">
+        <h3 style="text-align: center;">You can find your book here:</h3>
+        <img src={{buk.placePic}}>
+      </div>
+    </div>
     {{else}}
     {{#if showB}}
     <form action='/user/{{buk._id}}/pick' method='POST'>
