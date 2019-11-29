@@ -19,16 +19,19 @@
       <div class="column">
         <h3 class="">{{buk.title}}</h3>
         {{#each buk.author as |auth|}}
-        <p><strong>by:</strong>{{auth}}</p>
+        <h5>{{auth}}</h5>
         {{/each}}
         <p>{{buk.description}}</p>
-        <p>Pages no.{{buk.pages}}</p>
-        <p>Published in: {{buk.publishDate}}</p>
-        <p>Publisher: {{buk.publisher}}</p>
+        <p> <strong>No. of pages: </strong>{{buk.pages}}</p>
+        <p> <strong>Published in: </strong> {{buk.publishDate}}</p>
+        <p> <strong>By: </strong>
+          {{buk.publisher}}</p>
       </div>
       <div class="column is-one-fifth ">
         <div class="giver-box">
-          <h4>This book was published by:</h4>
+
+
+          <p>This book was published by:</p>
           <img class="" src={{buk.swapper.photoURL}}>
           <a href="/user/{{buk.swapper._id}}/profile">{{buk.swapper.username}}</a>
         </div>
