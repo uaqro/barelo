@@ -1,45 +1,68 @@
-<img src="{{swapper.photoURL}}">
-<h2>{{swapper.username}}</h2>
+<section class="section" id="main-profile">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-quarter  centerizeme"></div>
+      <img src="{{swapper.photoURL}}">
+      <h2>{{swapper.username}}</h2>
+      <hr>
 
-<div>
-  <h4>Books Left</h4>
-  {{#each swapper.publishedBooks as |buk|}}
-  <p>{{buk.title}}</p>
-  {{/each}}
+      <div class="column column-align-horizontal-wrapper">
+        <div class="column is-block">
 
-</div>
-<div>
-  <h4>Books Picked</h4>
-  {{#each swapper.pickedBooks as |buuk|}}
-  <p>{{buuk.title}}</p>
-  {{/each}}
-</div>
-<div>
-  <p><strong>Tokens Available</strong></p>
-  <p>{{swapper.tokens}}</p>
-</div>
-<div>
-  <h3>Badges</h3>
-  <ul>
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
-    <li>4</li>
-  </ul>
-  {{#each commentsArray as |comment|}}
-  {{#if comment.show}}
-  <a href="/user/{{comment.content._id}}/delete-comment" type="button">
-    <h1>Delete</h1>
-  </a>
-  <a href="/user/{{comment.content._id}}/edit-comment" type="button">Edit</a>
-  {{/if}}
-  <p>{{comment.content.body}}</p>
-  <a href="/user/{{comment.content.swapperPosting._id}}/profile">{{comment.content.swapperPosting.username}}</a>
-  <img src="{{comment.content.swapperPosting.photoURL}}">
-  {{/each}}
-  <h2>Post a Comment</h2>
-  <form action='/user/{{swapper._id}}/new-comment' method='POST'>
-    <input type='text' name="comment">
-    <button>Submit</button>
-  </form>
-</div>
+          <h4 class="is-uppercase">Books Shared</h4>
+          <div class="not-yet-carousel">
+
+            {{#each swapper.publishedBooks as |buk|}}
+            <div class="one-book-profile ">
+              <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
+              <p>{{buk.title}}</p>
+              <a href="/user/{{buk._id}}/book-details" type="button">View Book</a>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+        <div class="column is-block">
+          <h4 class="is-uppercase">Books Picked</h4>
+          <div class="not-yet-carousel">
+            {{#each swapper.pickedBooks as |buuk|}}
+            <div class="one-book-profile ">
+              <img class="round-border-books" src="{{buuk.pic}}" alt="picture of book">
+              <p>{{buuk.title}}</p>
+              <a href="/user/{{buuk._id}}/book-details" type="button">
+                <p>View Book</p>
+              </a>
+            </div>
+            {{/each}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p><strong>Tokens Available</strong></p>
+      <p>{{swapper.tokens}}</p>
+    </div>
+    <div>
+      <h3>Badges</h3>
+      <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+      </ul>
+      {{#each commentsArray as |comment|}}
+      {{#if comment.show}}
+      <a href="/user/{{comment.content._id}}/delete-comment" type="button">
+        <h1>Delete</h1>
+      </a>
+      <a href="/user/{{comment.content._id}}/edit-comment" type="button">Edit</a>
+      {{/if}}
+      <p>{{comment.content.body}}</p>
+      <a href="/user/{{comment.content.swapperPosting._id}}/profile">{{comment.content.swapperPosting.username}}</a>
+      <img src="{{comment.content.swapperPosting.photoURL}}">
+      {{/each}}
+      <h2>Post a Comment</h2>
+      <form action='/user/{{swapper._id}}/new-comment' method='POST'>
+        <input type='text' name="comment">
+        <button>Submit</button>
+      </form>
+    </div>

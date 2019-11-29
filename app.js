@@ -74,10 +74,8 @@ hbs.registerHelper("ifUndefined", (value, options) => {
   }
 });
 
-// default value for title local
 app.locals.title = "Barelo";
 
-// Enable authentication using session + passport
 app.use(
   session({
     secret: "irongenerator",
