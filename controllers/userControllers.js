@@ -162,13 +162,15 @@ exports.seeProfile = async (req, res) => {
   const swapper = await user.findById(id).populate("commentsRec");
   await swapper.commentsRec.forEach(async e => {
     let x = false;
-    let cont = await Comment.findById(e).populate("swapperPosting");
-    if (String(e.swapperPosting._id) === String(_id)) {
+    let cont = await Comment.findById(e);
+    let poster = await user.findById(e.swapperPosting);
+    if (String(e.swapperPosting) === String(_id)) {
       x = true;
     }
     commentsArray.push({
       content: cont,
-      show: x
+      show: x,
+      poster
     });
   });
   await res.render("user/otherProfile", {
@@ -228,10 +230,26 @@ exports.newComment = async (req, res) => {
 };
 exports.getProfile = async (req, res) => {
   const { id } = req.user;
+  let commentsArray = [];
   const swapper = await user
     .findById(id)
     .populate("pickedBooks publishedBooks commentsRec");
-  res.render("user/ownProfile", swapper);
+
+  await swapper.commentsRec.forEach(async e => {
+    let x = false;
+    let cont = await Comment.findById(e);
+    let poster = await user.findById(e.swapperPosting);
+    if (String(e.swapperPosting) === String(id)) {
+      x = true;
+    }
+    await commentsArray.push({
+      content: cont,
+      show: x,
+      poster
+    });
+  });
+
+  await res.render("user/ownProfile", { swapper, commentsArray });
 };
 exports.deleteUser = async (req, res) => {
   const { id } = req.user;

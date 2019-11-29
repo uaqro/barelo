@@ -57,8 +57,8 @@
       <a href="/user/{{comment.content._id}}/edit-comment" type="button">Edit</a>
       {{/if}}
       <p>{{comment.content.body}}</p>
-      <a href="/user/{{comment.content.swapperPosting._id}}/profile">{{comment.content.swapperPosting.username}}</a>
-      <img src="{{comment.content.swapperPosting.photoURL}}">
+      <a href="/user/{{comment.poster._id}}/profile">{{comment.poster.username}}</a>
+      <img src="{{comment.poster.photoURL}}">
       {{/each}}
       <h2>Post a Comment</h2>
       <form action='/user/{{swapper._id}}/new-comment' method='POST'>

@@ -3,11 +3,11 @@
     <div class="columns">
       {{!-- column profile box --}}
       <div class="column is-one-quarter  centerizeme">
-        <img src="{{this.photoURL}}" alt="profile-pic">
-        <h2>Hello {{this.username}}</h2>
+        <img src="{{swapper.photoURL}}" alt="profile-pic">
+        <h2>Hello {{swapper.username}}</h2>
         <hr>
         <div class="token-coin">
-          <p>{{this.tokens}}</p>
+          <p>{{swapper.tokens}}</p>
         </div>
         <h4 class="is-uppercase">tokens</h4>
         <div class="bottom-buttons-prof">
@@ -20,7 +20,7 @@
         <div class="column is-block">
           <h4 class="is-uppercase">Books Shared</h4>
           <div class="not-yet-carousel">
-            {{#each this.publishedBooks as |buk|}}
+            {{#each swapper.publishedBooks as |buk|}}
             <div class="one-book-profile ">
               <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
               <p>{{buk.title}}</p>
@@ -37,7 +37,7 @@
         <div class="column is-block">
           <h4 class="is-uppercase">Books Picked</h4>
           <div class="not-yet-carousel">
-            {{#each this.pickedBooks as |buk|}}
+            {{#each swapper.pickedBooks as |buk|}}
             <div class="one-book-profile ">
               <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
               <p>{{buk.title}}</p>
@@ -51,8 +51,10 @@
       </div>{{!-- end of colum rigth  --}}
     </div>{{!-- end ofcolumsss  --}}
     <div class="columns"> {{!--badges columns --}}
-      {{#each this.commentsRec as |comment|}}
-      <p>{{comment}}</p>
+      {{#each commentsArray as |comment|}}
+      <p>{{comment.content.body}}</p>
+      <a href="/user/{{comment.poster._id}}/profile">{{comment.poster.username}}</a>
+      <img src="{{comment.poster.photoURL}}">
       {{/each}}
       <div>
         <h3>Badges</h3>
