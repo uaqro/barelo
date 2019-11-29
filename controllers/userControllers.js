@@ -76,16 +76,30 @@ exports.confirmBook = async (req, res) => {
   res.render("user/confirmation", buk);
 };
 exports.getpatchForm = async (req, res) => {
-  const { backURL } = req.header("Referer");
-  const { id } = req.params;
+  const {
+    backURL
+  } = req.header("Referer");
+  const {
+    id
+  } = req.params;
   const buk = await books.findById(id);
   if (!buk.picked) {
-    res.render("user/updateBook", { buk, backURL });
+    res.render("user/updateBook", {
+      buk,
+      backURL
+    });
   }
 };
 exports.patchForm = async (req, res) => {
-  const { id, redirectRoute } = req.params;
-  const { address, lng, lat } = req.body;
+  const {
+    id,
+    redirectRoute
+  } = req.params;
+  const {
+    address,
+    lng,
+    lat
+  } = req.body;
   if (req.file) {
     const {
       secure_url
@@ -95,19 +109,23 @@ exports.patchForm = async (req, res) => {
     buk.place.cooordinates = [lng, lat];
     buk.picPlace = secure_url;
     await buk.save();
-    res.redirect(redirectRoute);
+    res.redirect(`/user/${buk._id}/book-details`);
   } else {
     const buk = await books.findById(id);
     console.log(buk.place);
     buk.place.address = address;
     buk.place.cooordinates = [lng, lat];
     await buk.save();
-    res.redirect(redirectRoute);
+    res.redirect(`/user/${buk._id}/book-details`);
   }
 };
 exports.deleteBook = async (req, res) => {
-  const { id } = req.params;
-  const { _id } = req.user;
+  const {
+    id
+  } = req.params;
+  const {
+    _id
+  } = req.user;
   const backURL = req.header("Referer");
   const bookmodel = await books.findById(id);
   if (!bookmodel.picked) {
