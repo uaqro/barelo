@@ -63,15 +63,12 @@ exports.confirmBook = async (req, res) => {
   res.render("user/confirmation", buk);
 };
 exports.getpatchForm = async (req, res) => {
-  const { backURL } = req.header("Referer");
   const { id } = req.params;
   const buk = await books.findById(id);
-  if (!buk.picked) {
-    res.render("user/updateBook", { buk, backURL });
-  }
+  res.render("user/updateBook", { buk });
 };
 exports.patchForm = async (req, res) => {
-  const { id, redirectRoute } = req.params;
+  const { id } = req.params;
   const { address, lng, lat } = req.body;
   if (req.file) {
     const { secure_url } = req.file;
@@ -87,7 +84,7 @@ exports.patchForm = async (req, res) => {
     buk.place.address = address;
     buk.place.cooordinates = [lng, lat];
     await buk.save();
-    res.redirect(redirectRoute);
+    res.redirect(`/user/${id}/book-details`);
   }
 };
 exports.deleteBook = async (req, res) => {
@@ -95,19 +92,15 @@ exports.deleteBook = async (req, res) => {
   const { _id } = req.user;
   const backURL = req.header("Referer");
   const bookmodel = await books.findById(id);
-  if (!bookmodel.picked) {
-    await books.findByIdAndDelete(id);
-    await user.findByIdAndUpdate(_id, {
-      $pull: {
-        publishedBooks: {
-          $in: id
-        }
+  await books.findByIdAndDelete(id);
+  await user.findByIdAndUpdate(_id, {
+    $pull: {
+      publishedBooks: {
+        $in: id
       }
-    });
-    res.redirect(backURL);
-  } else {
-    alert("Picked books cannot be deleted.");
-  }
+    }
+  });
+  res.redirect(backURL);
 };
 exports.delBook = async (req, res) => {
   const { id } = req.params;
