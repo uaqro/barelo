@@ -20,9 +20,12 @@ exports.indexGet = async (req, res) => {
       }
     },
     picked: false
+<<<<<<< HEAD
   });
   res.render("user/index", {
     buks
+=======
+>>>>>>> 82de211f7cbe9e5e1145a6cd2063d13cc219f771
   });
 };
 // CRUD LIBROS
