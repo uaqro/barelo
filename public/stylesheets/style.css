@@ -280,6 +280,23 @@ img[alt="profile-pic"] {
   justify-content: center;
   align-content: center; }
 
+.container-wrapper-add {
+  height: 300px; }
+  .container-wrapper-add .fleximymi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; }
+  .container-wrapper-add img[src="/images/barcode.png"] {
+    padding: 30px 0 20px 0; }
+  .container-wrapper-add .steptwo {
+    padding: 80px 0 20px 0; }
+  .container-wrapper-add .thanksmess {
+    padding-top: 70px; }
+  .container-wrapper-add .pub-button {
+    height: 30%;
+    font-size: 2rem; }
+
 @media (max-width: 550px) {
   #mapSignup {
     width: 440px;

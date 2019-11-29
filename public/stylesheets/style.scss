@@ -408,6 +408,34 @@ img[alt="profile-pic"] {
   align-content: center;
 }
 
+.container-wrapper-add {
+  height: 300px;
+
+  .fleximymi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img[src="/images/barcode.png"] {
+    padding: 30px 0 20px 0;
+  }
+
+  .steptwo {
+    padding: 80px 0 20px 0;
+  }
+
+  .thanksmess {
+    padding-top: 70px;
+  }
+
+  .pub-button {
+    height: 30%;
+    font-size: 2rem;
+  }
+}
+
 
 @media (max-width: 550px) {
   #mapSignup {
