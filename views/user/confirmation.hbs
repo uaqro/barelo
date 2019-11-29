@@ -8,31 +8,36 @@
         <p><strong>No. of pages:</strong> {{this.pages}}</p>
         <p><strong>Published in:</strong> {{this.publishDate}}</p>
         <p> <strong>By:</strong> {{this.publisher}}</p>
-
       </div>
-      <div class="column is-two-thirds">
+      <div class="column is-four-fifths">
         <h3>{{this.title}}</h3>
         {{#each this.author as |auth|}}
         <h4>{{auth}}</h4>
         {{/each}}
         <p>{{this.description}}</p>
-
-
-      </div>
-      <div class="column is-one-fifth">
-
-        <form method="POST" href="/{{this._id}}/delete-origin"> <a type="button"
-            class="button is-danger is-fullwidth is-block">Delete</a>
-        </form>
         <br>
-        <a type="button" class="button is-primary is-fullwidth is-block" href="/user/index">Looks Great!</a>
+        <div class="columns">
+          <div class="column">
+            <a type="button" class=" button is-danger is-fullwidth is-block" href="/{{this._id}}/delete-origin"> Delete
+            </a></div>
+          <div class="column">
+            <a type="button" class=" button is-primary is-fullwidth is-block" href="/user/index">Looks
+              Great!</a>
+          </div>
+        </div>
       </div>
+
+
+
+
+
+
     </div>
+
 
     <div class="columns">
       <div class="column">
         <div id="map"></div>
-
       </div>
     </div>
 
