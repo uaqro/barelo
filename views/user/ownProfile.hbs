@@ -40,14 +40,18 @@
             <div class="one-book-profile ">
               <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
               <p>{{buk.title}}</p>
-              <a href="/user/{{buk._id}}/book-details" type="button">View Book</a>
-
+              <a href="/user/{{buk._id}}/book-details" type="button">
+                <p>View Book</p>
+              </a>
             </div>
             {{/each}}
           </div>
         </div>
       </div>{{!-- end of colum rigth  --}}
     </div>{{!-- end ofcolumsss  --}}
+
+
+
 
     <div class="columns"> {{!--badges columns --}}
       {{#each this.commentsRec as |comment|}}
@@ -66,11 +70,6 @@
 
     </div> {{!--badges columns --}}
   </div>{{!-- end of container  --}}
-
-
-
-
-
 
   </div>{{!-- end of main container --}}
 </section>
