@@ -19,8 +19,8 @@ body {
 }
 
 #map {
-  width: 80vw;
-  height: 500px;
+  width: 60vw;
+  height: 400px;
 }
 
 #mapSignup {
@@ -396,12 +396,53 @@ img[alt="profile-pic"] {
   color: $color-my-main !important;
 }
 
-// #confirm-upload-book {
-//   .map {
-//     width: 100vw ;
-//     height: 400px ;
-//   }
-// }
+#confirm-upload-book {
+  p {
+    font-size: .8rem;
+  }
+}
+
+.column-align-horizontal-wrapper {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.container-wrapper-add {
+  height: 300px;
+
+  .fleximymi {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  img[src="/images/barcode.png"] {
+    padding: 30px 0 20px 0;
+  }
+
+  .steptwo {
+    padding: 80px 0 20px 0;
+  }
+
+  .thanksmess {
+    padding-top: 70px;
+  }
+
+  .pub-button {
+    height: 30%;
+    font-size: 2rem;
+  }
+}
+
+.crud-btns {
+  padding: 30px 0;
+  width: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
 
 @media (max-width: 550px) {
   #mapSignup {

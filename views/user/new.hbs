@@ -41,27 +41,27 @@
       {{!-- step one --}}
       <form action='/user/new/ISBN' method='POST' enctype="multipart/form-data">
         <div class="steps-content container-wrapper">
-          <div class="step-content has-text-centered is-active">
-            <div class="columns is-desktop">
+          <div class="step-content has-text-centered is-active container-wrapper-add">
+            <div class="columns is-desktop fleximymi">
               <div class="column">
-                <div class="field">
+                <div class="fiel ">
                   <img src="/images/barcode.png" alt="">
                   <div class="control">
-                    <input class="input is-large" type="text" name="ISBN10"
+                    <input class="input is-medium" type="text" name="ISBN10"
                       placeholder="Type here the number that comes in the back of your book..." data-validate="require">
                   </div>
                 </div>
               </div>
               <div class="column">
-                <p>Fin the ISBN code behind your book, and type the numbers beneath it in the input field under the bar
+                <p>Find the ISBN code behind your book beneath the barcode, and type the numbers up here.
                   code.</p>
               </div>
             </div>
           </div>
           {{!-- step two --}}
-          <div class="step-content has-text-centered">
-            <div class="columns is-desktop">
-              <div class="column">
+          <div class="step-content has-text-centered container-wrapper-add">
+            <div class="columns is-desktop fleximymi">
+              <div class="column steptwo">
                 <p>Take a picture of the place where you will leave the book so the scavanger could find it!
                   ps.. you could give it in person if you wish!.
                 </p>
@@ -76,11 +76,11 @@
                         <i class="fas fa-upload"></i>
                       </span>
                       <span class="file-label">
-                        Choose a file…
+                        Choose a pic..
                       </span>
                     </span>
                     <span class="file-name">
-                      Add another picture of your book in the new location!
+                      Add a picture of your book!
                     </span>
                   </label>
                 </div>
@@ -89,15 +89,15 @@
           </div>
           {{!-- step two end --}}
           {{!-- step tree  --}}
-          <div class="step-content">
+          <div class="step-content container-wrapper-add">
             <div class="columns">
-              <div class="column">
+              <div class="column ">
                 <input id="lng" type="text" name="lng" hidden>
                 <input id="lat" type="text" name="lat" hidden>
                 <input id="address" type="text" name="address" hidden>
                 <div id="mapNew"></div>
               </div>
-              <div class="column">
+              <div class="column fleximymi is-hidden-mobile">
                 Last but not least, tell you next reader where the book is going to be so this person can find it and
                 start reading.
               </div>
@@ -105,18 +105,19 @@
           </div>
           {{!-- step tree end --}}
           {{!-- step four  --}}
-          <div class="step-content has-text-centered">
-            <h1 class="title is-4">Your book ready to be published, click on the submit buttun whenever you are ready!
-            </h1>
-            <button class="button is-primary">Submit</button>
+          <div class="step-content has-text-centered container-wrapper-add">
+            <h2 class="title is-4 thanksmess">Your book ready to be published, click on the submit buttun whenever you
+              are ready!
+            </h2>
+            <button class="pub-button button is-fullwidth  is-primary">Publish this Book</button>
           </div>
         </div>
         <div class="steps-actions">
           <div class="steps-action">
-            <a href="#" data-nav="previous" class="button is-light">Previous</a>
+            <a href="#" data-nav="previous" class="button is-light  is-fullwidth ">Previous</a>
           </div>
           <div class="steps-action">
-            <a href="#" data-nav="next" class="button is-light">Next</a>
+            <a href="#" data-nav="next" class=" is-fullwidth button is-link">Next</a>
           </div>
         </div>
       </form>
