@@ -3,7 +3,6 @@ const user = require("../models/User.js");
 const Comment = require("../models/Comment.js");
 const axios = require("axios");
 require("dotenv").config();
-
 //FUNCIONES PÁGINA
 exports.indexGet = async (req, res) => {
   const {
@@ -223,7 +222,6 @@ exports.seeProfile = async (req, res) => {
     _id
   } = req.user;
   const swapper = await user.findById(id).populate("commentsRec");
-
   await swapper.commentsRec.forEach(async e => {
     let x = false;
     let cont = await Comment.findById(e).populate("swapperPosting");
@@ -240,7 +238,6 @@ exports.seeProfile = async (req, res) => {
     commentsArray
   });
 };
-
 // router.get('/:id/delete-comment', deleteComment)
 exports.deleteComment = async (req, res) => {
   const {
@@ -306,7 +303,6 @@ exports.newComment = async (req, res) => {
   await reciever.save();
   await res.redirect(`/user/${id}/profile`);
 };
-
 //CRUD USER
 exports.getProfile = async (req, res) => {
   const {
@@ -390,7 +386,6 @@ exports.postForm = async (req, res) => {
     lng,
     lat
   } = req.body;
-
   const buk = {
     title: title,
     description: description,
@@ -408,7 +403,6 @@ exports.postForm = async (req, res) => {
     },
     swapper: id
   };
-
   const buki = await books.create(buk);
   const user = await user.findOne({
     _id: id
