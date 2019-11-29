@@ -3,7 +3,6 @@ const user = require("../models/User.js");
 const Comment = require("../models/Comment.js");
 const axios = require("axios");
 require("dotenv").config();
-
 //FUNCIONES PÁGINA
 exports.indexGet = async (req, res) => {
   const {
@@ -76,16 +75,30 @@ exports.confirmBook = async (req, res) => {
   res.render("user/confirmation", buk);
 };
 exports.getpatchForm = async (req, res) => {
-  const { backURL } = req.header("Referer");
-  const { id } = req.params;
+  const {
+    backURL
+  } = req.header("Referer");
+  const {
+    id
+  } = req.params;
   const buk = await books.findById(id);
   if (!buk.picked) {
-    res.render("user/updateBook", { buk, backURL });
+    res.render("user/updateBook", {
+      buk,
+      backURL
+    });
   }
 };
 exports.patchForm = async (req, res) => {
-  const { id, redirectRoute } = req.params;
-  const { address, lng, lat } = req.body;
+  const {
+    id,
+    redirectRoute
+  } = req.params;
+  const {
+    address,
+    lng,
+    lat
+  } = req.body;
   if (req.file) {
     const {
       secure_url
@@ -106,8 +119,12 @@ exports.patchForm = async (req, res) => {
   }
 };
 exports.deleteBook = async (req, res) => {
-  const { id } = req.params;
-  const { _id } = req.user;
+  const {
+    id
+  } = req.params;
+  const {
+    _id
+  } = req.user;
   const backURL = req.header("Referer");
   const bookmodel = await books.findById(id);
   if (!bookmodel.picked) {
@@ -205,7 +222,6 @@ exports.seeProfile = async (req, res) => {
     _id
   } = req.user;
   const swapper = await user.findById(id).populate("commentsRec");
-
   await swapper.commentsRec.forEach(async e => {
     let x = false;
     let cont = await Comment.findById(e).populate("swapperPosting");
@@ -222,7 +238,6 @@ exports.seeProfile = async (req, res) => {
     commentsArray
   });
 };
-
 // router.get('/:id/delete-comment', deleteComment)
 exports.deleteComment = async (req, res) => {
   const {
@@ -288,7 +303,6 @@ exports.newComment = async (req, res) => {
   await reciever.save();
   await res.redirect(`/user/${id}/profile`);
 };
-
 //CRUD USER
 exports.getProfile = async (req, res) => {
   const {
@@ -372,7 +386,6 @@ exports.postForm = async (req, res) => {
     lng,
     lat
   } = req.body;
-
   const buk = {
     title: title,
     description: description,
@@ -390,7 +403,6 @@ exports.postForm = async (req, res) => {
     },
     swapper: id
   };
-
   const buki = await books.create(buk);
   const user = await user.findOne({
     _id: id
