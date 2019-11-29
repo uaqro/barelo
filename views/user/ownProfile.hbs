@@ -1,4 +1,4 @@
-<section class="section" id="main-profile">
+<section class="section main-profile">
   <div class="container">
     <div class="columns">
       {{!-- column profile box --}}
@@ -16,7 +16,7 @@
         </div>
       </div>
       {{!-- column profile box --}}
-      <div class="column column-align-horizontal-wrapper">
+      <div class="column">
         <div class="column is-block">
           <h4 class="is-uppercase">Books Shared</h4>
           <div class="not-yet-carousel">
@@ -33,7 +33,6 @@
                 <a type="button" href="/user/{{buk._id}}/delete"><i class="far fa-trash-alt"
                     style="color:#F14768;"></i></a>
               </div>
-
               {{/if}}
             </div>
             {{/each}}
@@ -47,13 +46,13 @@
               <img class="round-border-books" src="{{buk.pic}}" alt="picture of book">
               <p>{{buk.title}}</p>
               <a href="/user/{{buk._id}}/book-details" type="button">
-                <p>View Book</p>
+                <i class="far fa-eye"></i>
               </a>
-            </div>
+            </div> {{!--  one-book-profile --}}
             {{/each}}
           </div>
-        </div>
-      </div>{{!-- end of colum rigth  --}}
+        </div>{{!-- end of colum rigth  --}}
+      </div>
     </div>{{!-- end ofcolumsss  --}}
     <div class="columns"> {{!--badges columns --}}
       {{#each commentsArray as |comment|}}
@@ -61,15 +60,6 @@
       <a href="/user/{{comment.poster._id}}/profile">{{comment.poster.username}}</a>
       <img src="{{comment.poster.photoURL}}">
       {{/each}}
-      <div>
-        <h3>Badges</h3>
-        <ul>
-          <li>1</li>
-          <li>2</li>
-          <li>3</li>
-          <li>4</li>
-        </ul>
-      </div>
     </div> {{!--badges columns --}}
   </div>{{!-- end of container  --}}
   </div>{{!-- end of main container --}}
